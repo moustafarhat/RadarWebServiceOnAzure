@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AzureWebService</name>
+    </assembly>
+    <members>
+        <member name="T:AzureWebService.Controllers.DataRegistrationController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Controllers.DataRegistrationController.RegisterData(AzureWebService.Models.ReceivedData)">
+            <summary>
+            
+            </summary>
+            <param name="received"></param>
+        </member>
+        <member name="M:AzureWebService.Controllers.DataRegistrationController.InsertData(AzureWebService.Models.ReceivedData)">
+            <summary>
+            
+            </summary>
+            <param name="received"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Controllers.DataRegistrationController.AddData(AzureWebService.Models.ReceivedData)">
+            <summary>
+            
+            </summary>
+            <param name="received"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AzureWebService.Controllers.DataRetriveController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Controllers.DataRetriveController.GetAllData">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Controllers.DataRetriveController.GetAllStudentRecords">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:AzureWebService.Core.DataRegistration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:AzureWebService.Core.DataRegistration.ReceivedData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Core.DataRegistration.GetInstance">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.DataRegistration.AddDataToDic(AzureWebService.Models.ReceivedData)">
+            <summary>
+            
+            </summary>
+            <param name="receivedData"></param>
+        </member>
+        <member name="M:AzureWebService.Core.DataRegistration.GetAllData">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:AzureWebService.Models.ProcessedData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Models.ProcessedData.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="latitude"></param>
+        </member>
+        <member name="P:AzureWebService.Models.ProcessedData.Prefix">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.ProcessedData.Timestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.ProcessedData.Latitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.ProcessedData.Long">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.ProcessedData.Speed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.ProcessedData.Direction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.ProcessedData.Hight">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:AzureWebService.Models.ReceivedData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.ReceivedData.Prefix">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.ReceivedData.Timestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.ReceivedData.SenderId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.ReceivedData.Speed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.ReceivedData.Latitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.ReceivedData.Long">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.ReceivedData.Flight">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.ReceivedData.Direction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.ReceivedData.Hight">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:AzureWebService.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:AzureWebService.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+    </members>
+</doc>
