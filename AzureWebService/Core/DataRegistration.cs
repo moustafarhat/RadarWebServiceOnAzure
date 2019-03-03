@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using AzureWebService.Models;
 
 namespace AzureWebService.Core
@@ -14,12 +11,12 @@ namespace AzureWebService.Core
         /// <summary>
         /// 
         /// </summary>
-        public IDictionary<string, ReceivedData> ReceivedData;
+        public IDictionary<string, FlugData> ReceivedData;
         private static DataRegistration _dataRegistration;
 
         private DataRegistration()
         {
-            ReceivedData = new Dictionary<string, ReceivedData>();
+            ReceivedData = new Dictionary<string, FlugData>();
         }
 
         /// <summary>
@@ -41,7 +38,7 @@ namespace AzureWebService.Core
         /// 
         /// </summary>
         /// <param name="receivedData"></param>
-        public void AddDataToDic(ReceivedData receivedData)
+        public void AddDataToDic(FlugData receivedData)
         {
             if (ReceivedData.ContainsKey(receivedData.Flight))
             {
@@ -56,8 +53,22 @@ namespace AzureWebService.Core
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="flight"></param>
         /// <returns></returns>
-        public IDictionary<string, ReceivedData> GetAllData()
+        public FlugData GetFlightData(string flight)
+        {
+            if (ReceivedData.ContainsKey(flight))
+            {
+                return ReceivedData[flight];
+            }
+
+            return null;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IDictionary<string, FlugData> GetAllData()
         {
             return ReceivedData;
         }

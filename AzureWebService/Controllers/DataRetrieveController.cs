@@ -11,15 +11,16 @@ namespace AzureWebService.Controllers
     /// 
     /// </summary>
     [Route("api/[controller]")]
-    public class DataRetriveController : Controller
+    public class DataRetrieveController : Controller
     {
+        
         // GET: api/<controller>
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IDictionary<string,ReceivedData> GetAllData()
+        public IDictionary<string,FlugData> GetAllData()
         {
             return DataRegistration.GetInstance().GetAllData();
         }

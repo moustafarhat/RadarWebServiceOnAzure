@@ -6,41 +6,58 @@
     <members>
         <member name="T:AzureWebService.Controllers.DataRegistrationController">
             <summary>
-            
+            Send new Data to the Service and store it
             </summary>
         </member>
-        <member name="M:AzureWebService.Controllers.DataRegistrationController.RegisterData(AzureWebService.Models.ReceivedData)">
+        <member name="M:AzureWebService.Controllers.DataRegistrationController.RegisterData(AzureWebService.Models.FlugData)">
             <summary>
-            
+            Register Data
             </summary>
             <param name="received"></param>
         </member>
-        <member name="M:AzureWebService.Controllers.DataRegistrationController.InsertData(AzureWebService.Models.ReceivedData)">
-            <summary>
-            
-            </summary>
-            <param name="received"></param>
-            <returns></returns>
-        </member>
-        <member name="M:AzureWebService.Controllers.DataRegistrationController.AddData(AzureWebService.Models.ReceivedData)">
+        <member name="M:AzureWebService.Controllers.DataRegistrationController.InsertData(AzureWebService.Models.FlugData)">
             <summary>
             
             </summary>
             <param name="received"></param>
             <returns></returns>
         </member>
-        <member name="T:AzureWebService.Controllers.DataRetriveController">
+        <member name="M:AzureWebService.Controllers.DataRegistrationController.AddData(AzureWebService.Models.FlugData)">
+            <summary>
+            
+            </summary>
+            <param name="received"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AzureWebService.Controllers.DataRetrieveController">
             <summary>
             
             </summary>
         </member>
-        <member name="M:AzureWebService.Controllers.DataRetriveController.GetAllData">
+        <member name="M:AzureWebService.Controllers.DataRetrieveController.GetAllData">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:AzureWebService.Controllers.DataRetriveController.GetAllStudentRecords">
+        <member name="M:AzureWebService.Controllers.DataRetrieveController.GetAllStudentRecords">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:AzureWebService.Controllers.SelectFlightControllers">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Controllers.SelectFlightControllers.GetFlightData(System.String)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Controllers.SelectFlightControllers.GetFlightRecord(System.String)">
             <summary>
             
             </summary>
@@ -62,11 +79,18 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:AzureWebService.Core.DataRegistration.AddDataToDic(AzureWebService.Models.ReceivedData)">
+        <member name="M:AzureWebService.Core.DataRegistration.AddDataToDic(AzureWebService.Models.FlugData)">
             <summary>
             
             </summary>
             <param name="receivedData"></param>
+        </member>
+        <member name="M:AzureWebService.Core.DataRegistration.GetFlightData(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="flight"></param>
+            <returns></returns>
         </member>
         <member name="M:AzureWebService.Core.DataRegistration.GetAllData">
             <summary>
@@ -74,98 +98,52 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:AzureWebService.Models.ProcessedData">
+        <member name="T:AzureWebService.Models.FlugData">
             <summary>
             
             </summary>
         </member>
-        <member name="M:AzureWebService.Models.ProcessedData.#ctor(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="latitude"></param>
-        </member>
-        <member name="P:AzureWebService.Models.ProcessedData.Prefix">
+        <member name="P:AzureWebService.Models.FlugData.Prefix">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.ProcessedData.Timestamp">
+        <member name="P:AzureWebService.Models.FlugData.Timestamp">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.ProcessedData.Latitude">
+        <member name="P:AzureWebService.Models.FlugData.SenderId">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.ProcessedData.Long">
+        <member name="P:AzureWebService.Models.FlugData.Groundspeed">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.ProcessedData.Speed">
+        <member name="P:AzureWebService.Models.FlugData.Latitude">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.ProcessedData.Direction">
+        <member name="P:AzureWebService.Models.FlugData.Long">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.ProcessedData.Hight">
+        <member name="P:AzureWebService.Models.FlugData.Flight">
             <summary>
             
             </summary>
         </member>
-        <member name="T:AzureWebService.Models.ReceivedData">
+        <member name="P:AzureWebService.Models.FlugData.Track">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.ReceivedData.Prefix">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:AzureWebService.Models.ReceivedData.Timestamp">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:AzureWebService.Models.ReceivedData.SenderId">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:AzureWebService.Models.ReceivedData.Speed">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:AzureWebService.Models.ReceivedData.Latitude">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:AzureWebService.Models.ReceivedData.Long">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:AzureWebService.Models.ReceivedData.Flight">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:AzureWebService.Models.ReceivedData.Direction">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:AzureWebService.Models.ReceivedData.Hight">
+        <member name="P:AzureWebService.Models.FlugData.Altitude">
             <summary>
             
             </summary>

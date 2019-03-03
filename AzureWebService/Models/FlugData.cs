@@ -6,28 +6,28 @@ namespace AzureWebService.Models
     /// <summary>
     /// 
     /// </summary>
-    public class ReceivedData
+    public class FlugData
     {
 
         /// <summary>
         /// 
         /// </summary>
-        public Prefix Prefix { get; set; }
+        public Prefix? Prefix { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public DateTime Timestamp { get; set; }
+        public DateTime? Timestamp { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int SenderId { get; set; }
+        public string SenderId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public float Speed { get; set; }
+        public int? Groundspeed { get; set; }
 
         /// <summary>
         /// 
@@ -47,11 +47,11 @@ namespace AzureWebService.Models
         /// <summary>
         /// 
         /// </summary>
-        public int Direction { get; set; }
+        public int? Track { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int Hight { get; set; }
+        public int? Altitude { get; set; }
     }
 }

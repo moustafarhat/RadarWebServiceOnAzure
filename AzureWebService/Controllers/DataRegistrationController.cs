@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AzureWebService.Controllers
 {
     /// <summary>
-    /// 
+    /// Send new Data to the Service and store it
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -16,24 +16,24 @@ namespace AzureWebService.Controllers
     {
         // POST: api/<controller>
         /// <summary>
-        /// 
+        /// Register Data
         /// </summary>
         /// <param name="received"></param>
         [HttpPost]
-        public void RegisterData(ReceivedData received)
+        public void RegisterData(FlugData received)
         {
             try
             {
-                var newReceivedData = new ReceivedData
+                var newReceivedData = new FlugData
                 {
                     Flight = received.Flight,
-                    Direction = received.Direction,
-                    Hight = received.Hight,
+                    Track = received.Track,
+                    Altitude = received.Altitude,
                     Latitude = received.Latitude,
                     Long = received.Long,
                     Prefix = received.Prefix,
                     SenderId = received.SenderId,
-                    Speed = received.Speed,
+                    Groundspeed = received.Groundspeed,
                     Timestamp = received.Timestamp
                 };
 
@@ -53,18 +53,18 @@ namespace AzureWebService.Controllers
         /// <param name="received"></param>
         /// <returns></returns>
         [HttpPost("InsertData")]
-        public IActionResult InsertData(ReceivedData received)
+        public IActionResult InsertData(FlugData received)
         {
-            var newReceivedData = new ReceivedData
+            var newReceivedData = new FlugData
             {
                 Flight = received.Flight,
-                Direction = received.Direction,
-                Hight = received.Hight,
+                Track = received.Track,
+                Altitude = received.Altitude,
                 Latitude = received.Latitude,
                 Long = received.Long,
                 Prefix = received.Prefix,
                 SenderId = received.SenderId,
-                Speed = received.Speed,
+                Groundspeed = received.Groundspeed,
                 Timestamp = received.Timestamp
             };
             DataRegistration.GetInstance().AddDataToDic(newReceivedData);
@@ -79,18 +79,18 @@ namespace AzureWebService.Controllers
         /// <returns></returns>
         [Route("Data/")]
         [HttpPost("AddData")]
-        public JsonResult AddData(ReceivedData received)
+        public JsonResult AddData(FlugData received)
         {
-            var newReceivedData = new ReceivedData
+            var newReceivedData = new FlugData
             {
                 Flight = received.Flight,
-                Direction = received.Direction,
-                Hight = received.Hight,
+                Track = received.Track,
+                Altitude = received.Altitude,
                 Latitude = received.Latitude,
                 Long = received.Long,
                 Prefix = received.Prefix,
                 SenderId = received.SenderId,
-                Speed = received.Speed,
+                Groundspeed = received.Groundspeed,
                 Timestamp = received.Timestamp
             };
             DataRegistration.GetInstance().AddDataToDic(newReceivedData);
