@@ -16,5 +16,6 @@ namespace AzureWebService.Core.Protocols.Interfaces
     public interface IDataProcessingOperations
     {
 
+
     }
 }
