@@ -1,18 +1,17 @@
 ﻿using System;
 using AzureWebService.Core;
-
+using CSVWriter;
 namespace AzureWebService.Models
 {
     /// <summary>
     /// 
     /// </summary>
-    public class FlugData
+    public class DataTransmissionModel : CsvableBase
     {
-
         /// <summary>
         /// 
         /// </summary>
-        public Prefix? Prefix { get; set; }
+        public Prefix Prefix { get; set; } = Prefix.Live;
 
         /// <summary>
         /// 
@@ -22,36 +21,47 @@ namespace AzureWebService.Models
         /// <summary>
         /// 
         /// </summary>
-        public string SenderId { get; set; }
+        public string SenderId { get; set; } = "";
 
         /// <summary>
         /// 
         /// </summary>
-        public int? Groundspeed { get; set; }
+        public int? Groundspeed { get; set; } = 0;
 
         /// <summary>
         /// 
         /// </summary>
-        public string Latitude { get; set; }
+        public double? Latitude { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Long { get; set; }
+        public double? Longitude { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string Flight { get; set; }
+        public string Flight { get; set; } = "";
 
         /// <summary>
         /// 
         /// </summary>
-        public int? Track { get; set; }
+        public int? Track { get; set; } = 0;
 
         /// <summary>
         /// 
         /// </summary>
-        public int? Altitude { get; set; }
+        public int? Altitude { get; set; } = 0;
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public AltitudeUnits AltitudeUnit { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public GroundSpeedUnits GroundSpeedUnit { get; set; }
     }
 }

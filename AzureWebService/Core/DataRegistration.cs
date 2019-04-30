@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using AzureWebService.Models;
 
 namespace AzureWebService.Core
@@ -11,12 +13,12 @@ namespace AzureWebService.Core
         /// <summary>
         /// 
         /// </summary>
-        public IDictionary<string, FlugData> ReceivedData;
+        public IDictionary<string, DataTransmissionModel> ReceivedData;
         private static DataRegistration _dataRegistration;
 
         private DataRegistration()
         {
-            ReceivedData = new Dictionary<string, FlugData>();
+            ReceivedData = new Dictionary<string, DataTransmissionModel>();
         }
 
         /// <summary>
@@ -38,7 +40,7 @@ namespace AzureWebService.Core
         /// 
         /// </summary>
         /// <param name="receivedData"></param>
-        public void AddDataToDic(FlugData receivedData)
+        public void AddDataToDic(DataTransmissionModel receivedData)
         {
             if (ReceivedData.ContainsKey(receivedData.Flight))
             {
@@ -55,7 +57,7 @@ namespace AzureWebService.Core
         /// </summary>
         /// <param name="flight"></param>
         /// <returns></returns>
-        public FlugData GetFlightData(string flight)
+        public DataTransmissionModel GetFlightData(string flight)
         {
             if (ReceivedData.ContainsKey(flight))
             {
@@ -64,13 +66,26 @@ namespace AzureWebService.Core
 
             return null;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="timestamp"></param>
+        /// <returns></returns>
+        public IList<DataTransmissionModel> GetFlightDataByDate(DateTime timestamp)
+        {
+ 
+            return null;
+        }
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public IDictionary<string, FlugData> GetAllData()
+        public IDictionary<string, DataTransmissionModel> GetAllData()
         {
             return ReceivedData;
         }
+
+ 
     }
 }

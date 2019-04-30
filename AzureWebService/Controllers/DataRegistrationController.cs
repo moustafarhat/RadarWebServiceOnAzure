@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using AzureWebService.Core;
 using AzureWebService.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using CSVWriter;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-/// <summary>
-/// hello world
-/// </summary>
 namespace AzureWebService.Controllers
 {
     /// <summary>
@@ -22,24 +21,34 @@ namespace AzureWebService.Controllers
         /// </summary>
         /// <param name="received"></param>
         [HttpPost]
-        public void RegisterData(FlugData received)
+        public void RegisterData(DataTransmissionModel received)
         {
             try
             {
-                var newReceivedData = new FlugData
+                var newReceivedData = new DataTransmissionModel
                 {
                     Flight = received.Flight,
                     Track = received.Track,
                     Altitude = received.Altitude,
                     Latitude = received.Latitude,
-                    Long = received.Long,
+                    Longitude = received.Longitude,
                     Prefix = received.Prefix,
                     SenderId = received.SenderId,
                     Groundspeed = received.Groundspeed,
                     Timestamp = received.Timestamp
                 };
 
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\DataFiles\\", "Data.csv");
+
+                var cw = new CsvWriter<DataTransmissionModel>();
+
+                cw.WriteModelToCsvFile(newReceivedData, filePath);
+
+                DataBaseConnection.InsertFlugData(newReceivedData);
+
                 DataRegistration.GetInstance().AddDataToDic(newReceivedData);
+
+                DataBaseConnection.SaveDataToTxtFile(newReceivedData);
             }
             catch (Exception e)
             {
@@ -55,21 +64,27 @@ namespace AzureWebService.Controllers
         /// <param name="received"></param>
         /// <returns></returns>
         [HttpPost("InsertData")]
-        public IActionResult InsertData(FlugData received)
+        public IActionResult InsertData(DataTransmissionModel received)
         {
-            var newReceivedData = new FlugData
+            var newReceivedData = new DataTransmissionModel
             {
                 Flight = received.Flight,
                 Track = received.Track,
                 Altitude = received.Altitude,
                 Latitude = received.Latitude,
-                Long = received.Long,
+                Longitude = received.Longitude,
                 Prefix = received.Prefix,
                 SenderId = received.SenderId,
                 Groundspeed = received.Groundspeed,
                 Timestamp = received.Timestamp
             };
+
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\DataFiles", "Data.csv");
+            var cw = new CsvWriter<DataTransmissionModel>();
+            cw.WriteModelToCsvFile(newReceivedData, filePath);
+
             DataRegistration.GetInstance().AddDataToDic(newReceivedData);
+            DataBaseConnection.SaveDataToTxtFile(newReceivedData);
 
             return Ok(DataRegistration.GetInstance().ReceivedData);
         }
@@ -81,20 +96,21 @@ namespace AzureWebService.Controllers
         /// <returns></returns>
         [Route("Data/")]
         [HttpPost("AddData")]
-        public JsonResult AddData(FlugData received)
+        public JsonResult AddData(DataTransmissionModel received)
         {
-            var newReceivedData = new FlugData
+            var newReceivedData = new DataTransmissionModel
             {
                 Flight = received.Flight,
                 Track = received.Track,
                 Altitude = received.Altitude,
                 Latitude = received.Latitude,
-                Long = received.Long,
+                Longitude = received.Longitude,
                 Prefix = received.Prefix,
                 SenderId = received.SenderId,
                 Groundspeed = received.Groundspeed,
                 Timestamp = received.Timestamp
             };
+
             DataRegistration.GetInstance().AddDataToDic(newReceivedData);
 
             return Json(DataRegistration.GetInstance().ReceivedData);

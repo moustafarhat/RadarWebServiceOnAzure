@@ -1,0 +1,386 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AzureWebService</name>
+    </assembly>
+    <members>
+        <member name="T:AzureWebService.Controllers.DataRegistrationController">
+            <summary>
+            Send new Data to the Service and store it
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Controllers.DataRegistrationController.RegisterData(AzureWebService.Models.DataTransmissionModel)">
+            <summary>
+            Register Data
+            </summary>
+            <param name="received"></param>
+        </member>
+        <member name="M:AzureWebService.Controllers.DataRegistrationController.InsertData(AzureWebService.Models.DataTransmissionModel)">
+            <summary>
+            
+            </summary>
+            <param name="received"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Controllers.DataRegistrationController.AddData(AzureWebService.Models.DataTransmissionModel)">
+            <summary>
+            
+            </summary>
+            <param name="received"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AzureWebService.Controllers.DataRetrieveController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Controllers.DataRetrieveController.GetAllData">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Controllers.DataRetrieveController.GetAllStudentRecords">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:AzureWebService.Controllers.SelectFlightByIdAndTimeStampController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Controllers.SelectFlightByIdAndTimeStampController.GetFlightData(System.String,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="flight"></param>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Controllers.SelectFlightByIdAndTimeStampController.GetFlightRecord(System.String,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="flight"></param>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AzureWebService.Controllers.SelectFlightController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Controllers.SelectFlightController.GetFlightData(System.String)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Controllers.SelectFlightController.GetFlightRecord(System.String)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:AzureWebService.Core.DataBaseConnection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Core.DataBaseConnection.TestDataBaseConnection">
+            <summary>
+            Test Data Base connection and return true or false
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.DataBaseConnection.InsertFlugData(AzureWebService.Models.DataTransmissionModel)">
+            <summary>
+            Insert operation for Flug Data 
+            </summary>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:AzureWebService.Core.DataBaseConnection.GetDataByFlightId(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="flight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.DataBaseConnection.GetDataByFlightIdAndTimeStamp(System.String,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="flight"></param>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.DataBaseConnection.GetDataAllDataFromDataBase">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.DataBaseConnection.SaveDataToTxtFile(AzureWebService.Models.DataTransmissionModel)">
+            <summary>
+            
+            </summary>
+            <param name="flugData"></param>
+        </member>
+        <member name="M:AzureWebService.Core.DataBaseConnection.GetDataFromFile">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.DataBaseConnection.CheckNull``1(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.DataBaseConnection.ParseStringValueToInt(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AzureWebService.Core.DataRegistration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:AzureWebService.Core.DataRegistration.ReceivedData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Core.DataRegistration.GetInstance">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.DataRegistration.AddDataToDic(AzureWebService.Models.DataTransmissionModel)">
+            <summary>
+            
+            </summary>
+            <param name="receivedData"></param>
+        </member>
+        <member name="M:AzureWebService.Core.DataRegistration.GetFlightData(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="flight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.DataRegistration.GetFlightDataByDate(System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="timestamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.DataRegistration.GetAllData">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:AzureWebService.Core.GroundSpeedUnits">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:AzureWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations">
+            <summary>
+            Flights Data Processing Protocols
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations.MeanCalculator(System.Collections.Generic.List{System.Double})">
+            <summary>
+            
+            </summary>
+            <param name="numbers"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AzureWebService.Core.Protocols.DataTransmissionProtocol.DataTransmissionOperations">
+            <summary>
+            Flights Data Transmission Protocols
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Core.Protocols.DataTransmissionProtocol.DataTransmissionOperations.GetFlightDataByDate(System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="timestamp"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:AzureWebService.Core.Protocols.Interfaces.IDataProcessingOperations">
+            <summary>
+            Interface contains all Data Processing operations
+            </summary>
+        </member>
+        <member name="T:AzureWebService.Core.Protocols.Interfaces.IDataTransmissionOperations">
+            <summary>
+            Interface contains all Data Transmission operations
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Core.Protocols.Interfaces.IDataTransmissionOperations.GetFlightDataByDate(System.DateTime)">
+            <summary>
+            </summary>
+            <param name="timestamp"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AzureWebService.Models.DataProcessingModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataProcessingModel.Timestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataProcessingModel.SenderId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataProcessingModel.Groundspeed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataProcessingModel.Latitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataProcessingModel.Longitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataProcessingModel.Flight">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataProcessingModel.Track">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataProcessingModel.Altitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:AzureWebService.Models.DataTransmissionModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataTransmissionModel.Prefix">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataTransmissionModel.Timestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataTransmissionModel.SenderId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataTransmissionModel.Groundspeed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataTransmissionModel.Latitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataTransmissionModel.Longitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataTransmissionModel.Flight">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataTransmissionModel.Track">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataTransmissionModel.Altitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataTransmissionModel.AltitudeUnit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataTransmissionModel.GroundSpeedUnit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:AzureWebService.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:AzureWebService.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AzureWebService.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:AzureWebService.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+    </members>
+</doc>

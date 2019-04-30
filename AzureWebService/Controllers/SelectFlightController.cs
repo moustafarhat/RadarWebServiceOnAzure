@@ -3,7 +3,7 @@ using AzureWebService.Core;
 using AzureWebService.Models;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+// For more information on enabling Web API for empty projects, visit 
 
 namespace AzureWebService.Controllers
 {
@@ -11,28 +11,26 @@ namespace AzureWebService.Controllers
     /// 
     /// </summary>
     [Route("api/[controller]")]
-    public class DataRetrieveController : Controller
+    public class SelectFlightController : Controller
     {
-        
-        // GET: api/<controller>
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IDictionary<string, DataTransmissionModel> GetAllData()
+        public IList<DataTransmissionModel> GetFlightData(string flight)
         {
-            return DataRegistration.GetInstance().GetAllData();
+            return DataBaseConnection.GetDataByFlightId(flight);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        [HttpGet("GetAllData")]
-        public JsonResult GetAllStudentRecords()
+        [HttpGet("GetFlightData")]
+        public JsonResult GetFlightRecord(string flight)
         {
-            return Json(DataRegistration.GetInstance().GetAllData());
+            return Json(DataBaseConnection.GetDataByFlightId(flight));
         }
     }
 }

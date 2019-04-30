@@ -8,6 +8,8 @@ namespace AzureWebService.Pages
 {
     public class ContactModel : PageModel
     {
+
+
         public string Message { get; set; }
 
         public void OnGet()

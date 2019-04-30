@@ -63,6 +63,34 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:AzureWebService.Controllers.ShowAllDataController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Controllers.ShowAllDataController.GetAllData">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Controllers.ShowAllDataController.GetAllStudentRecords">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:AzureWebService.Core.DataBaseConnection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Core.DataBaseConnection.SaveDataToTxtFile(AzureWebService.Models.FlugData)">
+            <summary>
+            
+            </summary>
+            <param name="flugData"></param>
+        </member>
         <member name="T:AzureWebService.Core.DataRegistration">
             <summary>
             
@@ -98,6 +126,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:AzureWebService.Core.GroundSpeedUnits">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:AzureWebService.Models.FlugData">
             <summary>
             
@@ -128,7 +161,7 @@
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.FlugData.Long">
+        <member name="P:AzureWebService.Models.FlugData.Longitude">
             <summary>
             
             </summary>
@@ -147,6 +180,34 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="P:AzureWebService.Models.FlugData.AltitudeUnit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.FlugData.GroundSpeedUnit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:AzureWebService.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:AzureWebService.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
         </member>
         <member name="T:AzureWebService.Startup">
             <summary>
