@@ -21,6 +21,10 @@ namespace AzureWebService.Models
         /// <summary>
         /// 
         /// </summary>
+        public DateTime? UTC { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string SenderId { get; set; } = "";
 
         /// <summary>
@@ -36,8 +40,16 @@ namespace AzureWebService.Models
         /// <summary>
         /// 
         /// </summary>
+        public double? DeviationLat { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public double? Longitude { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public double? DeviationLong { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -53,7 +65,10 @@ namespace AzureWebService.Models
         /// </summary>
         public int? Altitude { get; set; } = 0;
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public double? DeviationAlt { get; set; } = 0;
         /// <summary>
         /// 
         /// </summary>

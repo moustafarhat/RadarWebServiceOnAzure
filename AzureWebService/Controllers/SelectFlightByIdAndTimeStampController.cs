@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using AzureWebService.Core;
+using AzureWebService.Core.Protocols.DataProcessingProtocol;
+using AzureWebService.Core.Protocols.Interfaces;
 using AzureWebService.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +15,7 @@ namespace AzureWebService.Controllers
     [ApiController]
     public class SelectFlightByIdAndTimeStampController : Controller
     {
+        private IDataProcessingOperations processingOperations = new DataProcessingOperations();
 
         /// <summary>
         /// 
@@ -20,10 +23,11 @@ namespace AzureWebService.Controllers
         /// <param name="flight"></param>
         /// <param name="time"></param>
         /// <returns></returns>
+        /// 
         [HttpGet]
-        public IList<DataTransmissionModel> GetFlightData(string flight, DateTime time)
+        public DataProcessingModel GetFlightData(string flight, DateTime time)
         {
-            return DataBaseConnection.GetDataByFlightIdAndTimeStamp(flight, time);
+            return processingOperations.ProcessDataByMean(flight,time);
         }
 
         /// <summary>
@@ -35,7 +39,7 @@ namespace AzureWebService.Controllers
         [HttpGet("GetFlightData")]
         public JsonResult GetFlightRecord(string flight,DateTime time)
         {
-            return Json(DataBaseConnection.GetDataByFlightIdAndTimeStamp(flight, time));
+            return Json(processingOperations.ProcessDataByMean(flight, time));
         }
     }
 }

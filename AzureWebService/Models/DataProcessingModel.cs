@@ -1,11 +1,12 @@
 ﻿using System;
+using CSVWriter;
 
 namespace AzureWebService.Models
 {
     /// <summary>
     /// 
     /// </summary>
-    public class DataProcessingModel
+    public class DataProcessingModel : CsvableBase
     {
         /// <summary>
         /// 

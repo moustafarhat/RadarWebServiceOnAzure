@@ -8,6 +8,11 @@
 //Copy Rights : Flight Radar API
 //Description : Interface contains all Data Processing operations
 ////////////////////////////////////////////////////////////////////
+
+using System;
+using System.Collections.Generic;
+using AzureWebService.Models;
+
 namespace AzureWebService.Core.Protocols.Interfaces
 {
     /// <summary>
@@ -15,7 +20,8 @@ namespace AzureWebService.Core.Protocols.Interfaces
     /// </summary>
     public interface IDataProcessingOperations
     {
-
+        DataProcessingModel DataCorrection(List<DataTransmissionModel> x);
+        DataProcessingModel ProcessDataByMean(string flight, DateTime timeStamp);
 
     }
 }

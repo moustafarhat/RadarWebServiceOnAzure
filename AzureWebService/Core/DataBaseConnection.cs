@@ -44,7 +44,7 @@ namespace AzureWebService.Core
             try
             {
                 con.Open();
-                var cmd = new SQLiteCommand("INSERT INTO Flights (Timestamp,SenderId,Groundspeed,Latitude,Longitude,Flight,Track,Altitude)VALUES(@Timestamp,@SenderId,@Groundspeed,@Latitude,@Longitude,@Flight,@Track,@Altitude)", con);
+                var cmd = new SQLiteCommand("INSERT INTO Flights (Timestamp,SenderId,Groundspeed,Latitude,Longitude,Flight,Track,Altitude,UTC,DeviationLat,DeviationLong,DeviationAlt)VALUES(@Timestamp,@SenderId,@Groundspeed,@Latitude,@Longitude,@Flight,@Track,@Altitude,@UTC,@DeviationLat,@DeviationLong,@DeviationAlt)", con);
 
   
                 cmd.Parameters.AddWithValue("@Timestamp", flugData.Timestamp ?? DateTime.Now);
@@ -56,6 +56,10 @@ namespace AzureWebService.Core
                 cmd.Parameters.AddWithValue("@Track", flugData.Track ?? 0);
                 cmd.Parameters.AddWithValue("@Altitude", flugData.Altitude ?? 0);
 
+                cmd.Parameters.AddWithValue("@UTC", flugData.UTC ?? DateTime.Now);
+                cmd.Parameters.AddWithValue("@DeviationLat", flugData.DeviationLat ?? 0);
+                cmd.Parameters.AddWithValue("@DeviationLong", flugData.DeviationLong ?? 0);
+                cmd.Parameters.AddWithValue("@DeviationAlt", flugData.DeviationAlt ?? 0);
                 int count = cmd.ExecuteNonQuery();
 
             }
@@ -115,9 +119,52 @@ namespace AzureWebService.Core
         /// 
         /// </summary>
         /// <param name="flight"></param>
+        /// <returns></returns>
+        //public static List<DataTransmissionModel> GetDataByFlightId(string flight, DateTime timeStamp)
+        //{
+        //    var flugDataLst = new List<DataTransmissionModel>();
+
+        //    using (var connection = new SQLiteConnection(DataBaseConnectionString))
+        //    {
+        //        using (var command = new SQLiteCommand(
+        //            "Select * from Flights where Flight = @Flight and Timestamp = @timeStamp", connection))
+        //        {
+        //            command.Parameters.Add(new SQLiteParameter("@Flight", flight));
+        //            command.Parameters.Add(new SQLiteParameter("@timeStamp", timeStamp));
+
+        //            connection.Open();
+
+        //            var reader = command.ExecuteReader();
+
+        //            while (reader.Read())
+        //            {
+        //                var flugData = new DataTransmissionModel
+        //                {
+        //                    Altitude = Convert.ToInt32(reader["Altitude"]),
+        //                    Flight = reader["Flight"].ToString(),
+        //                    Groundspeed = Convert.ToInt32(reader["Groundspeed"]),
+        //                    Track = Convert.ToInt32(reader["Track"]),
+        //                    Latitude = Convert.ToInt32(reader["Latitude"]),
+        //                    Longitude = Convert.ToInt32(reader["Longitude"]),
+        //                    Timestamp = Convert.ToDateTime(reader["Timestamp"].ToString()),
+        //                    SenderId = reader["SenderId"].ToString()
+        //                };
+
+        //                flugDataLst.Add(flugData);
+        //            }
+        //        }
+        //    }
+
+        //    return flugDataLst;
+        //}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="flight"></param>
         /// <param name="time"></param>
         /// <returns></returns>
-        public static IList<DataTransmissionModel> GetDataByFlightIdAndTimeStamp(string flight,DateTime time)
+        public static List<DataTransmissionModel> GetDataByFlightIdAndTimeStamp(string flight,DateTime time)
         {
             var flugDataLst = new List<DataTransmissionModel>();
 

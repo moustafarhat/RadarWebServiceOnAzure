@@ -35,7 +35,11 @@ namespace AzureWebService.Controllers
                     Prefix = received.Prefix,
                     SenderId = received.SenderId,
                     Groundspeed = received.Groundspeed,
-                    Timestamp = received.Timestamp
+                    Timestamp = received.Timestamp,
+                    UTC = received.UTC,
+                    DeviationAlt = received.DeviationAlt,
+                    DeviationLat = received.DeviationLat,
+                    DeviationLong = received.DeviationLong
                 };
 
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\DataFiles\\", "Data.csv");

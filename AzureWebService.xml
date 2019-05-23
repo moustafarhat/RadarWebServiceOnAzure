@@ -58,6 +58,7 @@
             <param name="flight"></param>
             <param name="time"></param>
             <returns></returns>
+            
         </member>
         <member name="M:AzureWebService.Controllers.SelectFlightByIdAndTimeStampController.GetFlightRecord(System.String,System.DateTime)">
             <summary>
@@ -201,6 +202,13 @@
             Flights Data Processing Protocols
             </summary>
         </member>
+        <member name="M:AzureWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations.DataCorrection(System.Collections.Generic.List{AzureWebService.Models.DataTransmissionModel})">
+            <summary>
+            
+            </summary>
+            <param name="models"></param>
+            <returns></returns>
+        </member>
         <member name="M:AzureWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations.MeanCalculator(System.Collections.Generic.List{System.Double})">
             <summary>
             
@@ -297,6 +305,11 @@
             
             </summary>
         </member>
+        <member name="P:AzureWebService.Models.DataTransmissionModel.UTC">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:AzureWebService.Models.DataTransmissionModel.SenderId">
             <summary>
             
@@ -312,7 +325,17 @@
             
             </summary>
         </member>
+        <member name="P:AzureWebService.Models.DataTransmissionModel.DeviationLat">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:AzureWebService.Models.DataTransmissionModel.Longitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataTransmissionModel.DeviationLong">
             <summary>
             
             </summary>
@@ -328,6 +351,11 @@
             </summary>
         </member>
         <member name="P:AzureWebService.Models.DataTransmissionModel.Altitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AzureWebService.Models.DataTransmissionModel.DeviationAlt">
             <summary>
             
             </summary>
