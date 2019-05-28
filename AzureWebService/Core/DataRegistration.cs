@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AzureWebService.Models;
-
+using OpenCvSharp;
 namespace AzureWebService.Core
 {
     /// <summary>
@@ -19,6 +19,11 @@ namespace AzureWebService.Core
         private DataRegistration()
         {
             ReceivedData = new Dictionary<string, DataTransmissionModel>();
+        //Kalman
+            //var kalman = new KalmanFilter();
+            //kalman.Predict();
+            //kalman.Correct(new Mat());
+           
         }
 
         /// <summary>
@@ -83,9 +88,23 @@ namespace AzureWebService.Core
         /// <returns></returns>
         public IDictionary<string, DataTransmissionModel> GetAllData()
         {
+
+            DeleteOldData();
+
             return ReceivedData;
         }
 
- 
+        /// <summary>
+        /// Filter Dictionary & Delete old data
+        /// </summary>
+        /// <returns></returns>
+        private void DeleteOldData()
+        {
+            var filtered = (from kvp in ReceivedData
+                           where  kvp.Value.Timestamp.Value.Second > DateTime.Now.Second -5
+                            select kvp).ToDictionary(t => t.Key, t => t.Value); ;
+
+            ReceivedData = filtered;
+        }
     }
 }

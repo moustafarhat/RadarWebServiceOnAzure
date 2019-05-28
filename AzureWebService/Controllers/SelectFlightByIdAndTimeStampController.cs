@@ -15,7 +15,7 @@ namespace AzureWebService.Controllers
     [ApiController]
     public class SelectFlightByIdAndTimeStampController : Controller
     {
-        private IDataProcessingOperations processingOperations = new DataProcessingOperations();
+        private readonly IDataProcessingOperations _processingOperations = new DataProcessingOperations();
 
         /// <summary>
         /// 
@@ -27,7 +27,7 @@ namespace AzureWebService.Controllers
         [HttpGet]
         public DataProcessingModel GetFlightData(string flight, DateTime time)
         {
-            return processingOperations.ProcessDataByMean(flight,time);
+            return _processingOperations.ProcessDataByMean(flight,time);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace AzureWebService.Controllers
         [HttpGet("GetFlightData")]
         public JsonResult GetFlightRecord(string flight,DateTime time)
         {
-            return Json(processingOperations.ProcessDataByMean(flight, time));
+            return Json(_processingOperations.ProcessDataByMean(flight, time));
         }
     }
 }

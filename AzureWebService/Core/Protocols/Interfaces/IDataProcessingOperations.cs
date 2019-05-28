@@ -20,7 +20,18 @@ namespace AzureWebService.Core.Protocols.Interfaces
     /// </summary>
     public interface IDataProcessingOperations
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
         DataProcessingModel DataCorrection(List<DataTransmissionModel> x);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="flight"></param>
+        /// <param name="timeStamp"></param>
+        /// <returns></returns>
         DataProcessingModel ProcessDataByMean(string flight, DateTime timeStamp);
 
     }

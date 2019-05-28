@@ -20,6 +20,9 @@
     <Reference Include="CSVWriter">
       <HintPath>..\..\..\CSVWriter\CSVWriter\bin\Debug\netcoreapp2.1\CSVWriter.dll</HintPath>
     </Reference>
+    <Reference Include="OpenCvSharp">
+      <HintPath>..\..\..\..\..\Desktop\New folder\opencvsharp-master\src\OpenCvSharp\bin\Debug\netstandard2.0\OpenCvSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

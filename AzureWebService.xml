@@ -192,7 +192,38 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:AzureWebService.Core.GroundSpeedUnits">
+        <!-- Badly formed XML comment ignored for member "M:AzureWebService.Core.DataRegistration.DeleteOldData" -->
+        <member name="T:AzureWebService.Core.Enum.AltitudeUnits">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:AzureWebService.Core.Enum.AltitudeUnits.Foot">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:AzureWebService.Core.Enum.AltitudeUnits.Meter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:AzureWebService.Core.Enum.GroundSpeedUnits">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:AzureWebService.Core.Enum.GroundSpeedUnits.Kmh">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:AzureWebService.Core.Enum.GroundSpeedUnits.Mph">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:AzureWebService.Core.Enum.GroundSpeedUnits.Knot">
             <summary>
             
             </summary>
@@ -233,6 +264,21 @@
             <summary>
             Interface contains all Data Processing operations
             </summary>
+        </member>
+        <member name="M:AzureWebService.Core.Protocols.Interfaces.IDataProcessingOperations.DataCorrection(System.Collections.Generic.List{AzureWebService.Models.DataTransmissionModel})">
+            <summary>
+            
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.Protocols.Interfaces.IDataProcessingOperations.ProcessDataByMean(System.String,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="flight"></param>
+            <param name="timeStamp"></param>
+            <returns></returns>
         </member>
         <member name="T:AzureWebService.Core.Protocols.Interfaces.IDataTransmissionOperations">
             <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using AzureWebService.Core;
+using AzureWebService.Core.Enum;
 using CSVWriter;
 namespace AzureWebService.Models
 {
