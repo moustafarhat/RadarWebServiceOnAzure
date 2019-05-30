@@ -11,7 +11,7 @@ namespace AzureWebService.Core
     /// <summary>
     /// 
     /// </summary>
-    public class DataBaseConnection
+    public class DataBaseOperations
     {
         private static readonly string DataBaseConnectionString = "Data Source=" + AppDomain.CurrentDomain.BaseDirectory + "\\db\\Flight.db;Version=3;";
         /// <summary>
@@ -252,61 +252,6 @@ namespace AzureWebService.Core
 
             return flugDataLst;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="flugData"></param>
-        public static void SaveDataToTxtFile(DataTransmissionModel flugData)
-        {
-            using (var writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + @"\" + "Data.txt", true))
-            {
-                writer.WriteLine("Flight Data information System");
-                writer.WriteLine("Time:" + DateTime.Now);
-                writer.WriteLine("-----------------------------------------------------");
-                writer.WriteLine("Flight:" + flugData.Flight);
-                writer.WriteLine("SenderId:" + flugData.SenderId);
-                writer.WriteLine("Timestamp:" + flugData.Timestamp);
-                writer.WriteLine("Prefix:" + flugData.Prefix);
-                writer.WriteLine("Altitude: " + flugData.Altitude);
-                writer.WriteLine("AltitudeUnit:" + flugData.AltitudeUnit);
-                writer.WriteLine("GroundSpeedUnit: " + flugData.GroundSpeedUnit);
-                writer.WriteLine("Groundspeed:" + flugData.Groundspeed);
-                writer.WriteLine("Latitude:" + flugData.Latitude);
-                writer.WriteLine("Longitude:" + flugData.Longitude);
-                writer.WriteLine("Track:" + flugData.Track);
-                writer.WriteLine("Altitude:" + flugData.Altitude);
-                writer.WriteLine("-----------------------------------------------------");
-                writer.Close();
-            }
-         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public static IList<string> GetDataFromFile()
-        {
-            // Create new List.
-            var lines = new List<string>();
-
-            // Use using-keyword for disposing.
-            using (var reader = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + @"\" + "Data.txt"))
-            {
-                // Use while not null pattern in while loop.
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    // Insert logic here.
-                    // ... The "line" variable is a line in the file.
-                    // ... Add it to our List.
-                    lines.Add(line);
-                }
-            }
-
-            return lines;
-        }
-
 
         /// <summary>
         /// 

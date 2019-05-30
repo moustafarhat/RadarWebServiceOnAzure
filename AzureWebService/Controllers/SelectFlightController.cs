@@ -20,7 +20,7 @@ namespace AzureWebService.Controllers
         [HttpGet]
         public IList<DataTransmissionModel> GetFlightData(string flight)
         {
-            return DataBaseConnection.GetDataByFlightId(flight);
+            return DataBaseOperations.GetDataByFlightId(flight);
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace AzureWebService.Controllers
         [HttpGet("GetFlightData")]
         public JsonResult GetFlightRecord(string flight)
         {
-            return Json(DataBaseConnection.GetDataByFlightId(flight));
+            return Json(DataBaseOperations.GetDataByFlightId(flight));
         }
     }
 }

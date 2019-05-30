@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using AzureWebService.Core.Protocols.Interfaces;
 using AzureWebService.Models;
+using OpenCvSharp;
+
 
 namespace AzureWebService.Core.Protocols.DataProcessingProtocol
 {
@@ -18,6 +20,11 @@ namespace AzureWebService.Core.Protocols.DataProcessingProtocol
         /// <returns></returns>
         public DataProcessingModel DataCorrection(List<DataTransmissionModel> models)
         {
+            //TODO: Kalman filter implementation 
+            //var kalman = new KalmanFilter();
+            //kalman.Correct(new Mat());
+            //kalman.Predict();
+
             try
             {
                 DataProcessingModel procM;
@@ -72,6 +79,22 @@ namespace AzureWebService.Core.Protocols.DataProcessingProtocol
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="dataList"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public DataProcessingModel DataPrediction(List<DataTransmissionModel> dataList)
+        {
+            //TODO: Kalman filter implementation 
+            //var kalman = new KalmanFilter();
+            //kalman.Correct(new Mat());
+            //kalman.Predict();
+
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="numbers"></param>
         /// <returns></returns>
         public double MeanCalculator(List<double> numbers)
@@ -90,7 +113,7 @@ namespace AzureWebService.Core.Protocols.DataProcessingProtocol
 
         public DataProcessingModel ProcessDataByMean(string flight, DateTime timeStamp)
         {
-           return DataCorrection(DataBaseConnection.GetDataByFlightIdAndTimeStamp(flight, timeStamp));
+           return DataCorrection(DataBaseOperations.GetDataByFlightIdAndTimeStamp(flight, timeStamp));
         }
     }
 }

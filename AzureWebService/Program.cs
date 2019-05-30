@@ -18,7 +18,7 @@ namespace AzureWebService
         {
             CreateWebHostBuilder(args).Build().Run();
 
-            if (!DataBaseConnection.TestDataBaseConnection())
+            if (!DataBaseOperations.TestDataBaseConnection())
             {
                 throw new Exception("Database connection error");
             }

@@ -48,11 +48,10 @@ namespace AzureWebService.Controllers
 
                 cw.WriteModelToCsvFile(newReceivedData, filePath);
 
-                DataBaseConnection.InsertFlugData(newReceivedData);
+                DataBaseOperations.InsertFlugData(newReceivedData);
 
                 DataRegistration.GetInstance().AddDataToDic(newReceivedData);
 
-                DataBaseConnection.SaveDataToTxtFile(newReceivedData);
             }
             catch (Exception e)
             {
@@ -88,7 +87,6 @@ namespace AzureWebService.Controllers
             cw.WriteModelToCsvFile(newReceivedData, filePath);
 
             DataRegistration.GetInstance().AddDataToDic(newReceivedData);
-            DataBaseConnection.SaveDataToTxtFile(newReceivedData);
 
             return Ok(DataRegistration.GetInstance().ReceivedData);
         }

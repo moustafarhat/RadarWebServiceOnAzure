@@ -12,6 +12,7 @@
 using System;
 using System.Collections.Generic;
 using AzureWebService.Models;
+using OpenCvSharp;
 
 namespace AzureWebService.Core.Protocols.Interfaces
 {
@@ -25,7 +26,14 @@ namespace AzureWebService.Core.Protocols.Interfaces
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        DataProcessingModel DataCorrection(List<DataTransmissionModel> x);
+        DataProcessingModel DataCorrection(List<DataTransmissionModel> DataList);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        DataProcessingModel DataPrediction(List<DataTransmissionModel> DataList);
         /// <summary>
         /// 
         /// </summary>

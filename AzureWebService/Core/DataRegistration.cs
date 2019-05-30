@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using AzureWebService.Models;
-using OpenCvSharp;
 namespace AzureWebService.Core
 {
     /// <summary>
@@ -11,15 +10,18 @@ namespace AzureWebService.Core
     public class DataRegistration
     {
         /// <summary>
-        /// 
+        /// Dictionary which contains all Data
         /// </summary>
         public IDictionary<string, DataTransmissionModel> ReceivedData;
+
         private static DataRegistration _dataRegistration;
+
+        private static int _deleteCounter;
 
         private DataRegistration()
         {
             ReceivedData = new Dictionary<string, DataTransmissionModel>();
-        //Kalman
+            //Kalman
             //var kalman = new KalmanFilter();
             //kalman.Predict();
             //kalman.Correct(new Mat());
@@ -42,7 +44,7 @@ namespace AzureWebService.Core
         }
 
         /// <summary>
-        /// 
+        /// Add data to Dictionary
         /// </summary>
         /// <param name="receivedData"></param>
         public void AddDataToDic(DataTransmissionModel receivedData)
@@ -79,7 +81,6 @@ namespace AzureWebService.Core
         /// <returns></returns>
         public IList<DataTransmissionModel> GetFlightDataByDate(DateTime timestamp)
         {
- 
             return null;
         }
         /// <summary>
@@ -88,8 +89,13 @@ namespace AzureWebService.Core
         /// <returns></returns>
         public IDictionary<string, DataTransmissionModel> GetAllData()
         {
+            _deleteCounter += 1;
 
-            DeleteOldData();
+            while (_deleteCounter==2)
+            {
+                _deleteCounter = 0;
+                DeleteOldData();
+            }
 
             return ReceivedData;
         }
@@ -98,13 +104,16 @@ namespace AzureWebService.Core
         /// Filter Dictionary & Delete old data
         /// </summary>
         /// <returns></returns>
-        private void DeleteOldData()
+        public void DeleteOldData()
         {
-            var filtered = (from kvp in ReceivedData
-                           where  kvp.Value.Timestamp.Value.Second > DateTime.Now.Second -5
-                            select kvp).ToDictionary(t => t.Key, t => t.Value); ;
 
-            ReceivedData = filtered;
+            ReceivedData.Clear();
+            //TODO: Delete old Data automatically that are older than X time
+            //var filtered = (from kvp in ReceivedData
+            //               where  kvp.Value.Timestamp.Value.Second > DateTime.Now.Second -5
+            //                select kvp).ToDictionary(t => t.Key, t => t.Value); ;
+
+            //ReceivedData = filtered;
         }
     }
 }

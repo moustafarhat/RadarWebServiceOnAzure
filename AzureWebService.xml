@@ -85,71 +85,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:AzureWebService.Core.DataBaseConnection">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:AzureWebService.Core.DataBaseConnection.TestDataBaseConnection">
-            <summary>
-            Test Data Base connection and return true or false
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:AzureWebService.Core.DataBaseConnection.InsertFlugData(AzureWebService.Models.DataTransmissionModel)">
-            <summary>
-            Insert operation for Flug Data 
-            </summary>
-            <exception cref="T:System.Exception"></exception>
-        </member>
-        <member name="M:AzureWebService.Core.DataBaseConnection.GetDataByFlightId(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="flight"></param>
-            <returns></returns>
-        </member>
-        <member name="M:AzureWebService.Core.DataBaseConnection.GetDataByFlightIdAndTimeStamp(System.String,System.DateTime)">
-            <summary>
-            
-            </summary>
-            <param name="flight"></param>
-            <param name="time"></param>
-            <returns></returns>
-        </member>
-        <member name="M:AzureWebService.Core.DataBaseConnection.GetDataAllDataFromDataBase">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:AzureWebService.Core.DataBaseConnection.SaveDataToTxtFile(AzureWebService.Models.DataTransmissionModel)">
-            <summary>
-            
-            </summary>
-            <param name="flugData"></param>
-        </member>
-        <member name="M:AzureWebService.Core.DataBaseConnection.GetDataFromFile">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:AzureWebService.Core.DataBaseConnection.CheckNull``1(System.Object)">
-            <summary>
-            
-            </summary>
-            <param name="obj"></param>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:AzureWebService.Core.DataBaseConnection.ParseStringValueToInt(System.Object)">
-            <summary>
-            
-            </summary>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
         <member name="T:AzureWebService.Core.DataRegistration">
             <summary>
             
@@ -157,7 +92,7 @@
         </member>
         <member name="F:AzureWebService.Core.DataRegistration.ReceivedData">
             <summary>
-            
+            Dictionary which contains all Data
             </summary>
         </member>
         <member name="M:AzureWebService.Core.DataRegistration.GetInstance">
@@ -168,7 +103,7 @@
         </member>
         <member name="M:AzureWebService.Core.DataRegistration.AddDataToDic(AzureWebService.Models.DataTransmissionModel)">
             <summary>
-            
+            Add data to Dictionary
             </summary>
             <param name="receivedData"></param>
         </member>
@@ -228,6 +163,64 @@
             
             </summary>
         </member>
+        <member name="T:AzureWebService.Core.IoCBuilder">
+            <summary>
+             Main Container
+            </summary>
+        </member>
+        <member name="T:AzureWebService.Core.DataBaseOperations">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Core.DataBaseOperations.TestDataBaseConnection">
+            <summary>
+            Test Data Base connection and return true or false
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.DataBaseOperations.InsertFlugData(AzureWebService.Models.DataTransmissionModel)">
+            <summary>
+            Insert operation for Flug Data 
+            </summary>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:AzureWebService.Core.DataBaseOperations.GetDataByFlightId(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="flight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.DataBaseOperations.GetDataByFlightIdAndTimeStamp(System.String,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="flight"></param>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.DataBaseOperations.GetDataAllDataFromDataBase">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.DataBaseOperations.CheckNull``1(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.DataBaseOperations.ParseStringValueToInt(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
         <member name="T:AzureWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations">
             <summary>
             Flights Data Processing Protocols
@@ -239,6 +232,14 @@
             </summary>
             <param name="models"></param>
             <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations.DataPrediction(System.Collections.Generic.List{AzureWebService.Models.DataTransmissionModel})">
+            <summary>
+            
+            </summary>
+            <param name="dataList"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="M:AzureWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations.MeanCalculator(System.Collections.Generic.List{System.Double})">
             <summary>
@@ -260,12 +261,50 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
+        <member name="T:AzureWebService.Core.Protocols.Interfaces.IDataBaseOperations">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AzureWebService.Core.Protocols.Interfaces.IDataBaseOperations.TestDataBaseConnection">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.Protocols.Interfaces.IDataBaseOperations.InsertFlugData(AzureWebService.Models.DataTransmissionModel)">
+            <summary>
+            
+            </summary>
+            <param name="flugData"></param>
+        </member>
+        <member name="M:AzureWebService.Core.Protocols.Interfaces.IDataBaseOperations.GetDataByFlightIdAndTimeStamp(System.String,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="flight"></param>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.Protocols.Interfaces.IDataBaseOperations.GetDataAllDataFromDataBase">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:AzureWebService.Core.Protocols.Interfaces.IDataProcessingOperations">
             <summary>
             Interface contains all Data Processing operations
             </summary>
         </member>
         <member name="M:AzureWebService.Core.Protocols.Interfaces.IDataProcessingOperations.DataCorrection(System.Collections.Generic.List{AzureWebService.Models.DataTransmissionModel})">
+            <summary>
+            
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AzureWebService.Core.Protocols.Interfaces.IDataProcessingOperations.DataPrediction(System.Collections.Generic.List{AzureWebService.Models.DataTransmissionModel})">
             <summary>
             
             </summary>
