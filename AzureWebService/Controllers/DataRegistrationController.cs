@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using AzureWebService.Core;
-using AzureWebService.Models;
-using Microsoft.AspNetCore.Mvc;
 using CSVWriter;
+using FlightRadarWebService.Core;
+using FlightRadarWebService.Core.Protocols.DataBaseOperations;
+using FlightRadarWebService.Models;
+using Microsoft.AspNetCore.Mvc;
+
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-namespace AzureWebService.Controllers
+namespace FlightRadarWebService.Controllers
 {
     /// <summary>
     /// Send new Data to the Service and store it

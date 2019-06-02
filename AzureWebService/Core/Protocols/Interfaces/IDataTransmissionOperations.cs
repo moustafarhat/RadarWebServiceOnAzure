@@ -8,11 +8,12 @@
 //Copy Rights : Flight Radar API
 //Description : Interface contains all Data Transmission operations
 ////////////////////////////////////////////////////////////////////
+
 using System;
 using System.Collections.Generic;
-using AzureWebService.Models;
+using FlightRadarWebService.Models;
 
-namespace AzureWebService.Core.Protocols.Interfaces
+namespace FlightRadarWebService.Core.Protocols.Interfaces
 {
     /// <summary>
     /// Interface contains all Data Transmission operations

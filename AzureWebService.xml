@@ -1,57 +1,57 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>AzureWebService</name>
+        <name>FlightRadarWebService</name>
     </assembly>
     <members>
-        <member name="T:AzureWebService.Controllers.DataRegistrationController">
+        <member name="T:FlightRadarWebService.Controllers.DataRegistrationController">
             <summary>
             Send new Data to the Service and store it
             </summary>
         </member>
-        <member name="M:AzureWebService.Controllers.DataRegistrationController.RegisterData(AzureWebService.Models.DataTransmissionModel)">
+        <member name="M:FlightRadarWebService.Controllers.DataRegistrationController.RegisterData(FlightRadarWebService.Models.DataTransmissionModel)">
             <summary>
             Register Data
             </summary>
             <param name="received"></param>
         </member>
-        <member name="M:AzureWebService.Controllers.DataRegistrationController.InsertData(AzureWebService.Models.DataTransmissionModel)">
+        <member name="M:FlightRadarWebService.Controllers.DataRegistrationController.InsertData(FlightRadarWebService.Models.DataTransmissionModel)">
             <summary>
             
             </summary>
             <param name="received"></param>
             <returns></returns>
         </member>
-        <member name="M:AzureWebService.Controllers.DataRegistrationController.AddData(AzureWebService.Models.DataTransmissionModel)">
+        <member name="M:FlightRadarWebService.Controllers.DataRegistrationController.AddData(FlightRadarWebService.Models.DataTransmissionModel)">
             <summary>
             
             </summary>
             <param name="received"></param>
             <returns></returns>
         </member>
-        <member name="T:AzureWebService.Controllers.DataRetrieveController">
+        <member name="T:FlightRadarWebService.Controllers.DataRetrieveController">
             <summary>
             
             </summary>
         </member>
-        <member name="M:AzureWebService.Controllers.DataRetrieveController.GetAllData">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:AzureWebService.Controllers.DataRetrieveController.GetAllStudentRecords">
+        <member name="M:FlightRadarWebService.Controllers.DataRetrieveController.GetAllData">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="T:AzureWebService.Controllers.SelectFlightByIdAndTimeStampController">
+        <member name="M:FlightRadarWebService.Controllers.DataRetrieveController.GetAllStudentRecords">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FlightRadarWebService.Controllers.SelectFlightByIdAndTimeStampController">
             <summary>
             
             </summary>
         </member>
-        <member name="M:AzureWebService.Controllers.SelectFlightByIdAndTimeStampController.GetFlightData(System.String,System.DateTime)">
+        <member name="M:FlightRadarWebService.Controllers.SelectFlightByIdAndTimeStampController.GetFlightData(System.String,System.DateTime)">
             <summary>
             
             </summary>
@@ -60,7 +60,7 @@
             <returns></returns>
             
         </member>
-        <member name="M:AzureWebService.Controllers.SelectFlightByIdAndTimeStampController.GetFlightRecord(System.String,System.DateTime)">
+        <member name="M:FlightRadarWebService.Controllers.SelectFlightByIdAndTimeStampController.GetFlightRecord(System.String,System.DateTime)">
             <summary>
             
             </summary>
@@ -68,131 +68,141 @@
             <param name="time"></param>
             <returns></returns>
         </member>
-        <member name="T:AzureWebService.Controllers.SelectFlightController">
+        <member name="T:FlightRadarWebService.Controllers.SelectFlightController">
             <summary>
             
             </summary>
         </member>
-        <member name="M:AzureWebService.Controllers.SelectFlightController.GetFlightData(System.String)">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:AzureWebService.Controllers.SelectFlightController.GetFlightRecord(System.String)">
+        <member name="M:FlightRadarWebService.Controllers.SelectFlightController.GetFlightData(System.String)">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="T:AzureWebService.Core.DataRegistration">
+        <member name="M:FlightRadarWebService.Controllers.SelectFlightController.GetFlightRecord(System.String)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FlightRadarWebService.Core.DataRegistration">
             <summary>
             
             </summary>
         </member>
-        <member name="F:AzureWebService.Core.DataRegistration.ReceivedData">
+        <member name="F:FlightRadarWebService.Core.DataRegistration.ReceivedData">
             <summary>
             Dictionary which contains all Data
             </summary>
         </member>
-        <member name="M:AzureWebService.Core.DataRegistration.GetInstance">
+        <member name="M:FlightRadarWebService.Core.DataRegistration.GetInstance">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:AzureWebService.Core.DataRegistration.AddDataToDic(AzureWebService.Models.DataTransmissionModel)">
+        <member name="M:FlightRadarWebService.Core.DataRegistration.AddDataToDic(FlightRadarWebService.Models.DataTransmissionModel)">
             <summary>
             Add data to Dictionary
             </summary>
             <param name="receivedData"></param>
         </member>
-        <member name="M:AzureWebService.Core.DataRegistration.GetFlightData(System.String)">
+        <member name="M:FlightRadarWebService.Core.DataRegistration.GetFlightData(System.String)">
             <summary>
             
             </summary>
             <param name="flight"></param>
             <returns></returns>
         </member>
-        <member name="M:AzureWebService.Core.DataRegistration.GetFlightDataByDate(System.DateTime)">
+        <member name="M:FlightRadarWebService.Core.DataRegistration.GetFlightDataByDate(System.DateTime)">
             <summary>
             
             </summary>
             <param name="timestamp"></param>
             <returns></returns>
         </member>
-        <member name="M:AzureWebService.Core.DataRegistration.GetAllData">
+        <member name="M:FlightRadarWebService.Core.DataRegistration.GetAllData">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:AzureWebService.Core.DataRegistration.DeleteOldData" -->
-        <member name="T:AzureWebService.Core.Enum.AltitudeUnits">
+        <!-- Badly formed XML comment ignored for member "M:FlightRadarWebService.Core.DataRegistration.DeleteOldData" -->
+        <member name="T:FlightRadarWebService.Core.Enum.AltitudeUnits">
             <summary>
             
             </summary>
         </member>
-        <member name="F:AzureWebService.Core.Enum.AltitudeUnits.Foot">
+        <member name="F:FlightRadarWebService.Core.Enum.AltitudeUnits.Foot">
             <summary>
             
             </summary>
         </member>
-        <member name="F:AzureWebService.Core.Enum.AltitudeUnits.Meter">
+        <member name="F:FlightRadarWebService.Core.Enum.AltitudeUnits.Meter">
             <summary>
             
             </summary>
         </member>
-        <member name="T:AzureWebService.Core.Enum.GroundSpeedUnits">
+        <member name="T:FlightRadarWebService.Core.Enum.GroundSpeedUnits">
             <summary>
             
             </summary>
         </member>
-        <member name="F:AzureWebService.Core.Enum.GroundSpeedUnits.Kmh">
+        <member name="F:FlightRadarWebService.Core.Enum.GroundSpeedUnits.Kmh">
             <summary>
             
             </summary>
         </member>
-        <member name="F:AzureWebService.Core.Enum.GroundSpeedUnits.Mph">
+        <member name="F:FlightRadarWebService.Core.Enum.GroundSpeedUnits.Mph">
             <summary>
             
             </summary>
         </member>
-        <member name="F:AzureWebService.Core.Enum.GroundSpeedUnits.Knot">
+        <member name="F:FlightRadarWebService.Core.Enum.GroundSpeedUnits.Knot">
             <summary>
             
             </summary>
         </member>
-        <member name="T:AzureWebService.Core.IoCBuilder">
+        <member name="F:FlightRadarWebService.Core.Enum.Prefix.Live">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.Enum.Prefix.Old">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:FlightRadarWebService.Core.IoCBuilder">
             <summary>
              Main Container
             </summary>
         </member>
-        <member name="T:AzureWebService.Core.DataBaseOperations">
+        <member name="T:FlightRadarWebService.Core.Protocols.DataBaseOperations.DataBaseOperations">
             <summary>
             
             </summary>
         </member>
-        <member name="M:AzureWebService.Core.DataBaseOperations.TestDataBaseConnection">
+        <member name="M:FlightRadarWebService.Core.Protocols.DataBaseOperations.DataBaseOperations.TestDataBaseConnection">
             <summary>
             Test Data Base connection and return true or false
             </summary>
             <returns></returns>
         </member>
-        <member name="M:AzureWebService.Core.DataBaseOperations.InsertFlugData(AzureWebService.Models.DataTransmissionModel)">
+        <member name="M:FlightRadarWebService.Core.Protocols.DataBaseOperations.DataBaseOperations.InsertFlugData(FlightRadarWebService.Models.DataTransmissionModel)">
             <summary>
             Insert operation for Flug Data 
             </summary>
             <exception cref="T:System.Exception"></exception>
         </member>
-        <member name="M:AzureWebService.Core.DataBaseOperations.GetDataByFlightId(System.String)">
+        <member name="M:FlightRadarWebService.Core.Protocols.DataBaseOperations.DataBaseOperations.GetDataByFlightId(System.String)">
             <summary>
             
             </summary>
             <param name="flight"></param>
             <returns></returns>
         </member>
-        <member name="M:AzureWebService.Core.DataBaseOperations.GetDataByFlightIdAndTimeStamp(System.String,System.DateTime)">
+        <member name="M:FlightRadarWebService.Core.Protocols.DataBaseOperations.DataBaseOperations.GetDataByFlightIdAndTimeStamp(System.String,System.DateTime)">
             <summary>
             
             </summary>
@@ -200,13 +210,13 @@
             <param name="time"></param>
             <returns></returns>
         </member>
-        <member name="M:AzureWebService.Core.DataBaseOperations.GetDataAllDataFromDataBase">
+        <member name="M:FlightRadarWebService.Core.Protocols.DataBaseOperations.DataBaseOperations.GetDataAllDataFromDataBase">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:AzureWebService.Core.DataBaseOperations.CheckNull``1(System.Object)">
+        <member name="M:FlightRadarWebService.Core.Protocols.DataBaseOperations.DataBaseOperations.CheckNull``1(System.Object)">
             <summary>
             
             </summary>
@@ -214,26 +224,26 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:AzureWebService.Core.DataBaseOperations.ParseStringValueToInt(System.Object)">
+        <member name="M:FlightRadarWebService.Core.Protocols.DataBaseOperations.DataBaseOperations.ParseStringValueToInt(System.Object)">
             <summary>
             
             </summary>
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="T:AzureWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations">
+        <member name="T:FlightRadarWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations">
             <summary>
             Flights Data Processing Protocols
             </summary>
         </member>
-        <member name="M:AzureWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations.DataCorrection(System.Collections.Generic.List{AzureWebService.Models.DataTransmissionModel})">
+        <member name="M:FlightRadarWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations.DataCorrection(System.Collections.Generic.List{FlightRadarWebService.Models.DataTransmissionModel})">
             <summary>
             
             </summary>
             <param name="models"></param>
             <returns></returns>
         </member>
-        <member name="M:AzureWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations.DataPrediction(System.Collections.Generic.List{AzureWebService.Models.DataTransmissionModel})">
+        <member name="M:FlightRadarWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations.DataPrediction(System.Collections.Generic.List{FlightRadarWebService.Models.DataTransmissionModel})">
             <summary>
             
             </summary>
@@ -241,19 +251,19 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:AzureWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations.MeanCalculator(System.Collections.Generic.List{System.Double})">
+        <member name="M:FlightRadarWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations.MeanCalculator(System.Collections.Generic.List{System.Double})">
             <summary>
             
             </summary>
             <param name="numbers"></param>
             <returns></returns>
         </member>
-        <member name="T:AzureWebService.Core.Protocols.DataTransmissionProtocol.DataTransmissionOperations">
+        <member name="T:FlightRadarWebService.Core.Protocols.DataTransmissionProtocol.DataTransmissionOperations">
             <summary>
             Flights Data Transmission Protocols
             </summary>
         </member>
-        <member name="M:AzureWebService.Core.Protocols.DataTransmissionProtocol.DataTransmissionOperations.GetFlightDataByDate(System.DateTime)">
+        <member name="M:FlightRadarWebService.Core.Protocols.DataTransmissionProtocol.DataTransmissionOperations.GetFlightDataByDate(System.DateTime)">
             <summary>
             
             </summary>
@@ -261,24 +271,24 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="T:AzureWebService.Core.Protocols.Interfaces.IDataBaseOperations">
+        <member name="T:FlightRadarWebService.Core.Protocols.Interfaces.IDataBaseOperations">
             <summary>
             
             </summary>
         </member>
-        <member name="M:AzureWebService.Core.Protocols.Interfaces.IDataBaseOperations.TestDataBaseConnection">
+        <member name="M:FlightRadarWebService.Core.Protocols.Interfaces.IDataBaseOperations.TestDataBaseConnection">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:AzureWebService.Core.Protocols.Interfaces.IDataBaseOperations.InsertFlugData(AzureWebService.Models.DataTransmissionModel)">
+        <member name="M:FlightRadarWebService.Core.Protocols.Interfaces.IDataBaseOperations.InsertFlugData(FlightRadarWebService.Models.DataTransmissionModel)">
             <summary>
             
             </summary>
             <param name="flugData"></param>
         </member>
-        <member name="M:AzureWebService.Core.Protocols.Interfaces.IDataBaseOperations.GetDataByFlightIdAndTimeStamp(System.String,System.DateTime)">
+        <member name="M:FlightRadarWebService.Core.Protocols.Interfaces.IDataBaseOperations.GetDataByFlightIdAndTimeStamp(System.String,System.DateTime)">
             <summary>
             
             </summary>
@@ -286,32 +296,32 @@
             <param name="time"></param>
             <returns></returns>
         </member>
-        <member name="M:AzureWebService.Core.Protocols.Interfaces.IDataBaseOperations.GetDataAllDataFromDataBase">
+        <member name="M:FlightRadarWebService.Core.Protocols.Interfaces.IDataBaseOperations.GetDataAllDataFromDataBase">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="T:AzureWebService.Core.Protocols.Interfaces.IDataProcessingOperations">
+        <member name="T:FlightRadarWebService.Core.Protocols.Interfaces.IDataProcessingOperations">
             <summary>
             Interface contains all Data Processing operations
             </summary>
         </member>
-        <member name="M:AzureWebService.Core.Protocols.Interfaces.IDataProcessingOperations.DataCorrection(System.Collections.Generic.List{AzureWebService.Models.DataTransmissionModel})">
+        <member name="M:FlightRadarWebService.Core.Protocols.Interfaces.IDataProcessingOperations.DataCorrection(System.Collections.Generic.List{FlightRadarWebService.Models.DataTransmissionModel})">
             <summary>
             
             </summary>
             <param name="x"></param>
             <returns></returns>
         </member>
-        <member name="M:AzureWebService.Core.Protocols.Interfaces.IDataProcessingOperations.DataPrediction(System.Collections.Generic.List{AzureWebService.Models.DataTransmissionModel})">
+        <member name="M:FlightRadarWebService.Core.Protocols.Interfaces.IDataProcessingOperations.DataPrediction(System.Collections.Generic.List{FlightRadarWebService.Models.DataTransmissionModel})">
             <summary>
             
             </summary>
             <param name="x"></param>
             <returns></returns>
         </member>
-        <member name="M:AzureWebService.Core.Protocols.Interfaces.IDataProcessingOperations.ProcessDataByMean(System.String,System.DateTime)">
+        <member name="M:FlightRadarWebService.Core.Protocols.Interfaces.IDataProcessingOperations.ProcessDataByMean(System.String,System.DateTime)">
             <summary>
             
             </summary>
@@ -319,177 +329,177 @@
             <param name="timeStamp"></param>
             <returns></returns>
         </member>
-        <member name="T:AzureWebService.Core.Protocols.Interfaces.IDataTransmissionOperations">
+        <member name="T:FlightRadarWebService.Core.Protocols.Interfaces.IDataTransmissionOperations">
             <summary>
             Interface contains all Data Transmission operations
             </summary>
         </member>
-        <member name="M:AzureWebService.Core.Protocols.Interfaces.IDataTransmissionOperations.GetFlightDataByDate(System.DateTime)">
+        <member name="M:FlightRadarWebService.Core.Protocols.Interfaces.IDataTransmissionOperations.GetFlightDataByDate(System.DateTime)">
             <summary>
             </summary>
             <param name="timestamp"></param>
             <returns></returns>
         </member>
-        <member name="T:AzureWebService.Models.DataProcessingModel">
+        <member name="T:FlightRadarWebService.Models.DataProcessingModel">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataProcessingModel.Timestamp">
+        <member name="P:FlightRadarWebService.Models.DataProcessingModel.Timestamp">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataProcessingModel.SenderId">
+        <member name="P:FlightRadarWebService.Models.DataProcessingModel.SenderId">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataProcessingModel.Groundspeed">
+        <member name="P:FlightRadarWebService.Models.DataProcessingModel.Groundspeed">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataProcessingModel.Latitude">
+        <member name="P:FlightRadarWebService.Models.DataProcessingModel.Latitude">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataProcessingModel.Longitude">
+        <member name="P:FlightRadarWebService.Models.DataProcessingModel.Longitude">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataProcessingModel.Flight">
+        <member name="P:FlightRadarWebService.Models.DataProcessingModel.Flight">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataProcessingModel.Track">
+        <member name="P:FlightRadarWebService.Models.DataProcessingModel.Track">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataProcessingModel.Altitude">
+        <member name="P:FlightRadarWebService.Models.DataProcessingModel.Altitude">
             <summary>
             
             </summary>
         </member>
-        <member name="T:AzureWebService.Models.DataTransmissionModel">
+        <member name="T:FlightRadarWebService.Models.DataTransmissionModel">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataTransmissionModel.Prefix">
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.Prefix">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataTransmissionModel.Timestamp">
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.Timestamp">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataTransmissionModel.UTC">
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.UTC">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataTransmissionModel.SenderId">
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.SenderId">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataTransmissionModel.Groundspeed">
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.Groundspeed">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataTransmissionModel.Latitude">
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.Latitude">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataTransmissionModel.DeviationLat">
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.DeviationLat">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataTransmissionModel.Longitude">
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.Longitude">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataTransmissionModel.DeviationLong">
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.DeviationLong">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataTransmissionModel.Flight">
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.Flight">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataTransmissionModel.Track">
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.Track">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataTransmissionModel.Altitude">
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.Altitude">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataTransmissionModel.DeviationAlt">
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.DeviationAlt">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataTransmissionModel.AltitudeUnit">
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.AltitudeUnit">
             <summary>
             
             </summary>
         </member>
-        <member name="P:AzureWebService.Models.DataTransmissionModel.GroundSpeedUnit">
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.GroundSpeedUnit">
             <summary>
             
             </summary>
         </member>
-        <member name="T:AzureWebService.Program">
+        <member name="T:FlightRadarWebService.Program">
             <summary>
             
             </summary>
         </member>
-        <member name="M:AzureWebService.Program.Main(System.String[])">
+        <member name="M:FlightRadarWebService.Program.Main(System.String[])">
             <summary>
             
             </summary>
             <param name="args"></param>
         </member>
-        <member name="M:AzureWebService.Program.CreateWebHostBuilder(System.String[])">
+        <member name="M:FlightRadarWebService.Program.CreateWebHostBuilder(System.String[])">
             <summary>
             
             </summary>
             <param name="args"></param>
             <returns></returns>
         </member>
-        <member name="T:AzureWebService.Startup">
+        <member name="T:FlightRadarWebService.Startup">
             <summary>
             
             </summary>
         </member>
-        <member name="M:AzureWebService.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:FlightRadarWebService.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             
             </summary>
             <param name="configuration"></param>
         </member>
-        <member name="P:AzureWebService.Startup.Configuration">
+        <member name="P:FlightRadarWebService.Startup.Configuration">
             <summary>
             
             </summary>
         </member>
-        <member name="M:AzureWebService.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:FlightRadarWebService.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             
             </summary>

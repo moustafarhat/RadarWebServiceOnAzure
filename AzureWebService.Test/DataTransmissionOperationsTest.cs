@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace AzureWebService.Test
+namespace FlightRadarWebService.Test
 {
     public class DataTransmissionOperationsTest
     {

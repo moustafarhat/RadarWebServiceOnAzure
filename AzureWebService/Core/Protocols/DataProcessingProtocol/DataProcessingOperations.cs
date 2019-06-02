@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AzureWebService.Core.Protocols.Interfaces;
-using AzureWebService.Models;
-using OpenCvSharp;
+using FlightRadarWebService.Core.Protocols.Interfaces;
+using FlightRadarWebService.Models;
 
-
-namespace AzureWebService.Core.Protocols.DataProcessingProtocol
+namespace FlightRadarWebService.Core.Protocols.DataProcessingProtocol
 {
     /// <summary>
     /// Flights Data Processing Protocols
@@ -113,7 +111,7 @@ namespace AzureWebService.Core.Protocols.DataProcessingProtocol
 
         public DataProcessingModel ProcessDataByMean(string flight, DateTime timeStamp)
         {
-           return DataCorrection(DataBaseOperations.GetDataByFlightIdAndTimeStamp(flight, timeStamp));
+           return DataCorrection(DataBaseOperations.DataBaseOperations.GetDataByFlightIdAndTimeStamp(flight, timeStamp));
         }
     }
 }

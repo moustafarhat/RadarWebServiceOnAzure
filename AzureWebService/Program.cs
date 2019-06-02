@@ -1,9 +1,10 @@
 ﻿using System;
-using AzureWebService.Core;
+using AzureWebService;
+using FlightRadarWebService.Core.Protocols.DataBaseOperations;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace AzureWebService
+namespace FlightRadarWebService
 {
     /// <summary>
     /// 

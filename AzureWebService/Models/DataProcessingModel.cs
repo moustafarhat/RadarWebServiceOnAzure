@@ -1,7 +1,7 @@
 ﻿using System;
 using CSVWriter;
 
-namespace AzureWebService.Models
+namespace FlightRadarWebService.Models
 {
     /// <summary>
     /// 

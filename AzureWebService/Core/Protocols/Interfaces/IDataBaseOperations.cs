@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AzureWebService.Models;
+using FlightRadarWebService.Models;
 
-namespace AzureWebService.Core.Protocols.Interfaces
+namespace FlightRadarWebService.Core.Protocols.Interfaces
 {
     /// <summary>
     /// 

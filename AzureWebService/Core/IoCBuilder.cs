@@ -1,9 +1,10 @@
 ﻿using Autofac;
-using AzureWebService.Core.Protocols.DataProcessingProtocol;
-using AzureWebService.Core.Protocols.DataTransmissionProtocol;
-using AzureWebService.Core.Protocols.Interfaces;
+using FlightRadarWebService.Core.Protocols.DataBaseOperations;
+using FlightRadarWebService.Core.Protocols.DataProcessingProtocol;
+using FlightRadarWebService.Core.Protocols.DataTransmissionProtocol;
+using FlightRadarWebService.Core.Protocols.Interfaces;
 
-namespace AzureWebService.Core
+namespace FlightRadarWebService.Core
 {
     /// <summary>
     ///  Main Container

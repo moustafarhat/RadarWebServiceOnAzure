@@ -1,4 +1,4 @@
-﻿namespace AzureWebService.Core.Enum
+﻿namespace FlightRadarWebService.Core.Enum
 {
     /// <summary>
     /// 

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using System.IO;
 using System.Linq;
-using AzureWebService.Models;
+using FlightRadarWebService.Models;
 
-
-namespace AzureWebService.Core
+namespace FlightRadarWebService.Core.Protocols.DataBaseOperations
 {
     /// <summary>
     /// 

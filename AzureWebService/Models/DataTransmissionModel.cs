@@ -1,8 +1,8 @@
 ﻿using System;
-using AzureWebService.Core;
-using AzureWebService.Core.Enum;
 using CSVWriter;
-namespace AzureWebService.Models
+using FlightRadarWebService.Core.Enum;
+
+namespace FlightRadarWebService.Models
 {
     /// <summary>
     /// 

@@ -11,10 +11,9 @@
 
 using System;
 using System.Collections.Generic;
-using AzureWebService.Models;
-using OpenCvSharp;
+using FlightRadarWebService.Models;
 
-namespace AzureWebService.Core.Protocols.Interfaces
+namespace FlightRadarWebService.Core.Protocols.Interfaces
 {
     /// <summary>
     /// Interface contains all Data Processing operations

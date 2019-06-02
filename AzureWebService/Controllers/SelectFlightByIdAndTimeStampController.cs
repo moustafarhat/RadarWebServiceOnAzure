@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using AzureWebService.Core;
-using AzureWebService.Core.Protocols.DataProcessingProtocol;
-using AzureWebService.Core.Protocols.Interfaces;
-using AzureWebService.Models;
+using FlightRadarWebService.Core.Protocols.DataProcessingProtocol;
+using FlightRadarWebService.Core.Protocols.Interfaces;
+using FlightRadarWebService.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AzureWebService.Controllers
+namespace FlightRadarWebService.Controllers
 {
     /// <summary>
     /// 

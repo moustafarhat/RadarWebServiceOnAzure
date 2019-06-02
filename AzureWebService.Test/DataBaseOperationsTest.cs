@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace AzureWebService.Test
+namespace FlightRadarWebService.Test
 {
     public class DataBaseOperationsTest
     {

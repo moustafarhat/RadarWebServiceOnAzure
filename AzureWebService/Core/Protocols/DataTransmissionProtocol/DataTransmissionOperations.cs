@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using AzureWebService.Core.Protocols.Interfaces;
-using AzureWebService.Models;
+using FlightRadarWebService.Core.Protocols.Interfaces;
+using FlightRadarWebService.Models;
 
-namespace AzureWebService.Core.Protocols.DataTransmissionProtocol
+namespace FlightRadarWebService.Core.Protocols.DataTransmissionProtocol
 {
     /// <summary>
     /// Flights Data Transmission Protocols

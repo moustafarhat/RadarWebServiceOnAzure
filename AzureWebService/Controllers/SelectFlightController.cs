@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using AzureWebService.Core;
-using AzureWebService.Models;
+using FlightRadarWebService.Core.Protocols.DataBaseOperations;
+using FlightRadarWebService.Models;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit 
 
-namespace AzureWebService.Controllers
+namespace FlightRadarWebService.Controllers
 {
     /// <summary>
     /// 
