@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using FlightRadarWebService.Core.Protocols.Interfaces;
+using FlightRadarWebService.Core.Services.Interfaces;
 using FlightRadarWebService.Models;
 
-namespace FlightRadarWebService.Core.Protocols.DataTransmissionProtocol
+namespace FlightRadarWebService.Core.Services.DataTransmissionProtocol
 {
     /// <summary>
     /// Flights Data Transmission Protocols

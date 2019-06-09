@@ -15,20 +15,6 @@
             </summary>
             <param name="received"></param>
         </member>
-        <member name="M:FlightRadarWebService.Controllers.DataRegistrationController.InsertData(FlightRadarWebService.Models.DataTransmissionModel)">
-            <summary>
-            
-            </summary>
-            <param name="received"></param>
-            <returns></returns>
-        </member>
-        <member name="M:FlightRadarWebService.Controllers.DataRegistrationController.AddData(FlightRadarWebService.Models.DataTransmissionModel)">
-            <summary>
-            
-            </summary>
-            <param name="received"></param>
-            <returns></returns>
-        </member>
         <member name="T:FlightRadarWebService.Controllers.DataRetrieveController">
             <summary>
             
@@ -84,6 +70,21 @@
             
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:FlightRadarWebService.Core.ConstantValues">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.ConstantValues._logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.ConstantValues.filePath">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:FlightRadarWebService.Core.DataRegistration">
             <summary>
@@ -178,31 +179,31 @@
              Main Container
             </summary>
         </member>
-        <member name="T:FlightRadarWebService.Core.Protocols.DataBaseOperations.DataBaseOperations">
+        <member name="T:FlightRadarWebService.Core.Services.DataBaseOperations.DataBaseOperations">
             <summary>
             
             </summary>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.DataBaseOperations.DataBaseOperations.TestDataBaseConnection">
+        <member name="M:FlightRadarWebService.Core.Services.DataBaseOperations.DataBaseOperations.TestDataBaseConnection">
             <summary>
             Test Data Base connection and return true or false
             </summary>
             <returns></returns>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.DataBaseOperations.DataBaseOperations.InsertFlugData(FlightRadarWebService.Models.DataTransmissionModel)">
+        <member name="M:FlightRadarWebService.Core.Services.DataBaseOperations.DataBaseOperations.InsertFlugData(FlightRadarWebService.Models.DataTransmissionModel)">
             <summary>
             Insert operation for Flug Data 
             </summary>
             <exception cref="T:System.Exception"></exception>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.DataBaseOperations.DataBaseOperations.GetDataByFlightId(System.String)">
+        <member name="M:FlightRadarWebService.Core.Services.DataBaseOperations.DataBaseOperations.GetDataByFlightId(System.String)">
             <summary>
             
             </summary>
             <param name="flight"></param>
             <returns></returns>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.DataBaseOperations.DataBaseOperations.GetDataByFlightIdAndTimeStamp(System.String,System.DateTime)">
+        <member name="M:FlightRadarWebService.Core.Services.DataBaseOperations.DataBaseOperations.GetDataByFlightIdAndTimeStamp(System.String,System.DateTime)">
             <summary>
             
             </summary>
@@ -210,13 +211,13 @@
             <param name="time"></param>
             <returns></returns>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.DataBaseOperations.DataBaseOperations.GetDataAllDataFromDataBase">
+        <member name="M:FlightRadarWebService.Core.Services.DataBaseOperations.DataBaseOperations.GetDataAllDataFromDataBase">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.DataBaseOperations.DataBaseOperations.CheckNull``1(System.Object)">
+        <member name="M:FlightRadarWebService.Core.Services.DataBaseOperations.DataBaseOperations.CheckNull``1(System.Object)">
             <summary>
             
             </summary>
@@ -224,26 +225,26 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.DataBaseOperations.DataBaseOperations.ParseStringValueToInt(System.Object)">
+        <member name="M:FlightRadarWebService.Core.Services.DataBaseOperations.DataBaseOperations.ParseStringValueToInt(System.Object)">
             <summary>
             
             </summary>
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="T:FlightRadarWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations">
+        <member name="T:FlightRadarWebService.Core.Services.DataProcessingProtocol.DataProcessingOperations">
             <summary>
             Flights Data Processing Protocols
             </summary>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations.DataCorrection(System.Collections.Generic.List{FlightRadarWebService.Models.DataTransmissionModel})">
+        <member name="M:FlightRadarWebService.Core.Services.DataProcessingProtocol.DataProcessingOperations.DataCorrection(System.Collections.Generic.List{FlightRadarWebService.Models.DataTransmissionModel})">
             <summary>
             
             </summary>
             <param name="models"></param>
             <returns></returns>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations.DataPrediction(System.Collections.Generic.List{FlightRadarWebService.Models.DataTransmissionModel})">
+        <member name="M:FlightRadarWebService.Core.Services.DataProcessingProtocol.DataProcessingOperations.DataPrediction(System.Collections.Generic.List{FlightRadarWebService.Models.DataTransmissionModel})">
             <summary>
             
             </summary>
@@ -251,19 +252,19 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.DataProcessingProtocol.DataProcessingOperations.MeanCalculator(System.Collections.Generic.List{System.Double})">
+        <member name="M:FlightRadarWebService.Core.Services.DataProcessingProtocol.DataProcessingOperations.MeanCalculator(System.Collections.Generic.List{System.Double})">
             <summary>
             
             </summary>
             <param name="numbers"></param>
             <returns></returns>
         </member>
-        <member name="T:FlightRadarWebService.Core.Protocols.DataTransmissionProtocol.DataTransmissionOperations">
+        <member name="T:FlightRadarWebService.Core.Services.DataTransmissionProtocol.DataTransmissionOperations">
             <summary>
             Flights Data Transmission Protocols
             </summary>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.DataTransmissionProtocol.DataTransmissionOperations.GetFlightDataByDate(System.DateTime)">
+        <member name="M:FlightRadarWebService.Core.Services.DataTransmissionProtocol.DataTransmissionOperations.GetFlightDataByDate(System.DateTime)">
             <summary>
             
             </summary>
@@ -271,24 +272,24 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="T:FlightRadarWebService.Core.Protocols.Interfaces.IDataBaseOperations">
+        <member name="T:FlightRadarWebService.Core.Services.Interfaces.IDataBaseOperations">
             <summary>
             
             </summary>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.Interfaces.IDataBaseOperations.TestDataBaseConnection">
+        <member name="M:FlightRadarWebService.Core.Services.Interfaces.IDataBaseOperations.TestDataBaseConnection">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.Interfaces.IDataBaseOperations.InsertFlugData(FlightRadarWebService.Models.DataTransmissionModel)">
+        <member name="M:FlightRadarWebService.Core.Services.Interfaces.IDataBaseOperations.InsertFlugData(FlightRadarWebService.Models.DataTransmissionModel)">
             <summary>
             
             </summary>
             <param name="flugData"></param>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.Interfaces.IDataBaseOperations.GetDataByFlightIdAndTimeStamp(System.String,System.DateTime)">
+        <member name="M:FlightRadarWebService.Core.Services.Interfaces.IDataBaseOperations.GetDataByFlightIdAndTimeStamp(System.String,System.DateTime)">
             <summary>
             
             </summary>
@@ -296,32 +297,32 @@
             <param name="time"></param>
             <returns></returns>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.Interfaces.IDataBaseOperations.GetDataAllDataFromDataBase">
+        <member name="M:FlightRadarWebService.Core.Services.Interfaces.IDataBaseOperations.GetDataAllDataFromDataBase">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="T:FlightRadarWebService.Core.Protocols.Interfaces.IDataProcessingOperations">
+        <member name="T:FlightRadarWebService.Core.Services.Interfaces.IDataProcessingOperations">
             <summary>
             Interface contains all Data Processing operations
             </summary>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.Interfaces.IDataProcessingOperations.DataCorrection(System.Collections.Generic.List{FlightRadarWebService.Models.DataTransmissionModel})">
+        <member name="M:FlightRadarWebService.Core.Services.Interfaces.IDataProcessingOperations.DataCorrection(System.Collections.Generic.List{FlightRadarWebService.Models.DataTransmissionModel})">
             <summary>
             
             </summary>
             <param name="x"></param>
             <returns></returns>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.Interfaces.IDataProcessingOperations.DataPrediction(System.Collections.Generic.List{FlightRadarWebService.Models.DataTransmissionModel})">
+        <member name="M:FlightRadarWebService.Core.Services.Interfaces.IDataProcessingOperations.DataPrediction(System.Collections.Generic.List{FlightRadarWebService.Models.DataTransmissionModel})">
             <summary>
             
             </summary>
             <param name="x"></param>
             <returns></returns>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.Interfaces.IDataProcessingOperations.ProcessDataByMean(System.String,System.DateTime)">
+        <member name="M:FlightRadarWebService.Core.Services.Interfaces.IDataProcessingOperations.ProcessDataByMean(System.String,System.DateTime)">
             <summary>
             
             </summary>
@@ -329,12 +330,12 @@
             <param name="timeStamp"></param>
             <returns></returns>
         </member>
-        <member name="T:FlightRadarWebService.Core.Protocols.Interfaces.IDataTransmissionOperations">
+        <member name="T:FlightRadarWebService.Core.Services.Interfaces.IDataTransmissionOperations">
             <summary>
             Interface contains all Data Transmission operations
             </summary>
         </member>
-        <member name="M:FlightRadarWebService.Core.Protocols.Interfaces.IDataTransmissionOperations.GetFlightDataByDate(System.DateTime)">
+        <member name="M:FlightRadarWebService.Core.Services.Interfaces.IDataTransmissionOperations.GetFlightDataByDate(System.DateTime)">
             <summary>
             </summary>
             <param name="timestamp"></param>
@@ -504,6 +505,13 @@
             
             </summary>
             <param name="services"></param>
+        </member>
+        <member name="M:FlightRadarWebService.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
         </member>
     </members>
 </doc>

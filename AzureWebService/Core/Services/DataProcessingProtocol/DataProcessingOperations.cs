@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using FlightRadarWebService.Core.Protocols.Interfaces;
+using FlightRadarWebService.Core.Services.Interfaces;
 using FlightRadarWebService.Models;
 
-namespace FlightRadarWebService.Core.Protocols.DataProcessingProtocol
+namespace FlightRadarWebService.Core.Services.DataProcessingProtocol
 {
     /// <summary>
     /// Flights Data Processing Protocols

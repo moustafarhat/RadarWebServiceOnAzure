@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using FlightRadarWebService.Models;
 
-namespace FlightRadarWebService.Core.Protocols.Interfaces
+namespace FlightRadarWebService.Core.Services.Interfaces
 {
     /// <summary>
     /// Interface contains all Data Transmission operations

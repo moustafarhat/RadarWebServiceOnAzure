@@ -1,8 +1,8 @@
 ﻿using Autofac;
-using FlightRadarWebService.Core.Protocols.DataBaseOperations;
-using FlightRadarWebService.Core.Protocols.DataProcessingProtocol;
-using FlightRadarWebService.Core.Protocols.DataTransmissionProtocol;
-using FlightRadarWebService.Core.Protocols.Interfaces;
+using FlightRadarWebService.Core.Services.DataBaseOperations;
+using FlightRadarWebService.Core.Services.DataProcessingProtocol;
+using FlightRadarWebService.Core.Services.DataTransmissionProtocol;
+using FlightRadarWebService.Core.Services.Interfaces;
 
 namespace FlightRadarWebService.Core
 {

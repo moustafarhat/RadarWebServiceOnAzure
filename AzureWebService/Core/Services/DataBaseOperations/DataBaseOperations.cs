@@ -4,7 +4,7 @@ using System.Data.SQLite;
 using System.Linq;
 using FlightRadarWebService.Models;
 
-namespace FlightRadarWebService.Core.Protocols.DataBaseOperations
+namespace FlightRadarWebService.Core.Services.DataBaseOperations
 {
     /// <summary>
     /// 

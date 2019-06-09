@@ -2,7 +2,7 @@
 using System.IO;
 using CSVWriter;
 using FlightRadarWebService.Core;
-using FlightRadarWebService.Core.Protocols.DataBaseOperations;
+using FlightRadarWebService.Core.Services.DataBaseOperations;
 using FlightRadarWebService.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +16,7 @@ namespace FlightRadarWebService.Controllers
     [ApiController]
     public class DataRegistrationController : Controller
     {
+  
         // POST: api/<controller>
         /// <summary>
         /// Register Data
@@ -43,80 +44,83 @@ namespace FlightRadarWebService.Controllers
                     DeviationLong = received.DeviationLong
                 };
 
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\DataFiles\\", "Data.csv");
-
+                //Create CSV Model
                 var cw = new CsvWriter<DataTransmissionModel>();
 
-                cw.WriteModelToCsvFile(newReceivedData, filePath);
+                //Write Model into Csv File
+                cw.WriteModelToCsvFile(newReceivedData, Constants.FilePath);
 
+                //Insert data into Database
                 DataBaseOperations.InsertFlugData(newReceivedData);
 
+                //Add Data To registration Class (Data Dictionary)
                 DataRegistration.GetInstance().AddDataToDic(newReceivedData);
 
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                //Exceptions are typically logged at the ERROR level
+                Constants.Logger.Error(e);
                 throw;
             }
         }
 
-        // POST api/<controller>
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="received"></param>
-        /// <returns></returns>
-        [HttpPost("InsertData")]
-        public IActionResult InsertData(DataTransmissionModel received)
-        {
-            var newReceivedData = new DataTransmissionModel
-            {
-                Flight = received.Flight,
-                Track = received.Track,
-                Altitude = received.Altitude,
-                Latitude = received.Latitude,
-                Longitude = received.Longitude,
-                Prefix = received.Prefix,
-                SenderId = received.SenderId,
-                Groundspeed = received.Groundspeed,
-                Timestamp = received.Timestamp
-            };
+        //// POST api/<controller>
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="received"></param>
+        ///// <returns></returns>
+        //[HttpPost("InsertData")]
+        //public IActionResult InsertData(DataTransmissionModel received)
+        //{
+        //    var newReceivedData = new DataTransmissionModel
+        //    {
+        //        Flight = received.Flight,
+        //        Track = received.Track,
+        //        Altitude = received.Altitude,
+        //        Latitude = received.Latitude,
+        //        Longitude = received.Longitude,
+        //        Prefix = received.Prefix,
+        //        SenderId = received.SenderId,
+        //        Groundspeed = received.Groundspeed,
+        //        Timestamp = received.Timestamp
+        //    };
 
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\DataFiles", "Data.csv");
-            var cw = new CsvWriter<DataTransmissionModel>();
-            cw.WriteModelToCsvFile(newReceivedData, filePath);
+        //    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\DataFiles", "Data.csv");
+        //    var cw = new CsvWriter<DataTransmissionModel>();
+        //    cw.WriteModelToCsvFile(newReceivedData, filePath);
 
-            DataRegistration.GetInstance().AddDataToDic(newReceivedData);
+        //    DataRegistration.GetInstance().AddDataToDic(newReceivedData);
 
-            return Ok(DataRegistration.GetInstance().ReceivedData);
-        }
+        //    return Ok(DataRegistration.GetInstance().ReceivedData);
+        //}
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="received"></param>
-        /// <returns></returns>
-        [Route("Data/")]
-        [HttpPost("AddData")]
-        public JsonResult AddData(DataTransmissionModel received)
-        {
-            var newReceivedData = new DataTransmissionModel
-            {
-                Flight = received.Flight,
-                Track = received.Track,
-                Altitude = received.Altitude,
-                Latitude = received.Latitude,
-                Longitude = received.Longitude,
-                Prefix = received.Prefix,
-                SenderId = received.SenderId,
-                Groundspeed = received.Groundspeed,
-                Timestamp = received.Timestamp
-            };
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="received"></param>
+        ///// <returns></returns>
+        //[Route("Data/")]
+        //[HttpPost("AddData")]
+        //public JsonResult AddData(DataTransmissionModel received)
+        //{
+        //    var newReceivedData = new DataTransmissionModel
+        //    {
+        //        Flight = received.Flight,
+        //        Track = received.Track,
+        //        Altitude = received.Altitude,
+        //        Latitude = received.Latitude,
+        //        Longitude = received.Longitude,
+        //        Prefix = received.Prefix,
+        //        SenderId = received.SenderId,
+        //        Groundspeed = received.Groundspeed,
+        //        Timestamp = received.Timestamp
+        //    };
 
-            DataRegistration.GetInstance().AddDataToDic(newReceivedData);
+        //    DataRegistration.GetInstance().AddDataToDic(newReceivedData);
 
-            return Json(DataRegistration.GetInstance().ReceivedData);
-        }
+        //    return Json(DataRegistration.GetInstance().ReceivedData);
+        //}
     }
 }

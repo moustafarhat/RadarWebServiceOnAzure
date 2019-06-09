@@ -10,8 +10,9 @@ namespace FlightRadarWebService.Test
         }
 
         [Test]
-        public void Test1()
+        public void TestDataBaseConnection()
         {
+
             Assert.Pass();
             
         }

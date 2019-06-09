@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using FlightRadarWebService.Core.Protocols.DataBaseOperations;
+using FlightRadarWebService.Core.Services.DataBaseOperations;
 using FlightRadarWebService.Models;
 using Microsoft.AspNetCore.Mvc;
 

@@ -21,11 +21,7 @@ namespace FlightRadarWebService.Core
         private DataRegistration()
         {
             ReceivedData = new Dictionary<string, DataTransmissionModel>();
-            //Kalman
-            //var kalman = new KalmanFilter();
-            //kalman.Predict();
-            //kalman.Correct(new Mat());
-           
+          
         }
 
         /// <summary>
@@ -106,14 +102,8 @@ namespace FlightRadarWebService.Core
         /// <returns></returns>
         public void DeleteOldData()
         {
-
             ReceivedData.Clear();
             //TODO: Delete old Data automatically that are older than X time
-            //var filtered = (from kvp in ReceivedData
-            //               where  kvp.Value.Timestamp.Value.Second > DateTime.Now.Second -5
-            //                select kvp).ToDictionary(t => t.Key, t => t.Value); ;
-
-            //ReceivedData = filtered;
         }
     }
 }

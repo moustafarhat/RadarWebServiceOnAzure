@@ -1,6 +1,6 @@
 ﻿using System;
-using FlightRadarWebService.Core.Protocols.DataProcessingProtocol;
-using FlightRadarWebService.Core.Protocols.Interfaces;
+using FlightRadarWebService.Core.Services.DataProcessingProtocol;
+using FlightRadarWebService.Core.Services.Interfaces;
 using FlightRadarWebService.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,7 +34,7 @@ namespace FlightRadarWebService.Controllers
         /// <param name="flight"></param>
         /// <param name="time"></param>
         /// <returns></returns>
-        [HttpGet("GetFlightData")]
+        [HttpGet("GetFlightDataFromDataBase")]
         public JsonResult GetFlightRecord(string flight,DateTime time)
         {
             return Json(_processingOperations.ProcessDataByMean(flight, time));
