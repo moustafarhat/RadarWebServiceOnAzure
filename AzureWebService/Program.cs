@@ -19,10 +19,10 @@ namespace FlightRadarWebService
         {
             CreateWebHostBuilder(args).Build().Run();
 
-            if (!DataBaseOperations.TestDataBaseConnection())
-            {
-                throw new Exception("Database connection error");
-            }
+            //if (!DataBaseOperations.TestDataBaseConnection())
+            //{
+            //    throw new Exception("Database connection error");
+            //}
 
         }
 

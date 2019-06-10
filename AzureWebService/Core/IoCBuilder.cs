@@ -11,7 +11,11 @@ namespace FlightRadarWebService.Core
     /// </summary>
     public class IoCBuilder
     {
-        internal static IContainer Build()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static IContainer Build()
         {
             var builder = new ContainerBuilder();
             RegisterTypes(builder);

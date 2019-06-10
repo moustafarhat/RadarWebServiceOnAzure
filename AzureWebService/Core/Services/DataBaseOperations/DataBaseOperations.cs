@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
+using FlightRadarWebService.Core.Services.Interfaces;
 using FlightRadarWebService.Models;
 
 namespace FlightRadarWebService.Core.Services.DataBaseOperations
@@ -9,14 +10,14 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
     /// <summary>
     /// 
     /// </summary>
-    public class DataBaseOperations
+    public class DataBaseOperations : IDataBaseOperations
     {
         private static readonly string DataBaseConnectionString = "Data Source=" + AppDomain.CurrentDomain.BaseDirectory + "\\db\\Flight.db;Version=3;";
         /// <summary>
         /// Test Data Base connection and return true or false
         /// </summary>
         /// <returns></returns>
-        public static bool TestDataBaseConnection()
+        public  bool TestDataBaseConnection()
         {
             using (var connection = new SQLiteConnection(DataBaseConnectionString))
             {
@@ -31,6 +32,23 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
                 }
             }
         }
+
+        void IDataBaseOperations.InsertFlugData(DataTransmissionModel flugData)
+        {
+            InsertFlugData(flugData);
+        }
+
+        List<DataTransmissionModel> IDataBaseOperations.GetDataByFlightIdAndTimeStamp(string flight, DateTime time)
+        {
+            return GetDataByFlightIdAndTimeStamp(flight, time);
+        }
+
+        List<DataTransmissionModel> IDataBaseOperations.GetDataAllDataFromDataBase()
+        {
+            return GetDataAllDataFromDataBase();
+        }
+
+
 
         /// <summary>
         /// Insert operation for Flug Data 

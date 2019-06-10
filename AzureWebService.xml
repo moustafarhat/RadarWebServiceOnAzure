@@ -71,19 +71,19 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:FlightRadarWebService.Core.ConstantValues">
+        <member name="T:FlightRadarWebService.Core.Constants">
             <summary>
             
             </summary>
         </member>
-        <member name="F:FlightRadarWebService.Core.ConstantValues._logger">
+        <member name="F:FlightRadarWebService.Core.Constants.Logger">
             <summary>
-            
+            /NLog recommends using a static variable for the logger object
             </summary>
         </member>
-        <member name="F:FlightRadarWebService.Core.ConstantValues.filePath">
+        <member name="F:FlightRadarWebService.Core.Constants.FilePath">
             <summary>
-            
+            CSV data file default path
             </summary>
         </member>
         <member name="T:FlightRadarWebService.Core.DataRegistration">
@@ -178,6 +178,12 @@
             <summary>
              Main Container
             </summary>
+        </member>
+        <member name="M:FlightRadarWebService.Core.IoCBuilder.Build">
+            <summary>
+            
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:FlightRadarWebService.Core.Services.DataBaseOperations.DataBaseOperations">
             <summary>

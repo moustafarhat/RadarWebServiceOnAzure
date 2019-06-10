@@ -1,4 +1,7 @@
 using NUnit.Framework;
+using Autofac;
+using FlightRadarWebService.Core;
+using FlightRadarWebService.Core.Services.Interfaces;
 
 namespace FlightRadarWebService.Test
 {
@@ -12,9 +15,9 @@ namespace FlightRadarWebService.Test
         [Test]
         public void TestDataBaseConnection()
         {
-
-            Assert.Pass();
-            
+            var container = IoCBuilder.Build();
+            var dataBaseOperations = container.Resolve<IDataBaseOperations>();
+            Assert.IsTrue(dataBaseOperations.TestDataBaseConnection());
         }
     }
 }
