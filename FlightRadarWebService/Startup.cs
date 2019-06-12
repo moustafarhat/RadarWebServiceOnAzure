@@ -44,6 +44,7 @@ namespace FlightRadarWebService
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            //Swagger Config ===>
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info
@@ -87,6 +88,8 @@ namespace FlightRadarWebService
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            //Swagger Config ===>
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

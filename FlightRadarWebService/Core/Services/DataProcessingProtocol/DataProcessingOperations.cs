@@ -67,7 +67,8 @@ namespace FlightRadarWebService.Core.Services.DataProcessingProtocol
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                //Exceptions are typically logged at the ERROR level
+                Constants.Logger.Error(e);
                 throw;
             }
 
@@ -109,6 +110,12 @@ namespace FlightRadarWebService.Core.Services.DataProcessingProtocol
             return mean;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="flight"></param>
+        /// <param name="timeStamp"></param>
+        /// <returns></returns>
         public DataProcessingModel ProcessDataByMean(string flight, DateTime timeStamp)
         {
            return DataCorrection(DataBaseOperations.DataBaseOperations.GetDataByFlightIdAndTimeStamp(flight, timeStamp));

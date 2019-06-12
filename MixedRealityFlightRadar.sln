@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightRadarWebService", "Fl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightRadarWebService.Test", "FlightRadarWebService.Test\FlightRadarWebService.Test.csproj", "{8EB40064-49C9-4629-B58D-9BE5AB81EF29}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSVWriter", "CSVWriter\CSVWriter.csproj", "{3F31D406-8D5A-4A82-B6DF-5DE465296A75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8EB40064-49C9-4629-B58D-9BE5AB81EF29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EB40064-49C9-4629-B58D-9BE5AB81EF29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EB40064-49C9-4629-B58D-9BE5AB81EF29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F31D406-8D5A-4A82-B6DF-5DE465296A75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F31D406-8D5A-4A82-B6DF-5DE465296A75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F31D406-8D5A-4A82-B6DF-5DE465296A75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F31D406-8D5A-4A82-B6DF-5DE465296A75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

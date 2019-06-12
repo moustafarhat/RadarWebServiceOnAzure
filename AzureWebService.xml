@@ -265,6 +265,14 @@
             <param name="numbers"></param>
             <returns></returns>
         </member>
+        <member name="M:FlightRadarWebService.Core.Services.DataProcessingProtocol.DataProcessingOperations.ProcessDataByMean(System.String,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="flight"></param>
+            <param name="timeStamp"></param>
+            <returns></returns>
+        </member>
         <member name="T:FlightRadarWebService.Core.Services.DataTransmissionProtocol.DataTransmissionOperations">
             <summary>
             Flights Data Transmission Protocols

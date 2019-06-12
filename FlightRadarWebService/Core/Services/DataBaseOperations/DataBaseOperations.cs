@@ -26,8 +26,10 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
                     connection.Open();
                     return true;
                 }
-                catch (SQLiteException)
+                catch (SQLiteException e)
                 {
+                    //Exceptions are typically logged at the ERROR level
+                    Constants.Logger.Error(e);
                     return false;
                 }
             }
@@ -81,7 +83,8 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.ToString());
+                //Exceptions are typically logged at the ERROR level
+                Constants.Logger.Error(ex);
             }
             finally
             {
