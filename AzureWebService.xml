@@ -32,27 +32,16 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:FlightRadarWebService.Controllers.SelectFlightByIdAndTimeStampController">
+        <member name="T:FlightRadarWebService.Controllers.FlightTableController">
             <summary>
             
             </summary>
         </member>
-        <member name="M:FlightRadarWebService.Controllers.SelectFlightByIdAndTimeStampController.GetFlightData(System.String,System.DateTime)">
+        <member name="M:FlightRadarWebService.Controllers.FlightTableController.RegisterDataTable(FlightRadarWebService.Models.DataTransmissionList)">
             <summary>
-            
+            Register Data
             </summary>
-            <param name="flight"></param>
-            <param name="time"></param>
-            <returns></returns>
-            
-        </member>
-        <member name="M:FlightRadarWebService.Controllers.SelectFlightByIdAndTimeStampController.GetFlightRecord(System.String,System.DateTime)">
-            <summary>
-            
-            </summary>
-            <param name="flight"></param>
-            <param name="time"></param>
-            <returns></returns>
+            <param name="receivedTable"></param>
         </member>
         <member name="T:FlightRadarWebService.Controllers.SelectFlightController">
             <summary>
@@ -84,6 +73,11 @@
         <member name="F:FlightRadarWebService.Core.Constants.FilePath">
             <summary>
             CSV data file default path
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.Constants.Header">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:FlightRadarWebService.Core.DataRegistration">
@@ -164,12 +158,22 @@
             
             </summary>
         </member>
+        <member name="T:FlightRadarWebService.Core.Enum.Prefix">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:FlightRadarWebService.Core.Enum.Prefix.Live">
             <summary>
             
             </summary>
         </member>
         <member name="F:FlightRadarWebService.Core.Enum.Prefix.Old">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.Enum.Prefix.Predicted">
             <summary>
             
             </summary>
@@ -184,6 +188,24 @@
             
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:FlightRadarWebService.Core.KalmanRunner">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.KalmanRunner.task">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FlightRadarWebService.Core.KalmanRunner.GetKalmanRunner">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Core.KalmanRunner.KalmanStarter">
+            <summary>
+            </summary>
         </member>
         <member name="T:FlightRadarWebService.Core.Services.DataBaseOperations.DataBaseOperations">
             <summary>
@@ -238,41 +260,6 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="T:FlightRadarWebService.Core.Services.DataProcessingProtocol.DataProcessingOperations">
-            <summary>
-            Flights Data Processing Protocols
-            </summary>
-        </member>
-        <member name="M:FlightRadarWebService.Core.Services.DataProcessingProtocol.DataProcessingOperations.DataCorrection(System.Collections.Generic.List{FlightRadarWebService.Models.DataTransmissionModel})">
-            <summary>
-            
-            </summary>
-            <param name="models"></param>
-            <returns></returns>
-        </member>
-        <member name="M:FlightRadarWebService.Core.Services.DataProcessingProtocol.DataProcessingOperations.DataPrediction(System.Collections.Generic.List{FlightRadarWebService.Models.DataTransmissionModel})">
-            <summary>
-            
-            </summary>
-            <param name="dataList"></param>
-            <returns></returns>
-            <exception cref="T:System.NotImplementedException"></exception>
-        </member>
-        <member name="M:FlightRadarWebService.Core.Services.DataProcessingProtocol.DataProcessingOperations.MeanCalculator(System.Collections.Generic.List{System.Double})">
-            <summary>
-            
-            </summary>
-            <param name="numbers"></param>
-            <returns></returns>
-        </member>
-        <member name="M:FlightRadarWebService.Core.Services.DataProcessingProtocol.DataProcessingOperations.ProcessDataByMean(System.String,System.DateTime)">
-            <summary>
-            
-            </summary>
-            <param name="flight"></param>
-            <param name="timeStamp"></param>
-            <returns></returns>
-        </member>
         <member name="T:FlightRadarWebService.Core.Services.DataTransmissionProtocol.DataTransmissionOperations">
             <summary>
             Flights Data Transmission Protocols
@@ -317,33 +304,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:FlightRadarWebService.Core.Services.Interfaces.IDataProcessingOperations">
-            <summary>
-            Interface contains all Data Processing operations
-            </summary>
-        </member>
-        <member name="M:FlightRadarWebService.Core.Services.Interfaces.IDataProcessingOperations.DataCorrection(System.Collections.Generic.List{FlightRadarWebService.Models.DataTransmissionModel})">
-            <summary>
-            
-            </summary>
-            <param name="x"></param>
-            <returns></returns>
-        </member>
-        <member name="M:FlightRadarWebService.Core.Services.Interfaces.IDataProcessingOperations.DataPrediction(System.Collections.Generic.List{FlightRadarWebService.Models.DataTransmissionModel})">
-            <summary>
-            
-            </summary>
-            <param name="x"></param>
-            <returns></returns>
-        </member>
-        <member name="M:FlightRadarWebService.Core.Services.Interfaces.IDataProcessingOperations.ProcessDataByMean(System.String,System.DateTime)">
-            <summary>
-            
-            </summary>
-            <param name="flight"></param>
-            <param name="timeStamp"></param>
-            <returns></returns>
-        </member>
         <member name="T:FlightRadarWebService.Core.Services.Interfaces.IDataTransmissionOperations">
             <summary>
             Interface contains all Data Transmission operations
@@ -355,47 +315,12 @@
             <param name="timestamp"></param>
             <returns></returns>
         </member>
-        <member name="T:FlightRadarWebService.Models.DataProcessingModel">
+        <member name="T:FlightRadarWebService.Models.DataTransmissionList">
             <summary>
             
             </summary>
         </member>
-        <member name="P:FlightRadarWebService.Models.DataProcessingModel.Timestamp">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:FlightRadarWebService.Models.DataProcessingModel.SenderId">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:FlightRadarWebService.Models.DataProcessingModel.Groundspeed">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:FlightRadarWebService.Models.DataProcessingModel.Latitude">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:FlightRadarWebService.Models.DataProcessingModel.Longitude">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:FlightRadarWebService.Models.DataProcessingModel.Flight">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:FlightRadarWebService.Models.DataProcessingModel.Track">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:FlightRadarWebService.Models.DataProcessingModel.Altitude">
+        <member name="F:FlightRadarWebService.Models.DataTransmissionList.DataTransmissionModels">
             <summary>
             
             </summary>
@@ -465,7 +390,32 @@
             
             </summary>
         </member>
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.AltTimestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.LatTimestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.Longimestamp">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:FlightRadarWebService.Models.DataTransmissionModel.DeviationAlt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.Covariance">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.DataTransmissionModel.IsPredicted">
             <summary>
             
             </summary>

@@ -62,7 +62,7 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
             try
             {
                 con.Open();
-                var cmd = new SQLiteCommand("INSERT INTO Flights (Timestamp,SenderId,Groundspeed,Latitude,Longitude,Flight,Track,Altitude,UTC,DeviationLat,DeviationLong,DeviationAlt)VALUES(@Timestamp,@SenderId,@Groundspeed,@Latitude,@Longitude,@Flight,@Track,@Altitude,@UTC,@DeviationLat,@DeviationLong,@DeviationAlt)", con);
+                var cmd = new SQLiteCommand("INSERT INTO Flights (Timestamp,SenderId,Groundspeed,Latitude,Longitude,Flight,Track,Altitude,UTC,DeviationLat,DeviationLong,DeviationAlt,AltTimestamp,LatTimestamp,LongTimestamp,Covariance,IsPredicted)VALUES(@Timestamp,@SenderId,@Groundspeed,@Latitude,@Longitude,@Flight,@Track,@Altitude,@UTC,@DeviationLat,@DeviationLong,@DeviationAlt,@AltTimestamp,@LatTimestamp,@LongTimestamp,@Covariance,@IsPredicted)", con);
 
   
                 cmd.Parameters.AddWithValue("@Timestamp", flugData.Timestamp ?? DateTime.Now);
@@ -78,6 +78,15 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
                 cmd.Parameters.AddWithValue("@DeviationLat", flugData.DeviationLat ?? 0);
                 cmd.Parameters.AddWithValue("@DeviationLong", flugData.DeviationLong ?? 0);
                 cmd.Parameters.AddWithValue("@DeviationAlt", flugData.DeviationAlt ?? 0);
+
+                cmd.Parameters.AddWithValue("@AltTimestamp", flugData.AltTimestamp ?? DateTime.Now);
+                cmd.Parameters.AddWithValue("@LatTimestamp", flugData.LatTimestamp ?? DateTime.Now);
+                cmd.Parameters.AddWithValue("@Longimestamp", flugData.Longimestamp ?? DateTime.Now);
+
+                cmd.Parameters.AddWithValue("@IsPredicted", flugData.IsPredicted);
+
+                cmd.Parameters.AddWithValue("@Covariance", flugData.Covariance ?? "Null");
+
                 int count = cmd.ExecuteNonQuery();
 
             }
@@ -133,49 +142,6 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
 
             return flugDataLst;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="flight"></param>
-        /// <returns></returns>
-        //public static List<DataTransmissionModel> GetDataByFlightId(string flight, DateTime timeStamp)
-        //{
-        //    var flugDataLst = new List<DataTransmissionModel>();
-
-        //    using (var connection = new SQLiteConnection(DataBaseConnectionString))
-        //    {
-        //        using (var command = new SQLiteCommand(
-        //            "Select * from Flights where Flight = @Flight and Timestamp = @timeStamp", connection))
-        //        {
-        //            command.Parameters.Add(new SQLiteParameter("@Flight", flight));
-        //            command.Parameters.Add(new SQLiteParameter("@timeStamp", timeStamp));
-
-        //            connection.Open();
-
-        //            var reader = command.ExecuteReader();
-
-        //            while (reader.Read())
-        //            {
-        //                var flugData = new DataTransmissionModel
-        //                {
-        //                    Altitude = Convert.ToInt32(reader["Altitude"]),
-        //                    Flight = reader["Flight"].ToString(),
-        //                    Groundspeed = Convert.ToInt32(reader["Groundspeed"]),
-        //                    Track = Convert.ToInt32(reader["Track"]),
-        //                    Latitude = Convert.ToInt32(reader["Latitude"]),
-        //                    Longitude = Convert.ToInt32(reader["Longitude"]),
-        //                    Timestamp = Convert.ToDateTime(reader["Timestamp"].ToString()),
-        //                    SenderId = reader["SenderId"].ToString()
-        //                };
-
-        //                flugDataLst.Add(flugData);
-        //            }
-        //        }
-        //    }
-
-        //    return flugDataLst;
-        //}
 
         /// <summary>
         /// 

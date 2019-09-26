@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using FlightRadarWebService.Core.Services.DataBaseOperations;
-using FlightRadarWebService.Core.Services.DataProcessingProtocol;
 using FlightRadarWebService.Core.Services.DataTransmissionProtocol;
 using FlightRadarWebService.Core.Services.Interfaces;
 
@@ -26,7 +25,6 @@ namespace FlightRadarWebService.Core
         {
             builder.RegisterType<DataBaseOperations>().As<IDataBaseOperations>();
             builder.RegisterType<DataTransmissionOperations>().As<IDataTransmissionOperations>();
-            builder.RegisterType<DataProcessingOperations>().As<IDataProcessingOperations>();
        }
     }
 }

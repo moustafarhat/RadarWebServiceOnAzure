@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using FlightRadarWebService.Models;
+using UnscentedKalmanFilter;
 
 namespace FlightRadarWebService.Core
 {
@@ -12,7 +16,7 @@ namespace FlightRadarWebService.Core
         /// <summary>
         /// Dictionary which contains all Data
         /// </summary>
-        public IDictionary<string, DataTransmissionModel> ReceivedData;
+        public static IDictionary<string, DataTransmissionModel> ReceivedData;
 
         private static DataRegistration _dataRegistration;
 
@@ -20,9 +24,37 @@ namespace FlightRadarWebService.Core
 
         private DataRegistration()
         {
+            
             ReceivedData = new Dictionary<string, DataTransmissionModel>();
-          
+
         }
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="model"></param>
+        ///// <returns></returns>
+        //public static DataProcessingModel ModelTransformation(DataTransmissionModel model)
+        //{
+        //    //TODO Model data
+        //    DataProcessingModel dataProcessingModel = new DataProcessingModel()
+        //    {
+        //        Altitude = model.Altitude,
+        //        SenderId = model.SenderId,
+        //        Flight = model.Flight,
+        //        Latitude = model.Latitude,
+        //        Longitude = model.Longitude,
+        //        IsPredicted = model.IsPredicted,
+        //        Groundspeed = model.Groundspeed,
+        //        Timestamp = model.Timestamp,
+        //        Track = model.Track,
+
+        //    };
+
+        //    return dataProcessingModel;
+
+        //}
+
 
         /// <summary>
         /// 
@@ -55,6 +87,7 @@ namespace FlightRadarWebService.Core
             }
         }
 
+
         /// <summary>
         /// 
         /// </summary>
@@ -69,6 +102,8 @@ namespace FlightRadarWebService.Core
 
             return null;
         }
+
+
 
         /// <summary>
         /// 
@@ -87,7 +122,7 @@ namespace FlightRadarWebService.Core
         {
             _deleteCounter += 1;
 
-            while (_deleteCounter==2)
+            while (_deleteCounter==5)
             {
                 _deleteCounter = 0;
                 DeleteOldData();
@@ -95,6 +130,7 @@ namespace FlightRadarWebService.Core
 
             return ReceivedData;
         }
+
 
         /// <summary>
         /// Filter Dictionary & Delete old data

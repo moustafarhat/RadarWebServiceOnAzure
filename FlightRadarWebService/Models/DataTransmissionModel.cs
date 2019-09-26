@@ -69,7 +69,32 @@ namespace FlightRadarWebService.Models
         /// <summary>
         /// 
         /// </summary>
+        public DateTime? AltTimestamp { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime? LatTimestamp { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime? Longimestamp { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public double? DeviationAlt { get; set; } = 0;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Covariance { get; set; } = "";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsPredicted { get; set; } = false;
         /// <summary>
         /// 
         /// </summary>

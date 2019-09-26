@@ -1,8 +1,6 @@
 ﻿using System;
-using System.IO;
 using CSVWriter;
 using FlightRadarWebService.Core;
-using FlightRadarWebService.Core.Services.DataBaseOperations;
 using FlightRadarWebService.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,7 +39,11 @@ namespace FlightRadarWebService.Controllers
                     UTC = received.UTC,
                     DeviationAlt = received.DeviationAlt,
                     DeviationLat = received.DeviationLat,
-                    DeviationLong = received.DeviationLong
+                    DeviationLong = received.DeviationLong,
+                    AltTimestamp = received.AltTimestamp,
+                    LatTimestamp = received.LatTimestamp,
+                    Longimestamp = received.Longimestamp
+                 
                 };
 
                 //Create CSV Model
@@ -51,10 +53,11 @@ namespace FlightRadarWebService.Controllers
                 cw.WriteModelToCsvFile(newReceivedData, Constants.FilePath);
 
                 //Insert data into Database
-                DataBaseOperations.InsertFlugData(newReceivedData);
+                //DataBaseOperations.InsertFlugData(newReceivedData);
 
                 //Add Data To registration Class (Data Dictionary)
                 DataRegistration.GetInstance().AddDataToDic(newReceivedData);
+
 
             }
             catch (Exception e)

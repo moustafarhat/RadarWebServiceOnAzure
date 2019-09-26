@@ -1,5 +1,8 @@
 ﻿namespace FlightRadarWebService.Core.Enum
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public enum Prefix
     {
         /// <summary>
@@ -9,6 +12,11 @@
         /// <summary>
         /// 
         /// </summary>
-        Old = 1
+        Old = 1 ,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        Predicted = 2
     }
 }

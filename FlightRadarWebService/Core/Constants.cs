@@ -7,6 +7,7 @@ namespace FlightRadarWebService.Core
     /// </summary>
     public static class Constants
     {
+
         /// <summary>
         /// /NLog recommends using a static variable for the logger object
         /// </summary>
@@ -16,6 +17,13 @@ namespace FlightRadarWebService.Core
         /// CSV data file default path
         /// </summary>
         public static string FilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\DataFiles\\", "Data.csv");
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static string Header = "Code" + "," + "Description" + "," + "NDC" + "," + "Supplier Code"
+        + "," + "Supplier Description" + "," + "Pack Size" + "," + "UOM";
+
 
     }
 }
