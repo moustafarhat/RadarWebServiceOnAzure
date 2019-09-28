@@ -79,7 +79,17 @@ namespace FlightRadarWebService.Core
         {
             if (ReceivedData.ContainsKey(receivedData.Flight))
             {
+                var currentKalman = ReceivedData[receivedData.Flight].KalmanRunner;
+
                 ReceivedData[receivedData.Flight] = receivedData;
+
+                //var result = currentKalman.Update(receivedData.Longitude, receivedData.Latitude,receivedData.Altitude);
+
+                //ReceivedData[receivedData.Flight].Longitude = result[0];
+                //ReceivedData[receivedData.Flight].Latitude = result[1];
+                //ReceivedData[receivedData.Flight].Altitude =(int?)result[2];
+                //ReceivedData[receivedData.Flight].KalmanRunner = currentKalman;
+
             }
             else
             {
@@ -120,26 +130,55 @@ namespace FlightRadarWebService.Core
         /// <returns></returns>
         public IDictionary<string, DataTransmissionModel> GetAllData()
         {
-            _deleteCounter += 1;
-
-            while (_deleteCounter==5)
+            //todo: return all flights data, which are stored in recievedData
+            List<string> removedList=new List<string>();
+            foreach (var data in ReceivedData.Values)
             {
-                _deleteCounter = 0;
-                DeleteOldData();
+                if (data.KalmanRunner == null)
+                {
+                    data.KalmanRunner = new KalmanRunner();
+                }
+                DateTime currentTime = DateTime.UtcNow;
+                double diff = currentTime.Subtract(data.UTC.Value).Seconds;
+
+                if (diff > 2000)
+                {
+                   removedList.Add(data.Flight);
+                }
+
+                else
+                {
+
+                    for (int i = 0; i < diff; i++)
+                    {
+
+                        data.KalmanRunner.Predict();
+                    }
+                    if (diff != 0)
+                    {
+                        double[] result = data.KalmanRunner.getState();
+                        data.Longitude = result[0];
+                        data.Latitude = result[1];
+                        data.Altitude = (int?)result[2];
+                        data.UTC = DateTime.UtcNow;
+                    }
+
+                }
+
+
+               
             }
 
+            foreach (var str in removedList)
+            {
+                ReceivedData.Remove(str);
+            }
             return ReceivedData;
-        }
 
 
-        /// <summary>
-        /// Filter Dictionary & Delete old data
-        /// </summary>
-        /// <returns></returns>
-        public void DeleteOldData()
-        {
-            ReceivedData.Clear();
-            //TODO: Delete old Data automatically that are older than X time
         }
     }
+
 }
+
+

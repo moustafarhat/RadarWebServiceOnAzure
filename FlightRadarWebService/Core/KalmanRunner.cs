@@ -1,5 +1,6 @@
-﻿using System.Threading.Tasks;
-
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using UnscentedKalmanFilter;
 namespace FlightRadarWebService.Core
 {
     /// <summary>
@@ -8,13 +9,13 @@ namespace FlightRadarWebService.Core
     {
         private static KalmanRunner _kalmanRunnerInstance;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        private static Task<int> task ;
+        public UKF Ukf;
+        public KalmanRunner()
+        {
+            Ukf = new UKF();
 
-        private KalmanRunner()
-        {}
+        }
+
 
         /// <summary>
         /// </summary>
@@ -30,15 +31,36 @@ namespace FlightRadarWebService.Core
 
         #region help Methods
 
-     
+
         #endregion
 
 
-        /// <summary>
-        /// </summary>
-        public static void KalmanStarter()
+        public double[] Update(double? lng, double? Lat,double? Alt)
         {
-           
+            if (!lng.HasValue)
+            {
+                Ukf.Predict();
+            }
+            else
+            {
+                var listval = new List<double> { lng.Value, Lat.Value,Alt.Value };
+                Ukf.Update(listval.ToArray());
+            }
+
+            return Ukf.getState();
+
+
         }
+
+        public void Predict()
+        {
+            //Ukf.Predict();
+        }
+
+        public double[] getState()
+        {
+            return Ukf.getState();
+        }
+
     }
 }

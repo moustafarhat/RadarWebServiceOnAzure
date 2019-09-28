@@ -1,5 +1,6 @@
 ﻿using System;
 using CSVWriter;
+using FlightRadarWebService.Core;
 using FlightRadarWebService.Core.Enum;
 
 namespace FlightRadarWebService.Models
@@ -104,5 +105,12 @@ namespace FlightRadarWebService.Models
         /// 
         /// </summary>
         public GroundSpeedUnits GroundSpeedUnit { get; set; }
+
+        //Flarm Signal
+        public int Flarm { get; set; } = 0;
+    
+        //Kalman object
+        public KalmanRunner KalmanRunner;
+
     }
 }

@@ -42,15 +42,22 @@ namespace FlightRadarWebService.Controllers
                     DeviationLong = received.DeviationLong,
                     AltTimestamp = received.AltTimestamp,
                     LatTimestamp = received.LatTimestamp,
-                    Longimestamp = received.Longimestamp
+                    Longimestamp = received.Longimestamp,
+                    Flarm = received.Flarm,
+                    KalmanRunner = new KalmanRunner()
                  
                 };
 
+                var x = newReceivedData.KalmanRunner.Update(newReceivedData.Longitude, newReceivedData.Latitude,newReceivedData.Altitude);
+                //var x = newReceivedData.KalmanRunner.getState();
+                newReceivedData.Longitude = x[0];
+                newReceivedData.Latitude = x[1];
+                newReceivedData.Altitude =(int?) x[2];
                 //Create CSV Model
                 var cw = new CsvWriter<DataTransmissionModel>();
 
                 //Write Model into Csv File
-                cw.WriteModelToCsvFile(newReceivedData, Constants.FilePath);
+                //cw.WriteModelToCsvFile(newReceivedData, Constants.FilePath);
 
                 //Insert data into Database
                 //DataBaseOperations.InsertFlugData(newReceivedData);

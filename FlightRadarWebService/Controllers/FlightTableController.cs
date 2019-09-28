@@ -43,7 +43,7 @@ namespace FlightRadarWebService.Controllers
                 //Write Model into Csv File
                 cw.WriteModelsListToCsvFile(dataList, Constants.FilePath);
 
-                KalmanRunner.KalmanStarter();
+               
 
             }
             catch (Exception e)

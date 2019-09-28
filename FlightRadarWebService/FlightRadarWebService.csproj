@@ -6,12 +6,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\moust\source\repos\AzureWebService\AzureWebService\AzureWebService.xml</DocumentationFile>
+    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.2" />
-    <PackageReference Include="MathNet.Numerics" Version="4.8.0" />
+    <PackageReference Include="MathNet.Numerics" Version="4.8.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
@@ -21,13 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CSVWriter\CSVWriter.csproj" />
     <ProjectReference Include="..\UnscentedKalmanFilter\UnscentedKalmanFilter.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="CSVWriter">
-      <HintPath>..\..\..\CSVWriter\CSVWriter\bin\Debug\netcoreapp2.1\CSVWriter.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
   <ItemGroup>
