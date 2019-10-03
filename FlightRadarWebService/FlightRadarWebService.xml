@@ -1,0 +1,723 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FlightRadarWebService</name>
+    </assembly>
+    <members>
+        <member name="T:FlightRadarWebService.Controllers.DataRegistrationController">
+            <summary>
+            Send new Data to the Service and store it
+            </summary>
+        </member>
+        <member name="M:FlightRadarWebService.Controllers.DataRegistrationController.RegisterData(FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel)">
+            <summary>
+            Register Data
+            </summary>
+            <param name="received"></param>
+        </member>
+        <member name="T:FlightRadarWebService.Controllers.DataRetrieveController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FlightRadarWebService.Controllers.DataRetrieveController.GetAllData">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Controllers.DataRetrieveController.GetAllStudentRecords">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FlightRadarWebService.Controllers.FlightTableController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FlightRadarWebService.Controllers.FlightTableController.RegisterDataTable(FlightRadarWebService.Models.TransmissionModels.DataTransmissionList)">
+            <summary>
+            Register Data
+            </summary>
+            <param name="receivedTable"></param>
+        </member>
+        <member name="T:FlightRadarWebService.Controllers.SelectFlightController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FlightRadarWebService.Controllers.SelectFlightController.GetFlightData(System.String)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Controllers.SelectFlightController.GetFlightRecord(System.String)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FlightRadarWebService.Core.Constants">
+            <summary>
+            Default Constants Values
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.Constants.LOGGER">
+            <summary>
+            /NLog recommends using a static variable for the logger object
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.Constants.DATA_RECEIVED_FILE_PATH">
+            <summary>
+            CSV Received data file default path
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.Constants.DATA_PROCESSED_FILE_PATH">
+            <summary>
+            CSV Processed data file default path
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.Constants.HEADER">
+            <summary>
+            CSV File Header
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.DataContainers.DATA_RECEIVED_CONTAINER">
+            <summary>
+            Dictionary which contains Received Data
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.DataContainers.DATA_PROCESSING_CONTAINER">
+            <summary>
+            Dictionary for Data Processing
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.DataContainers.DATA_PROCESSED_CONTAINER">
+            <summary>
+            Dictionary which contains Processed Data
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.DataContainers._dataContainer">
+            <summary>
+            Class Instance
+            </summary>
+        </member>
+        <member name="M:FlightRadarWebService.Core.DataContainers.GetInstance">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FlightRadarWebService.Core.DataRegistration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.DataRegistration.ReceivedData">
+            <summary>
+            Dictionary which contains Received Data
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.DataRegistration.DataProcessing">
+            <summary>
+            Dictionary for Data Processing
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.DataRegistration.ProcessedData">
+            <summary>
+            Dictionary which contains Processed Data
+            </summary>
+        </member>
+        <member name="M:FlightRadarWebService.Core.DataRegistration.GetInstance">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Core.DataRegistration.AddDataToDic(FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel)">
+            <summary>
+            Add data to Dictionary
+            </summary>
+            <param name="receivedData"></param>
+        </member>
+        <member name="M:FlightRadarWebService.Core.DataRegistration.GetFlightData(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="flight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Core.DataRegistration.GetAllData">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FlightRadarWebService.Core.Enum.AltitudeUnits">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.Enum.AltitudeUnits.Foot">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.Enum.AltitudeUnits.Meter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:FlightRadarWebService.Core.Enum.GroundSpeedUnits">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.Enum.GroundSpeedUnits.Kmh">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.Enum.GroundSpeedUnits.Mph">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.Enum.GroundSpeedUnits.Knot">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:FlightRadarWebService.Core.Enum.Prefix">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.Enum.Prefix.Live">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.Enum.Prefix.Old">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Core.Enum.Prefix.Predicted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:FlightRadarWebService.Core.KalmanRunner">
+            <summary>
+            Kalman Algorithm Instance
+            </summary>
+        </member>
+        <member name="M:FlightRadarWebService.Core.KalmanRunner.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FlightRadarWebService.Core.KalmanRunner.GetKalmanRunner">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Core.KalmanRunner.GetState">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Core.KalmanRunner.Update(System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Double})">
+            <summary>
+            
+            </summary>
+            <param name="lng"></param>
+            <param name="lat"></param>
+            <param name="alt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FlightRadarWebService.Core.Services.DataBaseOperations.DataBaseOperations">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FlightRadarWebService.Core.Services.DataBaseOperations.DataBaseOperations.TestDataBaseConnection">
+            <summary>
+            Test Data Base connection and return true or false
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Core.Services.DataBaseOperations.DataBaseOperations.InsertFlugData(FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel)">
+            <summary>
+            Insert operation for Flug Data 
+            </summary>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:FlightRadarWebService.Core.Services.DataBaseOperations.DataBaseOperations.GetDataByFlightId(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="flight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Core.Services.DataBaseOperations.DataBaseOperations.GetDataByFlightIdAndTimeStamp(System.String,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="flight"></param>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Core.Services.DataBaseOperations.DataBaseOperations.GetDataAllDataFromDataBase">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Core.Services.DataBaseOperations.DataBaseOperations.CheckNull``1(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Core.Services.DataBaseOperations.DataBaseOperations.ParseStringValueToInt(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Core.Services.DataProcessedProtocol.DataProcessedOperations.GetInstance">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Core.Services.DataProcessedProtocol.DataProcessedOperations.GetAllData">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Core.Services.DataProcessedProtocol.DataProcessedOperations.DataTransmissionModelToDataProcessedModel(FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel)">
+            <summary>
+            Transfer Model
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Core.Services.DataProcessedProtocol.DataProcessedOperations.DataTransmissionModelListToDataProcessedModel(System.Collections.Generic.IList{FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel})">
+            <summary>
+            Transfer Model
+            </summary>
+            <param name="models"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Core.Services.DataProcessingProtocol.DataProcessingOperations.GetInstance">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Core.Services.DataProcessingProtocol.DataProcessingOperations.DataTransmissionModelToDataProcessingModel(FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel)">
+            <summary>
+            Transfer Model
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Core.Services.DataProcessingProtocol.DataProcessingOperations.DataTransmissionModelListToDataProcessingModel(System.Collections.Generic.IList{FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel})">
+            <summary>
+            Transfer Model
+            </summary>
+            <param name="models"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FlightRadarWebService.Core.Services.DataTransmissionProtocol.DataTransmissionOperations">
+            <summary>
+            Flights Data Transmission Protocols
+            </summary>
+        </member>
+        <member name="M:FlightRadarWebService.Core.Services.DataTransmissionProtocol.DataTransmissionOperations.GetInstance">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:FlightRadarWebService.Core.Services.DataTransmissionProtocol.DataTransmissionOperations.RegisterData(FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel)">
+            <summary>
+            Add data to Dictionary
+            </summary>
+            <param name="receivedData"></param>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.Prefix">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.Timestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.UTC">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.SenderId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.Groundspeed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.Latitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.DeviationLat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.Longitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.DeviationLong">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.Flight">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.Track">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.Altitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.AltTimestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.LatTimestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.Longimestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.DeviationAlt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.Covariance">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.IsPredicted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.AltitudeUnit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessedModels.DataProcessedModel.GroundSpeedUnit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.Prefix">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.Timestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.UTC">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.SenderId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.Groundspeed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.Latitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.DeviationLat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.Longitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.DeviationLong">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.Flight">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.Track">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.Altitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.AltTimestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.LatTimestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.Longimestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.DeviationAlt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.Covariance">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.IsPredicted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.AltitudeUnit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.ProcessingModels.DataProcessingModel.GroundSpeedUnit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:FlightRadarWebService.Models.TransmissionModels.DataTransmissionList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FlightRadarWebService.Models.TransmissionModels.DataTransmissionList.DataTransmissionModels">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.Prefix">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.Timestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.UTC">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.SenderId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.Groundspeed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.Latitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.DeviationLat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.Longitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.DeviationLong">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.Flight">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.Track">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.Altitude">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.AltTimestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.LatTimestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.Longimestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.DeviationAlt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.Covariance">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.IsPredicted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.AltitudeUnit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FlightRadarWebService.Models.TransmissionModels.DataTransmissionModel.GroundSpeedUnit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:FlightRadarWebService.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FlightRadarWebService.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:FlightRadarWebService.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FlightRadarWebService.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FlightRadarWebService.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:FlightRadarWebService.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FlightRadarWebService.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:FlightRadarWebService.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>

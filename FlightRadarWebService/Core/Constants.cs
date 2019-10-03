@@ -1,9 +1,21 @@
-﻿using System.IO;
+﻿////////////////////////////////////////////////////////////////////
+//FileName: IDataBaseOperations.cs
+//FileType: Visual C# Source file
+//Size : 0
+//Author : Moustafa Farhat
+//Created On : 0
+//Last Modified On : 0
+//Copy Rights : Flight Radar API
+//Description : Interface contains all Data Transmission operations
+////////////////////////////////////////////////////////////////////
+
+using System;
+using System.IO;
 
 namespace FlightRadarWebService.Core
 {
     /// <summary>
-    /// 
+    /// Default Constants Values
     /// </summary>
     public static class Constants
     {
@@ -11,17 +23,27 @@ namespace FlightRadarWebService.Core
         /// <summary>
         /// /NLog recommends using a static variable for the logger object
         /// </summary>
-        public static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        public static readonly NLog.Logger LOGGER = NLog.LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// CSV data file default path
+        /// CSV Received data file default path
         /// </summary>
-        public static string FilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\DataFiles\\", "Data.csv");
+        public static string DATA_RECEIVED_FILE_PATH = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\DataFiles\\", "ReceivedData.csv");
+
+        /// <summary>
+        /// CSV Processed data file default path
+        /// </summary>
+        public static string DATA_PROCESSED_FILE_PATH = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\DataFiles\\", "ProcessedData.csv");
 
         /// <summary>
         /// 
         /// </summary>
-        public static string Header = "Code" + "," + "Description" + "," + "NDC" + "," + "Supplier Code"
+        public static string DATA_BASE_CONNECTION_STRING = "Data Source=" + AppDomain.CurrentDomain.BaseDirectory + "\\db\\Flight.db;Version=3;";
+
+        /// <summary>
+        /// CSV File Header
+        /// </summary>
+        public static string HEADER = "Code" + "," + "Description" + "," + "NDC" + "," + "Supplier Code"
         + "," + "Supplier Description" + "," + "Pack Size" + "," + "UOM";
 
 

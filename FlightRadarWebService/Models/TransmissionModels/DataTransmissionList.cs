@@ -1,5 +1,5 @@
 ﻿////////////////////////////////////////////////////////////////////
-//FileName: IDataTransmissionOperations.cs
+//FileName: IDataBaseOperations.cs
 //FileType: Visual C# Source file
 //Size : 0
 //Author : Moustafa Farhat
@@ -9,21 +9,19 @@
 //Description : Interface contains all Data Transmission operations
 ////////////////////////////////////////////////////////////////////
 
-using System;
+using CSVWriter;
 using System.Collections.Generic;
-using FlightRadarWebService.Models;
 
-namespace FlightRadarWebService.Core.Services.Interfaces
+namespace FlightRadarWebService.Models.TransmissionModels
 {
     /// <summary>
-    /// Interface contains all Data Transmission operations
+    /// 
     /// </summary>
-    public interface IDataTransmissionOperations
+    public class DataTransmissionList : CsvableBase
     {
         /// <summary>
+        /// 
         /// </summary>
-        /// <param name="timestamp"></param>
-        /// <returns></returns>
-        IList<DataTransmissionModel> GetFlightDataByDate(DateTime timestamp);
+        public IList<DataTransmissionModel> DataTransmissionModels;
     }
 }

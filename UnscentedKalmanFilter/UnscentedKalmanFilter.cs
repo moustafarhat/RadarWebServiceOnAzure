@@ -1,11 +1,10 @@
 ﻿using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
-using MathNet.Numerics.LinearAlgebra.Factorization;
 using System;
 
 namespace UnscentedKalmanFilter
 {
-    public class UKF
+    public class Ukf
     {
         /// <summary>
         /// States number
@@ -82,20 +81,20 @@ namespace UnscentedKalmanFilter
 		/// </summary>
         private Matrix<double> R;
 
-        public double[] measurements_alt;
-        public Matrix<double> stateFactor;
+        public double[] MeasurementsAlt;
+        public Matrix<double> StateFactor;
 
         /// <summary>
         /// Constructor of Unscented Kalman Filter
         /// </summary>
         /// <param name="L">States number</param>
         /// <param name="m">Measurements number</param>
-        public UKF(int L = 0)
+        public Ukf(int L = 0)
         {
             this.L = L;
         }
 
-        private void init()
+        private void Init()
         {
             q = 20;
             r = 0.3;
@@ -126,7 +125,7 @@ namespace UnscentedKalmanFilter
 
         public void Update(double[] measurements)
         {
-            measurements_alt = measurements;
+            MeasurementsAlt = measurements;
 
             if (m == 0)
             {
@@ -135,7 +134,7 @@ namespace UnscentedKalmanFilter
                 {
                     m = mNum;
                     if (L == 0) L = mNum;
-                    init();
+                    Init();
                 }
             }
 
@@ -167,9 +166,9 @@ namespace UnscentedKalmanFilter
             Matrix<double> K = P12.Multiply(P2.Inverse());
 
             //state update
-            stateFactor = K.Multiply(z.Subtract(z1));
+            StateFactor = K.Multiply(z.Subtract(z1));
 
-            x = x1.Add(stateFactor);
+            x = x1.Add(StateFactor);
             //covariance update 
             P = P1.Subtract(K.Multiply(P12.Transpose()));
         }
@@ -178,9 +177,9 @@ namespace UnscentedKalmanFilter
 
         public void Predict()
         {
-            if (measurements_alt == null) return;
+            if (MeasurementsAlt == null) return;
 
-            x = x.Add(stateFactor);
+            x = x.Add(StateFactor);
         }
 
         public double[] CorrectOldData(double[] measurements, int times, double[] oldPredictedState, double[,] oldCovariance)
@@ -198,21 +197,21 @@ namespace UnscentedKalmanFilter
             }
 
 
-            for (int i = 0; i < oldPredictedState.Length; i++)
+            for (var i = 0; i < oldPredictedState.Length; i++)
             {
                 x[i, 0] = oldPredictedState[i];
             }
 
-            for (int i = 0; i < Math.Sqrt(oldCovariance.Length); i++)
+            for (var i = 0; i < Math.Sqrt(oldCovariance.Length); i++)
             {
-                for (int j = 0; j < Math.Sqrt(oldCovariance.Length); j++)
+                for (var j = 0; j < Math.Sqrt(oldCovariance.Length); j++)
                 {
                     P[i, j] = oldCovariance[i, j];
                 }
             }
 
 
-            double[] result = new double[measurements.Length * times];
+            var result = new double[measurements.Length * times];
 
             // update Kallmann filter n times and store the results in the result array
 
@@ -220,30 +219,30 @@ namespace UnscentedKalmanFilter
             // and the rest depend on prediction 
             Update(measurements);
 
-            for (int j = 0; j < measurements.Length; j++)
+            for (var j = 0; j < measurements.Length; j++)
             {
-                result[j] = getState()[j];
+                result[j] = GetState()[j];
             }
 
-            for (int i = 1; i < times; i++)
+            for (var i = 1; i < times; i++)
             {
                 Predict();
 
-                for (int j = 0; j < measurements.Length; j++)
+                for (var j = 0; j < measurements.Length; j++)
                 {
-                    result[(i * measurements.Length) + j] = getState()[j];
+                    result[i * measurements.Length + j] = GetState()[j];
                 }
             }
 
             return result;
         }
 
-        public double[] getState()
+        public double[] GetState()
         {
             return x.ToColumnArrays()[0];
         }
 
-        public double[,] getCovariance()
+        public double[,] GetCovariance()
         {
             return P.ToArray();
         }
@@ -260,12 +259,12 @@ namespace UnscentedKalmanFilter
         /// <returns>[transformed mean, transformed smapling points, transformed covariance, transformed deviations</returns>
         private Matrix<double>[] UnscentedTransform(Matrix<double> X, Matrix<double> Wm, Matrix<double> Wc, int n, Matrix<double> R)
         {
-            int L = X.ColumnCount;
+            var L = X.ColumnCount;
             Matrix<double> y = Matrix.Build.Dense(n, 1, 0);
             Matrix<double> Y = Matrix.Build.Dense(n, L, 0);
 
             Matrix<double> row_in_X;
-            for (int k = 0; k < L; k++)
+            for (var k = 0; k < L; k++)
             {
                 row_in_X = X.SubMatrix(0, X.RowCount, k, 1);
                 Y.SetSubMatrix(0, Y.RowCount, k, 1, row_in_X);
@@ -298,10 +297,10 @@ namespace UnscentedKalmanFilter
             A = A.Multiply(c);
             A = A.Transpose();
 
-            int n = x.RowCount;
+            var n = x.RowCount;
 
             Matrix<double> Y = Matrix.Build.Dense(n, n, 1);
-            for (int j = 0; j < n; j++)
+            for (var j = 0; j < n; j++)
             {
                 Y.SetSubMatrix(0, n, j, 1, x);
             }

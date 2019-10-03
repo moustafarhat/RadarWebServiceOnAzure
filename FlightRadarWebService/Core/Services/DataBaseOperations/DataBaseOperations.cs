@@ -1,25 +1,33 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////////
+//FileName: IDataTransmissionOperations.cs
+//FileType: Visual C# Source file
+//Size : 0
+//Author : Moustafa Farhat
+//Created On : 0
+//Last Modified On : 0
+//Copy Rights : Flight Radar API
+//Description : Interface contains all Data Transmission operations
+////////////////////////////////////////////////////////////////////
+using FlightRadarWebService.Models.TransmissionModels;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
-using FlightRadarWebService.Core.Services.Interfaces;
-using FlightRadarWebService.Models;
 
 namespace FlightRadarWebService.Core.Services.DataBaseOperations
 {
     /// <summary>
     /// 
     /// </summary>
-    public class DataBaseOperations : IDataBaseOperations
+    public class DataBaseOperations
     {
-        private static readonly string DataBaseConnectionString = "Data Source=" + AppDomain.CurrentDomain.BaseDirectory + "\\db\\Flight.db;Version=3;";
         /// <summary>
         /// Test Data Base connection and return true or false
         /// </summary>
         /// <returns></returns>
-        public  bool TestDataBaseConnection()
+        public bool TestDataBaseConnection()
         {
-            using (var connection = new SQLiteConnection(DataBaseConnectionString))
+            using (var connection = new SQLiteConnection(Constants.DATA_BASE_CONNECTION_STRING))
             {
                 try
                 {
@@ -29,28 +37,11 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
                 catch (SQLiteException e)
                 {
                     //Exceptions are typically logged at the ERROR level
-                    Constants.Logger.Error(e);
+                    Constants.LOGGER.Error(e);
                     return false;
                 }
             }
         }
-
-        void IDataBaseOperations.InsertFlugData(DataTransmissionModel flugData)
-        {
-            InsertFlugData(flugData);
-        }
-
-        List<DataTransmissionModel> IDataBaseOperations.GetDataByFlightIdAndTimeStamp(string flight, DateTime time)
-        {
-            return GetDataByFlightIdAndTimeStamp(flight, time);
-        }
-
-        List<DataTransmissionModel> IDataBaseOperations.GetDataAllDataFromDataBase()
-        {
-            return GetDataAllDataFromDataBase();
-        }
-
-
 
         /// <summary>
         /// Insert operation for Flug Data 
@@ -58,13 +49,13 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
         /// <exception cref="Exception"></exception>
         public static void InsertFlugData(DataTransmissionModel flugData)
         {
-            var con = new SQLiteConnection(DataBaseConnectionString);
+            var con = new SQLiteConnection(Constants.DATA_BASE_CONNECTION_STRING);
             try
             {
                 con.Open();
                 var cmd = new SQLiteCommand("INSERT INTO Flights (Timestamp,SenderId,Groundspeed,Latitude,Longitude,Flight,Track,Altitude,UTC,DeviationLat,DeviationLong,DeviationAlt,AltTimestamp,LatTimestamp,LongTimestamp,Covariance,IsPredicted)VALUES(@Timestamp,@SenderId,@Groundspeed,@Latitude,@Longitude,@Flight,@Track,@Altitude,@UTC,@DeviationLat,@DeviationLong,@DeviationAlt,@AltTimestamp,@LatTimestamp,@LongTimestamp,@Covariance,@IsPredicted)", con);
 
-  
+
                 cmd.Parameters.AddWithValue("@Timestamp", flugData.Timestamp ?? DateTime.Now);
                 cmd.Parameters.AddWithValue("@SenderId", flugData.SenderId);
                 cmd.Parameters.AddWithValue("@Groundspeed", flugData.Groundspeed ?? 0);
@@ -93,7 +84,7 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
             catch (Exception ex)
             {
                 //Exceptions are typically logged at the ERROR level
-                Constants.Logger.Error(ex);
+                Constants.LOGGER.Error(ex);
             }
             finally
             {
@@ -110,7 +101,7 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
         {
             var flugDataLst = new List<DataTransmissionModel>();
 
-            using (var connection = new SQLiteConnection(DataBaseConnectionString))
+            using (var connection = new SQLiteConnection(Constants.DATA_BASE_CONNECTION_STRING))
             {
                 using (var command = new SQLiteCommand(
                     "Select * from Flights where Flight = @Flight", connection))
@@ -149,11 +140,11 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
         /// <param name="flight"></param>
         /// <param name="time"></param>
         /// <returns></returns>
-        public static List<DataTransmissionModel> GetDataByFlightIdAndTimeStamp(string flight,DateTime time)
+        public static List<DataTransmissionModel> GetDataByFlightIdAndTimeStamp(string flight, DateTime time)
         {
             var flugDataLst = new List<DataTransmissionModel>();
 
-            using (var connection = new SQLiteConnection(DataBaseConnectionString))
+            using (var connection = new SQLiteConnection(Constants.DATA_BASE_CONNECTION_STRING))
             {
                 using (var command = new SQLiteCommand(
                     "Select * from Flights where Flight = @Flight and TimeStamp=@TimeStamp", connection))
@@ -184,8 +175,6 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
                 }
             }
 
-            //var result = (from x in flugDataLst select x.Altitude).Average(); // result: 3.5
-
             var result = from dataTransmissionModel in flugDataLst
                          group dataTransmissionModel by dataTransmissionModel.Altitude into flightGroup
                          select new
@@ -206,12 +195,12 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
         {
             var flugDataLst = new List<DataTransmissionModel>();
 
-            using (var connection = new SQLiteConnection(DataBaseConnectionString))
+            using (var connection = new SQLiteConnection(Constants.DATA_BASE_CONNECTION_STRING))
             {
                 using (var command = new SQLiteCommand(
                     "Select * from Flights", connection))
                 {
-      
+
                     connection.Open();
 
                     var reader = command.ExecuteReader();
@@ -261,7 +250,6 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
                 if (value == null)
                 {
                     return 0;
-                    
                 }
                 var result = Convert.ToInt32(value);
                 return result;

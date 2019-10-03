@@ -1,7 +1,17 @@
-﻿using System.Collections.Generic;
+﻿////////////////////////////////////////////////////////////////////
+//FileName: IDataBaseOperations.cs
+//FileType: Visual C# Source file
+//Size : 0
+//Author : Moustafa Farhat
+//Created On : 0
+//Last Modified On : 0
+//Copy Rights : Flight Radar API
+//Description : Interface contains all Data Transmission operations
+////////////////////////////////////////////////////////////////////
 using FlightRadarWebService.Core.Services.DataBaseOperations;
-using FlightRadarWebService.Models;
+using FlightRadarWebService.Models.TransmissionModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit 
 

@@ -1,14 +1,21 @@
-﻿using System;
-using CSVWriter;
-using FlightRadarWebService.Core;
-using FlightRadarWebService.Core.Enum;
+﻿////////////////////////////////////////////////////////////////////
+//FileName: IDataBaseOperations.cs
+//FileType: Visual C# Source file
+//Size : 0
+//Author : Moustafa Farhat
+//Created On : 0
+//Last Modified On : 0
+//Copy Rights : Flight Radar API
+//Description : Interface contains all Data Transmission operations
+////////////////////////////////////////////////////////////////////
 
-namespace FlightRadarWebService.Models
+using CSVWriter;
+using FlightRadarWebService.Core.Enum;
+using System;
+
+namespace FlightRadarWebService.Models.ProcessedModels
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class DataTransmissionModel : CsvableBase
+    public class DataProcessedModel : CsvableBase
     {
         /// <summary>
         /// 
@@ -65,7 +72,7 @@ namespace FlightRadarWebService.Models
         /// <summary>
         /// 
         /// </summary>
-        public int? Altitude { get; set; } = 0;
+        public double? Altitude { get; set; } = 0;
 
         /// <summary>
         /// 
@@ -108,9 +115,5 @@ namespace FlightRadarWebService.Models
 
         //Flarm Signal
         public int Flarm { get; set; } = 0;
-    
-        //Kalman object
-        public KalmanRunner KalmanRunner;
-
     }
 }

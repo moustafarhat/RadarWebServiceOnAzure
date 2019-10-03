@@ -1,4 +1,14 @@
-﻿using System.Collections.Generic;
+﻿////////////////////////////////////////////////////////////////////
+//FileName: IDataBaseOperations.cs
+//FileType: Visual C# Source file
+//Size : 0
+//Author : Moustafa Farhat
+//Created On : 0
+//Last Modified On : 0
+//Copy Rights : Flight Radar API
+//Description : Interface contains all Data Transmission operations
+////////////////////////////////////////////////////////////////////
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -17,7 +27,7 @@ namespace CSVWriter
 
             if (objs.Any())
             {
-                using (var sw = new StreamWriter(destination,true))
+                using (var sw = new StreamWriter(destination, true))
                 {
                     foreach (var obj in objs)
                     {
@@ -34,10 +44,10 @@ namespace CSVWriter
         /// <param name="destination"></param>
         public void WriteModelToCsvFile(T model, string destination)
         {
-           using (var sw = new StreamWriter(destination, true))
-           {
-               sw.WriteLine(model.ToCsv());
-           }
+            using (var sw = new StreamWriter(destination, true))
+            {
+                sw.WriteLine(model.ToCsv());
+            }
         }
     }
 }

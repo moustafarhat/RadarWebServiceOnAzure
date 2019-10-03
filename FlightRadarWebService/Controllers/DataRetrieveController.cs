@@ -1,9 +1,20 @@
-﻿using System.Collections.Generic;
-using FlightRadarWebService.Core;
-using FlightRadarWebService.Models;
+﻿////////////////////////////////////////////////////////////////////
+//FileName: IDataBaseOperations.cs
+//FileType: Visual C# Source file
+//Size : 0
+//Author : Moustafa Farhat
+//Created On : 0
+//Last Modified On : 0
+//Copy Rights : Flight Radar API
+//Description : Interface contains all Data Transmission operations
+////////////////////////////////////////////////////////////////////
+using FlightRadarWebService.Core.Services.DataProcessedProtocol;
+using FlightRadarWebService.Models.ProcessedModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+// For mor
+// e information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace FlightRadarWebService.Controllers
 {
@@ -13,16 +24,16 @@ namespace FlightRadarWebService.Controllers
     [Route("api/[controller]")]
     public class DataRetrieveController : Controller
     {
-        
+
         // GET: api/<controller>
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IDictionary<string, DataTransmissionModel> GetAllData()
+        public IDictionary<string, DataProcessedModel> GetAllData()
         {
-            return DataRegistration.GetInstance().GetAllData();
+            return DataProcessedOperations.GetInstance().GetAllData();
         }
 
         /// <summary>
@@ -32,7 +43,7 @@ namespace FlightRadarWebService.Controllers
         [HttpGet("GetAllData")]
         public JsonResult GetAllStudentRecords()
         {
-            return Json(DataRegistration.GetInstance().GetAllData());
+            return Json(DataProcessedOperations.GetInstance().GetAllData());
         }
     }
 }

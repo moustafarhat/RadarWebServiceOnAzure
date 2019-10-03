@@ -1,8 +1,18 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////////
+//FileName: IDataBaseOperations.cs
+//FileType: Visual C# Source file
+//Size : 0
+//Author : Moustafa Farhat
+//Created On : 0
+//Last Modified On : 0
+//Copy Rights : Flight Radar API
+//Description : Interface contains all Data Transmission operations
+////////////////////////////////////////////////////////////////////
 using CSVWriter;
 using FlightRadarWebService.Core;
-using FlightRadarWebService.Models;
+using FlightRadarWebService.Models.TransmissionModels;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace FlightRadarWebService.Controllers
 {
@@ -41,15 +51,15 @@ namespace FlightRadarWebService.Controllers
                 }
 
                 //Write Model into Csv File
-                cw.WriteModelsListToCsvFile(dataList, Constants.FilePath);
+                cw.WriteModelsListToCsvFile(dataList, Constants.DATA_RECEIVED_FILE_PATH);
 
-               
+
 
             }
             catch (Exception e)
             {
                 //Exceptions are typically logged at the ERROR level
-                Constants.Logger.Error(e);
+                Constants.LOGGER.Error(e);
                 throw;
             }
         }
