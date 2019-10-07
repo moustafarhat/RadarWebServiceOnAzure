@@ -8,9 +8,10 @@
 //Copy Rights : Flight Radar API
 //Description : Interface contains all Data Transmission operations
 ////////////////////////////////////////////////////////////////////
+
 using NUnit.Framework;
 
-namespace FlightRadarWebService.Test
+namespace FlightRadarWebService.Test.Protocols.Test
 {
     public class DataTransmissionOperationsTest
     {

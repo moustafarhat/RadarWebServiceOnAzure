@@ -9,16 +9,19 @@ namespace FlightRadarWebService.CoordinateSystemConverter3D
     {
         public CartesianCoordinates3D()
         {
-            this.X = this.Y = this.Z = 0;
+            this.Altitude = this.Latitude = this.Longitude = 0;
         }
-        public CartesianCoordinates3D(double x, double y, double z)
+        public CartesianCoordinates3D(double alt, double lng, double lat)
         {
-            this.X = x;
-            this.Y = y;
-            this.Z = z;
+            this.Altitude = alt;
+            this.Latitude = lat;
+            this.Longitude = lng;
+
         }
-        public double X { get; set; }
-        public double Y { get; set; }
-        public double Z { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
+        public double Altitude { get; set; }
+
+
     }
 }

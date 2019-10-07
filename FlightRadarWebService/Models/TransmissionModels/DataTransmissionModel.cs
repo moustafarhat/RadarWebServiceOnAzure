@@ -120,8 +120,5 @@ namespace FlightRadarWebService.Models.TransmissionModels
         //Flarm Signal
         public int Flarm { get; set; } = 0;
 
-        //Kalman object
-        public KalmanRunner KalmanRunner;
-
     }
 }

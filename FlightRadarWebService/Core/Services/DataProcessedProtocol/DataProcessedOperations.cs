@@ -3,6 +3,9 @@ using FlightRadarWebService.Models.TransmissionModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CSVWriter;
+using FlightRadarWebService.CoordinateSystemConverter3D;
+using FlightRadarWebService.Models.ProcessingModels;
 
 namespace FlightRadarWebService.Core.Services.DataProcessedProtocol
 {
@@ -33,52 +36,27 @@ namespace FlightRadarWebService.Core.Services.DataProcessedProtocol
         /// <returns></returns>
         public IDictionary<string, DataProcessedModel> GetAllData()
         {
-            //todo: return all flights data, which are stored in recievedData
-            var removedList = new List<string>();
+            // delete old data and predict the new values 
+            UpdateAndDeleteOldPositions();
 
-            foreach (var data in DataContainers.GetInstance().DATA_PROCESSING_CONTAINER.Values)
+
+            // transform the data from data-processing-Container to data-processed-Container
+            DataContainers.GetInstance().DATA_PROCESSED_CONTAINER.Clear();
+
+            //Create CSV Model
+    
+
+            foreach (var model in DataContainers.GetInstance().DATA_PROCESSING_CONTAINER)
             {
-                if (data.KalmanRunner == null)
-                {
-                    data.KalmanRunner = new KalmanRunner();
-                }
-
-                var currentTime = DateTime.UtcNow;
-
-                double diff = currentTime.Subtract(data.UTC.Value).Seconds;
-
-                if (diff > 2000)
-                {
-                    removedList.Add(data.Flight);
-                }
-
-                else
-                {
-
-                    for (var i = 0; i < diff; i++)
-                    {
-
-                        data.KalmanRunner.Predict();
-                    }
-
-                    if (diff != 0)
-                    {
-                        var result = data.KalmanRunner.GetState();
-                        data.Longitude = result[0];
-                        data.Latitude = result[1];
-                        data.Altitude = (int?)result[2];
-                        data.UTC = DateTime.UtcNow;
-                    }
-                }
-
-                DataContainers.GetInstance().DATA_PROCESSING_CONTAINER.Add(data.Flight, data);
                 
-            }
+                var cw = new CsvWriter<DataProcessedModel>();
+                //Write Model into Csv File
+                cw.WriteModelToCsvFile(DataProcessingModelToDataProcessedModel(model.Value), Constants.DATA_PROCESSED_FILE_PATH);
 
-            foreach (var str in removedList)
-            {
-                DataContainers.GetInstance().DATA_PROCESSING_CONTAINER.Remove(str);
+                DataContainers.GetInstance().DATA_PROCESSED_CONTAINER.Add(model.Value.Flight,DataProcessingModelToDataProcessedModel(model.Value));
             }
+            
+            
 
             return DataContainers.GetInstance().DATA_PROCESSED_CONTAINER;
         }
@@ -87,7 +65,7 @@ namespace FlightRadarWebService.Core.Services.DataProcessedProtocol
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public DataProcessedModel DataTransmissionModelToDataProcessedModel(DataTransmissionModel model)
+        public DataProcessedModel DataProcessingModelToDataProcessedModel(DataProcessingModel model)
         {
             var dataProcessingModel = new DataProcessedModel
             {
@@ -148,17 +126,29 @@ namespace FlightRadarWebService.Core.Services.DataProcessedProtocol
             }).ToList();
         }
 
-        private void DeleteOldDataFromDictionary()
+        /// <summary>
+        /// 
+        /// </summary>
+        private void UpdateAndDeleteOldPositions()
         {
-            foreach (var data in DataContainers.GetInstance().DATA_PROCESSED_CONTAINER.Values)
+            foreach (var data in DataContainers.GetInstance().DATA_PROCESSING_CONTAINER.Values)
             {
                 var currentTime = DateTime.UtcNow;
 
                 double diff = currentTime.Subtract(data.UTC.Value).Seconds;
 
-                if (diff > 2000)
+                if (diff > 200)
                 {
-                    DataContainers.GetInstance().DATA_PROCESSED_CONTAINER.Remove(data.Flight);
+                    DataContainers.GetInstance().DATA_PROCESSING_CONTAINER.Remove(data.Flight);
+                }
+                else
+                {
+                    CartesianCoordinates3D cartesianCoordinates = data.KalmanRunner.Predict(diff);
+                      
+                    data.Altitude = cartesianCoordinates.Altitude;
+                    data.Longitude = cartesianCoordinates.Longitude;
+                    data.Latitude = cartesianCoordinates.Latitude;
+                    data.UTC = DateTime.UtcNow;
                 }
             }
         }

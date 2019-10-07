@@ -12,6 +12,9 @@ using FlightRadarWebService.Core.Services.DataProcessedProtocol;
 using FlightRadarWebService.Models.ProcessedModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using CSVWriter;
+using FlightRadarWebService.Core;
+using FlightRadarWebService.Models.TransmissionModels;
 
 // For mor
 // e information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -33,6 +36,7 @@ namespace FlightRadarWebService.Controllers
         [HttpGet]
         public IDictionary<string, DataProcessedModel> GetAllData()
         {
+
             return DataProcessedOperations.GetInstance().GetAllData();
         }
 

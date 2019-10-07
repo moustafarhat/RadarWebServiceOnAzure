@@ -55,14 +55,8 @@ namespace FlightRadarWebService.Controllers
                     LatTimestamp = received.LatTimestamp,
                     Longimestamp = received.Longimestamp,
                     Flarm = received.Flarm,
-                    KalmanRunner = new KalmanRunner()
                 };
 
-                //var x = newReceivedData.KalmanRunner.Update(newReceivedData.Longitude, newReceivedData.Latitude, newReceivedData.Altitude);
-                ////var x = newReceivedData.KalmanRunner.getState();
-                //newReceivedData.Longitude = x[0];
-                //newReceivedData.Latitude = x[1];
-                //newReceivedData.Altitude = (int?)x[2];
                 //Create CSV Model
                 var cw = new CsvWriter<DataTransmissionModel>();
 

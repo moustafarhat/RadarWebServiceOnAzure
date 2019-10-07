@@ -113,7 +113,9 @@ namespace FlightRadarWebService.Models.ProcessedModels
         /// </summary>
         public GroundSpeedUnits GroundSpeedUnit { get; set; }
 
-        //Flarm Signal
+        /// <summary>
+        /// Flarm Signal
+        /// </summary>
         public int Flarm { get; set; } = 0;
     }
 }

@@ -10,24 +10,24 @@ namespace FlightRadarWebService.Core
         /// <summary>
         /// Dictionary which contains Received Data
         /// </summary>
-        public IDictionary<string, DataTransmissionModel> DATA_RECEIVED_CONTAINER;
+        public  IDictionary<string, DataTransmissionModel> DATA_RECEIVED_CONTAINER;
 
         /// <summary>
         /// Dictionary for Data Processing
         /// </summary>
-        public IDictionary<string, DataProcessingModel> DATA_PROCESSING_CONTAINER;
+        public  IDictionary<string, DataProcessingModel> DATA_PROCESSING_CONTAINER;
 
         /// <summary>
         /// Dictionary which contains Processed Data
         /// </summary>
-        public IDictionary<string, DataProcessedModel> DATA_PROCESSED_CONTAINER;
+        public  IDictionary<string, DataProcessedModel> DATA_PROCESSED_CONTAINER;
 
         /// <summary>
         /// Class Instance
         /// </summary>
         private static DataContainers _dataContainer;
 
-        private DataContainers()
+         private DataContainers()
         {
             DATA_RECEIVED_CONTAINER = new Dictionary<string, DataTransmissionModel>();
 

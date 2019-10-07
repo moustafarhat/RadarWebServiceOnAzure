@@ -70,7 +70,7 @@ namespace FlightRadarWebService.Core
         {
             if (ReceivedData.ContainsKey(receivedData.Flight))
             {
-                var currentKalman = ReceivedData[receivedData.Flight].KalmanRunner;
+                //var currentKalman = ReceivedData[receivedData.Flight].KalmanRunner;
 
                 ReceivedData[receivedData.Flight] = receivedData;
 
@@ -114,10 +114,6 @@ namespace FlightRadarWebService.Core
             var removedList = new List<string>();
             foreach (var data in ReceivedData.Values)
             {
-                if (data.KalmanRunner == null)
-                {
-                    data.KalmanRunner = new KalmanRunner();
-                }
 
                 var currentTime = DateTime.UtcNow;
 
@@ -134,16 +130,16 @@ namespace FlightRadarWebService.Core
                     for (var i = 0; i < diff; i++)
                     {
 
-                        data.KalmanRunner.Predict();
+                        //data.KalmanRunner.Predict();
                     }
 
                     if (diff != 0)
                     {
-                        var result = data.KalmanRunner.GetState();
-                        data.Longitude = result[0];
-                        data.Latitude = result[1];
-                        data.Altitude = (int?)result[2];
-                        data.UTC = DateTime.UtcNow;
+                        //var result = data.KalmanRunner.GetState();
+                        //data.Longitude = result[0];
+                        //data.Latitude = result[1];
+                        //data.Altitude = (int?)result[2];
+                        //data.UTC = DateTime.UtcNow;
                     }
                 }
 

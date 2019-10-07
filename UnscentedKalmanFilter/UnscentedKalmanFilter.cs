@@ -142,28 +142,28 @@ namespace UnscentedKalmanFilter
             z.SetColumn(0, measurements);
 
             //sigma points around x
-            Matrix<double> X = GetSigmaPoints(x, P, c);
+            var X = GetSigmaPoints(x, P, c);
 
             //unscented transformation of process
             // X1=sigmas(x1,P1,c) - sigma points around x1
             //X2=X1-x1(:,ones(1,size(X1,2))) - deviation of X1
-            Matrix<double>[] ut_f_matrices = UnscentedTransform(X, Wm, Wc, L, Q);
-            Matrix<double> x1 = ut_f_matrices[0];
-            Matrix<double> X1 = ut_f_matrices[1];
-            Matrix<double> P1 = ut_f_matrices[2];
-            Matrix<double> X2 = ut_f_matrices[3];
+            var ut_f_matrices = UnscentedTransform(X, Wm, Wc, L, Q);
+            var x1 = ut_f_matrices[0];
+            var X1 = ut_f_matrices[1];
+            var P1 = ut_f_matrices[2];
+            var X2 = ut_f_matrices[3];
 
             //unscented transformation of measurments
-            Matrix<double>[] ut_h_matrices = UnscentedTransform(X1, Wm, Wc, m, R);
-            Matrix<double> z1 = ut_h_matrices[0];
-            Matrix<double> Z1 = ut_h_matrices[1];
-            Matrix<double> P2 = ut_h_matrices[2];
-            Matrix<double> Z2 = ut_h_matrices[3];
+            var ut_h_matrices = UnscentedTransform(X1, Wm, Wc, m, R);
+            var z1 = ut_h_matrices[0];
+            var Z1 = ut_h_matrices[1];
+            var P2 = ut_h_matrices[2];
+            var Z2 = ut_h_matrices[3];
 
             //transformed cross-covariance
-            Matrix<double> P12 = (X2.Multiply(Matrix.Build.Diagonal(Wc.Row(0).ToArray()))).Multiply(Z2.Transpose());
+            var P12 = (X2.Multiply(Matrix.Build.Diagonal(Wc.Row(0).ToArray()))).Multiply(Z2.Transpose());
 
-            Matrix<double> K = P12.Multiply(P2.Inverse());
+            var K = P12.Multiply(P2.Inverse());
 
             //state update
             StateFactor = K.Multiply(z.Subtract(z1));
@@ -260,19 +260,18 @@ namespace UnscentedKalmanFilter
         private Matrix<double>[] UnscentedTransform(Matrix<double> X, Matrix<double> Wm, Matrix<double> Wc, int n, Matrix<double> R)
         {
             var L = X.ColumnCount;
-            Matrix<double> y = Matrix.Build.Dense(n, 1, 0);
-            Matrix<double> Y = Matrix.Build.Dense(n, L, 0);
+            var y = Matrix.Build.Dense(n, 1, 0);
+            var Y = Matrix.Build.Dense(n, L, 0);
 
-            Matrix<double> row_in_X;
             for (var k = 0; k < L; k++)
             {
-                row_in_X = X.SubMatrix(0, X.RowCount, k, 1);
+                var row_in_X = X.SubMatrix(0, X.RowCount, k, 1);
                 Y.SetSubMatrix(0, Y.RowCount, k, 1, row_in_X);
                 y = y.Add(Y.SubMatrix(0, Y.RowCount, k, 1).Multiply(Wm[0, k]));
             }
 
-            Matrix<double> Y1 = Y.Subtract(y.Multiply(Matrix.Build.Dense(1, L, 1)));
-            Matrix<double> P = Y1.Multiply(Matrix.Build.Diagonal(Wc.Row(0).ToArray()));
+            var Y1 = Y.Subtract(y.Multiply(Matrix.Build.Dense(1, L, 1)));
+            var P = Y1.Multiply(Matrix.Build.Diagonal(Wc.Row(0).ToArray()));
             P = P.Multiply(Y1.Transpose());
             P = P.Add(R);
 
@@ -289,7 +288,7 @@ namespace UnscentedKalmanFilter
         /// <returns>Sigma points</returns>
         private Matrix<double> GetSigmaPoints(Matrix<double> x, Matrix<double> P, double c)
         {
-            Matrix<double> A = P.Cholesky().Factor;
+            var A = P.Cholesky().Factor;
             //P= A A^T
             // [ 1 2 3]    [x 0 0]
             // [ 4 5 6] -> [x x 0]
@@ -299,19 +298,19 @@ namespace UnscentedKalmanFilter
 
             var n = x.RowCount;
 
-            Matrix<double> Y = Matrix.Build.Dense(n, n, 1);
+            var Y = Matrix.Build.Dense(n, n, 1);
             for (var j = 0; j < n; j++)
             {
                 Y.SetSubMatrix(0, n, j, 1, x);
             }
 
-            Matrix<double> X = Matrix.Build.Dense(n, (2 * n + 1));
+            var X = Matrix.Build.Dense(n, (2 * n + 1));
             X.SetSubMatrix(0, n, 0, 1, x);
 
-            Matrix<double> Y_plus_A = Y.Add(A);
+            var Y_plus_A = Y.Add(A);
             X.SetSubMatrix(0, n, 1, n, Y_plus_A);
 
-            Matrix<double> Y_minus_A = Y.Subtract(A);
+            var Y_minus_A = Y.Subtract(A);
             X.SetSubMatrix(0, n, n + 1, n, Y_minus_A);
 
             return X;

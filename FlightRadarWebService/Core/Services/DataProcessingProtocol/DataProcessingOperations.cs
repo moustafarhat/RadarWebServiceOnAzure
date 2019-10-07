@@ -31,7 +31,7 @@ namespace FlightRadarWebService.Core.Services.DataProcessingProtocol
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public DataProcessingModel DataTransmissionModelToDataProcessingModel(DataTransmissionModel model)
+        public DataProcessingModel DataTransmissionModelToDataProcessingModelKalman(DataTransmissionModel model)
         {
             var dataProcessingModel = new DataProcessingModel()
             {
@@ -60,6 +60,35 @@ namespace FlightRadarWebService.Core.Services.DataProcessingProtocol
             return dataProcessingModel;
         }
 
+
+        public DataProcessingModel DataTransmissionModelToDataProcessingModel(KalmanRunner runner, DataTransmissionModel model)
+        {
+            var dataProcessingModel = new DataProcessingModel()
+            {
+                Altitude = model.Altitude,
+                SenderId = model.SenderId,
+                Flight = model.Flight,
+                Latitude = model.Latitude,
+                Longitude = model.Longitude,
+                IsPredicted = model.IsPredicted,
+                Groundspeed = model.Groundspeed,
+                Timestamp = model.Timestamp,
+                Track = model.Track,
+                AltTimestamp = model.AltTimestamp,
+                AltitudeUnit = model.AltitudeUnit,
+                DeviationAlt = model.DeviationAlt,
+                DeviationLat = model.DeviationLat,
+                DeviationLong = model.DeviationLong,
+                Flarm = model.Flarm,
+                GroundSpeedUnit = model.GroundSpeedUnit,
+                LatTimestamp = model.LatTimestamp,
+                Longimestamp = model.LatTimestamp,
+                Prefix = model.Prefix,
+                UTC = model.UTC,
+                KalmanRunner =runner
+            };
+            return dataProcessingModel;
+        }
         /// <summary>
         /// Transfer Model
         /// </summary>
@@ -67,6 +96,7 @@ namespace FlightRadarWebService.Core.Services.DataProcessingProtocol
         /// <returns></returns>
         public IList<DataProcessingModel> DataTransmissionModelListToDataProcessingModel(IList<DataTransmissionModel> models)
         {
+
             return models.Select(model => new DataProcessingModel()
             {
                 Altitude = model.Altitude,

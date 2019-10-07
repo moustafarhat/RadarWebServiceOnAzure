@@ -1,47 +1,53 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FlightRadarWebService.CoordinateSystemConverter3D
 {
+
     public static class SystemConverter3D
     {
         public static SphericalCoordinater3D ConvertToSphericalCoord(CartesianCoordinates3D c)
         {
-            var sph = new SphericalCoordinater3D();
+            SphericalCoordinater3D sph = new SphericalCoordinater3D();
 
-            var x2 = c.X * c.X;
-            var y2 = c.Y * c.Y;
-            var z2 = c.Z * c.Z;
+            double alt2 = c.Altitude * c.Altitude;
+            double lng2 = c.Longitude * c.Longitude;
+            double lat2 = c.Latitude * c.Latitude;
 
-            //sph.R2 = Math.Sqrt(x2 + y2 + z2);
-            sph.R = Math.Sqrt(x2 + y2);
 
-            //A is an azimuth, which is the angle between the X-axis and Y-axis of the point
-            sph.A = Math.Atan(c.Y / c.X);
+            sph.R = Math.Sqrt(lat2 + lng2);
 
-            sph.A = correctAzimuthInRadians(c.X, c.Y, sph.A);
+            
+            //A is an azimuth angle, which is the angle between 
+            //the longitude-axis and latitude-axis of the plane  
+            sph.A = Math.Atan(c.Latitude / c.Longitude);
+
+
+            sph.A = correctAzimuthInRadians(c.Longitude, c.Latitude, sph.A);
+
 
             //I is an inclination, which is the angle between the radius R 
             // and the vector from the center to the point 
 
             //sph.I = Math.Acos(c.Z / sph.R2);
-            sph.D = Math.Atan(c.Z / sph.R);
+            sph.D = Math.Atan(c.Altitude / sph.R);
 
             return sph;
         }
 
         public static CartesianCoordinates3D ConvertToCartesianCoord(SphericalCoordinater3D sph)
         {
-            CartesianCoordinates3D c = new CartesianCoordinates3D
-            {
-                X = Math.Cos(sph.A) * sph.R, 
-                Y = Math.Sin(sph.A) * sph.R, 
-                Z = Math.Tan(sph.D) * sph.R
-            };
+            if (sph == null) return null;
 
+            CartesianCoordinates3D c = new CartesianCoordinates3D();
+
+            //x is longitude
+            //y is latitude
+            //z is altitude
+
+            c.Longitude = Math.Cos(sph.A) * sph.R;
+            c.Latitude = Math.Sin(sph.A) * sph.R;
             //c.Z = Math.Cos(sph.I) * sph.R2;
+            c.Altitude = Math.Tan(sph.D) * sph.R;
 
             return c;
         }
@@ -76,5 +82,7 @@ namespace FlightRadarWebService.CoordinateSystemConverter3D
             }
 
         }
+
+
     }
 }

@@ -8,6 +8,8 @@
 //Copy Rights : Flight Radar API
 //Description : Interface contains all Data Transmission operations
 ////////////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 using FlightRadarWebService.CoordinateSystemConverter3D;
 using UnscentedKalmanFilter;
@@ -45,42 +47,53 @@ namespace FlightRadarWebService.Core
         /// 
         /// </summary>
         /// <returns></returns>
-        public double[] GetState()
+        public CartesianCoordinates3D Predict(double times=1)
         {
-            return Ukf.GetState();
+            for (int i = 0; i < times; i++)
+            {
+                Ukf.Predict();
+            }
+
+            var result = Ukf.GetState();
+
+            var sph = new SphericalCoordinater3D(result);
+
+            return SystemConverter3D.ConvertToCartesianCoord(sph);
         }
 
-        public void Predict()
-        {
-            //Ukf.Predict();
-        }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="lng"></param>
-        /// <param name="lat"></param>
-        /// <param name="alt"></param>
+        /// <param name="c"></param>
         /// <returns></returns>
-
-        public double[] Update(double? lng, double? lat, double? alt)
+        public CartesianCoordinates3D Update(CartesianCoordinates3D c)
         {
-            CartesianCoordinates3D objt=new CartesianCoordinates3D(lng.Value,lat.Value,alt.Value);
-            
-            var result= SystemConverter3D.ConvertToSphericalCoord(objt);
-            
-            
-            if (!lng.HasValue)
+            try
             {
-                Ukf.Predict();
+
+                SphericalCoordinater3D sph = new SphericalCoordinater3D();
+
+                sph = SystemConverter3D.ConvertToSphericalCoord(c);
+
+                var mesaurement = sph.ToArray();
+
+
+                   
+                    Ukf.Update(mesaurement);
+
+                    var result = Ukf.GetState();
+                    sph = new SphericalCoordinater3D(result);
+
+                    return SystemConverter3D.ConvertToCartesianCoord(sph);
+                
             }
-            else
+            catch (Exception)
             {
-                var listval = new List<double> { lng.Value, lat.Value, alt.Value };
-                Ukf.Update(listval.ToArray());
+                return null;
+
             }
 
-            return Ukf.GetState();
         }
     }
 }
