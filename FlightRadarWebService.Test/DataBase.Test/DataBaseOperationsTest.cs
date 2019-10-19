@@ -1,25 +1,20 @@
-////////////////////////////////////////////////////////////////////
-//FileName: IDataBaseOperations.cs
-//FileType: Visual C# Source file
-//Size : 0
-//Author : Moustafa Farhat
-//Created On : 0
-//Last Modified On : 0
-//Copy Rights : Flight Radar API
-//Description : Interface contains all Data Transmission operations
-////////////////////////////////////////////////////////////////////
-
 using FlightRadarWebService.Core.Services.DataBaseOperations;
 using NUnit.Framework;
 
 namespace FlightRadarWebService.Test.DataBase.Test
 {
+    /// <summary>
+    /// Test DataBase Connection 
+    /// </summary>
     public class DataBaseOperationsTest
     {
         [SetUp]
         public void Setup()
         { }
 
+        /// <summary>
+        /// Test DataBase Connection Method
+        /// </summary>
         [Test]
         public void TestDataBaseConnection()
         {

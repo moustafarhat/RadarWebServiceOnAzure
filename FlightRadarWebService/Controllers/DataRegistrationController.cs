@@ -1,19 +1,9 @@
-﻿////////////////////////////////////////////////////////////////////
-//FileName: IDataBaseOperations.cs
-//FileType: Visual C# Source file
-//Size : 0
-//Author : Moustafa Farhat
-//Created On : 0
-//Last Modified On : 0
-//Copy Rights : Flight Radar API
-//Description : Interface contains all Data Transmission operations
-////////////////////////////////////////////////////////////////////
-using CSVWriter;
+﻿using CSVWriter;
 using FlightRadarWebService.Core;
+using FlightRadarWebService.Core.Services.DataTransmissionProtocol;
 using FlightRadarWebService.Models.TransmissionModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using FlightRadarWebService.Core.Services.DataTransmissionProtocol;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 namespace FlightRadarWebService.Controllers
@@ -25,7 +15,6 @@ namespace FlightRadarWebService.Controllers
     [ApiController]
     public class DataRegistrationController : Controller
     {
-
         // POST: api/<controller>
         /// <summary>
         /// Register Data

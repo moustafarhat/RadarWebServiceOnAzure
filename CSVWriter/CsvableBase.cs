@@ -1,12 +1,12 @@
 ﻿////////////////////////////////////////////////////////////////////
-//FileName: IDataBaseOperations.cs
+//FileName: CsvableBase.cs
 //FileType: Visual C# Source file
 //Size : 0
 //Author : Moustafa Farhat
 //Created On : 0
 //Last Modified On : 0
 //Copy Rights : Flight Radar API
-//Description : Interface contains all Data Transmission operations
+//Description :  Abstract class to save Model data as csv file
 ////////////////////////////////////////////////////////////////////
 namespace CSVWriter
 {
@@ -19,7 +19,7 @@ namespace CSVWriter
         ///  Write data with ,
         /// </summary>
         /// <returns></returns>^^
-        public virtual string ToCsv()
+        public string ToCsv()
         {
             var output = "";
 

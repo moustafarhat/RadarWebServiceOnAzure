@@ -1,12 +1,12 @@
 ﻿////////////////////////////////////////////////////////////////////
-//FileName: IDataBaseOperations.cs
+//FileName: CsvWriter.cs
 //FileType: Visual C# Source file
 //Size : 0
 //Author : Moustafa Farhat
 //Created On : 0
 //Last Modified On : 0
 //Copy Rights : Flight Radar API
-//Description : Interface contains all Data Transmission operations
+//Description : Generic CsvWriter Class
 ////////////////////////////////////////////////////////////////////
 using System.Collections.Generic;
 using System.IO;
@@ -14,6 +14,10 @@ using System.Linq;
 
 namespace CSVWriter
 {
+    /// <summary>
+    /// Generic CsvWriter Class
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class CsvWriter<T> where T : CsvableBase
     {
         /// <summary>

@@ -1,23 +1,14 @@
-﻿////////////////////////////////////////////////////////////////////
-//FileName: IDataBaseOperations.cs
-//FileType: Visual C# Source file
-//Size : 0
-//Author : Moustafa Farhat
-//Created On : 0
-//Last Modified On : 0
-//Copy Rights : Flight Radar API
-//Description : Interface contains all Data Transmission operations
-////////////////////////////////////////////////////////////////////
-using CSVWriter;
+﻿using CSVWriter;
 using FlightRadarWebService.Core;
 using FlightRadarWebService.Models.TransmissionModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using FlightRadarWebService.Core.Services.DataTransmissionProtocol;
 
 namespace FlightRadarWebService.Controllers
 {
     /// <summary>
-    /// 
+    /// Receive a List of Data
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -25,7 +16,7 @@ namespace FlightRadarWebService.Controllers
     {
         // POST: api/<controller>
         /// <summary>
-        /// Register Data
+        /// Register Data List
         /// </summary>
         /// <param name="receivedTable"></param>
         [HttpPost]
@@ -40,21 +31,14 @@ namespace FlightRadarWebService.Controllers
             {
                 foreach (var recievedModel in dataList)
                 {
-                    //Add Data To registration Class (Data Dictionary)
-                    //DataRegistration.GetInstance().AddDataToDic(recievedModel);
-
-                    DataRegistration.GetInstance().AddDataToDic(recievedModel);
+                    DataTransmissionOperations.GetInstance().RegisterData(recievedModel);
 
                     //Insert data into Database
                     //DataBaseOperations.InsertFlugData(recievedModel);
-
                 }
 
                 //Write Model into Csv File
                 cw.WriteModelsListToCsvFile(dataList, Constants.DATA_RECEIVED_FILE_PATH);
-
-
-
             }
             catch (Exception e)
             {

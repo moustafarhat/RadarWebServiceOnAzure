@@ -1,14 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////
-//FileName: IDataTransmissionOperations.cs
-//FileType: Visual C# Source file
-//Size : 0
-//Author : Moustafa Farhat
-//Created On : 0
-//Last Modified On : 0
-//Copy Rights : Flight Radar API
-//Description : Interface contains all Data Transmission operations
-////////////////////////////////////////////////////////////////////
-using FlightRadarWebService.Models.TransmissionModels;
+﻿using FlightRadarWebService.Models.TransmissionModels;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -17,7 +7,7 @@ using System.Linq;
 namespace FlightRadarWebService.Core.Services.DataBaseOperations
 {
     /// <summary>
-    /// 
+    /// DataBase Operations Class
     /// </summary>
     public class DataBaseOperations
     {
@@ -44,7 +34,7 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
         }
 
         /// <summary>
-        /// Insert operation for Flug Data 
+        /// Insert operation for Flug Data
         /// </summary>
         /// <exception cref="Exception"></exception>
         public static void InsertFlugData(DataTransmissionModel flugData)
@@ -54,7 +44,6 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
             {
                 con.Open();
                 var cmd = new SQLiteCommand("INSERT INTO Flights (Timestamp,SenderId,Groundspeed,Latitude,Longitude,Flight,Track,Altitude,UTC,DeviationLat,DeviationLong,DeviationAlt,AltTimestamp,LatTimestamp,LongTimestamp,Covariance,IsPredicted)VALUES(@Timestamp,@SenderId,@Groundspeed,@Latitude,@Longitude,@Flight,@Track,@Altitude,@UTC,@DeviationLat,@DeviationLong,@DeviationAlt,@AltTimestamp,@LatTimestamp,@LongTimestamp,@Covariance,@IsPredicted)", con);
-
 
                 cmd.Parameters.AddWithValue("@Timestamp", flugData.Timestamp ?? DateTime.Now);
                 cmd.Parameters.AddWithValue("@SenderId", flugData.SenderId);
@@ -79,7 +68,6 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
                 cmd.Parameters.AddWithValue("@Covariance", flugData.Covariance ?? "Null");
 
                 int count = cmd.ExecuteNonQuery();
-
             }
             catch (Exception ex)
             {
@@ -93,7 +81,7 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
         }
 
         /// <summary>
-        /// 
+        /// Get Flight from Database
         /// </summary>
         /// <param name="flight"></param>
         /// <returns></returns>
@@ -135,7 +123,7 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
         }
 
         /// <summary>
-        /// 
+        /// Get Flight Data by Flight name and DateTime
         /// </summary>
         /// <param name="flight"></param>
         /// <param name="time"></param>
@@ -184,11 +172,11 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
                              AverageLongitude = flightGroup.Average(x => x.Longitude),
                          };
 
-
             return flugDataLst;
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public static List<DataTransmissionModel> GetDataAllDataFromDataBase()
@@ -200,7 +188,6 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
                 using (var command = new SQLiteCommand(
                     "Select * from Flights", connection))
                 {
-
                     connection.Open();
 
                     var reader = command.ExecuteReader();
@@ -227,8 +214,9 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
             return flugDataLst;
         }
 
+        #region HelperFunctions
         /// <summary>
-        /// 
+        ///  Check value if it is already Null
         /// </summary>
         /// <param name="obj"></param>
         /// <typeparam name="T"></typeparam>
@@ -239,7 +227,7 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
         }
 
         /// <summary>
-        /// 
+        /// String Parser
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -253,12 +241,15 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
                 }
                 var result = Convert.ToInt32(value);
                 return result;
-
             }
             catch (FormatException)
             {
                 return 0;
             }
         }
+
+
+        #endregion
+
     }
 }

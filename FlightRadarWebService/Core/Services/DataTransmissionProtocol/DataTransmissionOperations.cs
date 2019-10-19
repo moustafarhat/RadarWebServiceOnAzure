@@ -1,34 +1,26 @@
-﻿////////////////////////////////////////////////////////////////////
-//FileName: DataTransmissionProtocol.cs
-//FileType: Visual C# Source file
-//Size : 0
-//Author : Moustafa Farhat
-//Created On : 0
-//Last Modified On : 0
-//Copy Rights : Flight Radar API
-//Description : Class which contains all Data Transmission operations
-////////////////////////////////////////////////////////////////////
-
-using System;
-using FlightRadarWebService.CoordinateSystemConverter3D;
+﻿using FlightRadarWebService.CoordinateSystemConverter3D;
 using FlightRadarWebService.Core.Services.DataProcessingProtocol;
 using FlightRadarWebService.Models.ProcessingModels;
 using FlightRadarWebService.Models.TransmissionModels;
+using System;
 
 namespace FlightRadarWebService.Core.Services.DataTransmissionProtocol
 {
     /// <summary>
-    /// Flights Data Transmission Protocols
+    /// Flights Data Transmission Functions
     /// </summary>
     public class DataTransmissionOperations
     {
         private static DataTransmissionOperations _dataTransmissionOperations;
 
+        /// <summary>
+        /// Private Constructor
+        /// </summary>
         private DataTransmissionOperations()
         { }
 
         /// <summary>
-        ///
+        /// Static Instance
         /// </summary>
         /// <returns></returns>
         public static DataTransmissionOperations GetInstance()
@@ -42,67 +34,59 @@ namespace FlightRadarWebService.Core.Services.DataTransmissionProtocol
             return _dataTransmissionOperations;
         }
 
-
-        private bool IsPositionNullOrZero(double? value)
+        /// <summary>
+        /// Check double value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private static bool IsPositionNullOrZero(double? value)
         {
-            if (value == null || value <= 0)
-                return true;
-            return false;
-
-
+            return value == null || value <= 0;
         }
+
         /// <summary>
         /// Add data to Dictionary
         /// </summary>
         /// <param name="receivedData"></param>
         public void RegisterData(DataTransmissionModel receivedData)
         {
+            DataProcessingModel dataProcessingModel;
 
-            DataProcessingModel dataProcessingModel = null;
-            int update_Times = 1;
+            var updateTimes = 1;
 
             if (DataContainers.GetInstance().DATA_PROCESSING_CONTAINER.ContainsKey(receivedData.Flight))
             {
                 dataProcessingModel = DataContainers.GetInstance().DATA_PROCESSING_CONTAINER[receivedData.Flight];
-              
-                dataProcessingModel = DataProcessingOperations
-                    .GetInstance().DataTransmissionModelToDataProcessingModel(dataProcessingModel,receivedData);
-                
+
+                dataProcessingModel = DataProcessingOperations.DataTransmissionModelToDataProcessingModel(dataProcessingModel, receivedData);
 
                 DataContainers.GetInstance().DATA_RECEIVED_CONTAINER.Clear();
             }
             else
             {
-                //to do: add a new record in the processing container
-
-
                 DataContainers.GetInstance().DATA_PROCESSING_CONTAINER.Add(receivedData.Flight, DataProcessingOperations.GetInstance().DataTransmissionModelToDataProcessingModelKalman(receivedData));
                 dataProcessingModel = DataContainers.GetInstance().DATA_PROCESSING_CONTAINER[receivedData.Flight];
-                update_Times = 10;
+                updateTimes = 10;
             }
-
-            CartesianCoordinates3D cartesianCoordinates;
 
             if (!IsPositionNullOrZero(receivedData.Altitude) && !IsPositionNullOrZero(receivedData.Latitude) && !IsPositionNullOrZero(receivedData.Longitude))
             {
-                cartesianCoordinates = new CartesianCoordinates3D(
+                var cartesianCoordinates = new CartesianCoordinates3D(
                     receivedData.Altitude.Value,
                     receivedData.Longitude.Value,
                     receivedData.Latitude.Value
                 );
 
-                for (int i = 0; i < update_Times; i++)
+                for (var i = 0; i < updateTimes; i++)
                 {
                     cartesianCoordinates = dataProcessingModel.KalmanRunner.Update(cartesianCoordinates);
                 }
-                
+
                 dataProcessingModel.Altitude = cartesianCoordinates.Altitude;
                 dataProcessingModel.Longitude = cartesianCoordinates.Longitude;
                 dataProcessingModel.Latitude = cartesianCoordinates.Latitude;
                 dataProcessingModel.UTC = DateTime.UtcNow;
-
             }
-
         }
     }
 }

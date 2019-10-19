@@ -1,32 +1,29 @@
 ﻿namespace FlightRadarWebService.Core.Services.DataProcessedProtocol
 {
-
-using Models.ProcessedModels;
-using Models.TransmissionModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using CSVWriter;
-using CoordinateSystemConverter3D;
-using Models.ProcessingModels;
-
+    using CSVWriter;
+    using Models.ProcessedModels;
+    using Models.ProcessingModels;
+    using Models.TransmissionModels;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class DataProcessedOperations
     {
         /// <summary>
-        /// 
+        /// Class which contains all processed Data and other Transformations
         /// </summary>
         private static DataProcessedOperations _dataProcessedOperations;
+
         /// <summary>
-        /// 
-        /// 
+        /// Private Constructor
         /// </summary>
 
         private DataProcessedOperations()
         { }
 
         /// <summary>
-        /// 
+        /// Static Instance
         /// </summary>
         /// <returns></returns>
         public static DataProcessedOperations GetInstance()
@@ -39,39 +36,37 @@ using Models.ProcessingModels;
 
             return _dataProcessedOperations;
         }
+
         /// <summary>
-        /// 
+        /// Function which retrieves all processed Data
         /// </summary>
         /// <returns></returns>
         public IDictionary<string, DataProcessedModel> GetAllData()
         {
-            // delete old data and predict the new values 
+            // delete old data and predict the new values
             UpdateAndDeleteOldPositions();
-
 
             // transform the data from data-processing-Container to data-processed-Container
             DataContainers.GetInstance().DATA_PROCESSED_CONTAINER.Clear();
 
             //Create CSV Model
-    
 
             foreach (var model in DataContainers.GetInstance().DATA_PROCESSING_CONTAINER)
             {
-                
                 var cw = new CsvWriter<DataProcessedModel>();
 
                 //Write Model into Csv File
                 cw.WriteModelToCsvFile(DataProcessingModelToDataProcessedModel(model.Value), Constants.DATA_PROCESSED_FILE_PATH);
 
-                DataContainers.GetInstance().DATA_PROCESSED_CONTAINER.Add(model.Value.Flight,DataProcessingModelToDataProcessedModel(model.Value));
+                //Add value to Dictionary
+                DataContainers.GetInstance().DATA_PROCESSED_CONTAINER.Add(model.Value.Flight, DataProcessingModelToDataProcessedModel(model.Value));
             }
-            
-            
 
             return DataContainers.GetInstance().DATA_PROCESSED_CONTAINER;
         }
+
         /// <summary>
-        /// Transfer Model
+        /// Model Transformation (Data Processing To Data Processed)
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -103,9 +98,8 @@ using Models.ProcessingModels;
             return dataProcessingModel;
         }
 
-
         /// <summary>
-        /// Transfer Model
+        /// Model Transformation (Data Transmission List To Data Processed)
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
@@ -137,11 +131,11 @@ using Models.ProcessingModels;
         }
 
         /// <summary>
-        /// 
+        /// Delete Old Data in Dictionary after a period of time
         /// </summary>
-        private void UpdateAndDeleteOldPositions()
+        private static void UpdateAndDeleteOldPositions()
         {
-           List<string> lstFlight = new List<string>();
+            var oldFlightsList = new List<string>();
 
             foreach (var data in DataContainers.GetInstance().DATA_PROCESSING_CONTAINER.Values)
             {
@@ -152,26 +146,24 @@ using Models.ProcessingModels;
                 if (diff > 80)
                 {
                     //DataContainers.GetInstance().DATA_PROCESSING_CONTAINER.Remove(data.Flight);
-                    lstFlight.Add(data.Flight);
+                    oldFlightsList.Add(data.Flight);
                 }
                 else
                 {
-                        double diff2 = currentTime.Subtract(data.UTC_Predicted.Value).Seconds;
+                    double diff2 = currentTime.Subtract(data.UTC_Predicted.Value).Seconds;
 
-                        CartesianCoordinates3D cartesianCoordinates = data.KalmanRunner.Predict(diff2);
+                    var cartesianCoordinates = data.KalmanRunner.Predict(diff2);
 
-                         if (cartesianCoordinates == null) return;
+                    if (cartesianCoordinates == null) return;
 
-                        data.Altitude = cartesianCoordinates.Altitude;
-                        data.Longitude = cartesianCoordinates.Longitude;
-                        data.Latitude = cartesianCoordinates.Latitude;
-                        data.UTC_Predicted = DateTime.UtcNow;
-
-                       
+                    data.Altitude = cartesianCoordinates.Altitude;
+                    data.Longitude = cartesianCoordinates.Longitude;
+                    data.Latitude = cartesianCoordinates.Latitude;
+                    data.UTC_Predicted = DateTime.UtcNow;
                 }
             }
 
-            foreach(string str in lstFlight)
+            foreach (var str in oldFlightsList)
             {
                 DataContainers.GetInstance().DATA_PROCESSING_CONTAINER.Remove(str);
             }
