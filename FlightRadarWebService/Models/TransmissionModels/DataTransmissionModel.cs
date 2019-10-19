@@ -48,7 +48,7 @@ namespace FlightRadarWebService.Models.TransmissionModels
         /// <summary>
         /// 
         /// </summary>
-        public double? Latitude { get; set; }
+        public double? Latitude { get; set; }= 0;
 
         /// <summary>
         /// 
@@ -57,7 +57,7 @@ namespace FlightRadarWebService.Models.TransmissionModels
         /// <summary>
         /// 
         /// </summary>
-        public double? Longitude { get; set; }
+        public double? Longitude { get; set; }= 0;
 
         /// <summary>
         /// 
@@ -91,7 +91,7 @@ namespace FlightRadarWebService.Models.TransmissionModels
         /// <summary>
         /// 
         /// </summary>
-        public DateTime? Longimestamp { get; set; }
+        public DateTime? LongTimestamp { get; set; }
 
         /// <summary>
         /// 

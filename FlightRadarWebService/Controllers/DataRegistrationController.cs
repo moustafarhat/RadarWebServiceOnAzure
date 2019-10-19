@@ -53,7 +53,7 @@ namespace FlightRadarWebService.Controllers
                     DeviationLong = received.DeviationLong,
                     AltTimestamp = received.AltTimestamp,
                     LatTimestamp = received.LatTimestamp,
-                    Longimestamp = received.Longimestamp,
+                    LongTimestamp = received.LongTimestamp,
                     Flarm = received.Flarm,
                 };
 

@@ -72,7 +72,7 @@ namespace FlightRadarWebService.Core.Services.DataBaseOperations
 
                 cmd.Parameters.AddWithValue("@AltTimestamp", flugData.AltTimestamp ?? DateTime.Now);
                 cmd.Parameters.AddWithValue("@LatTimestamp", flugData.LatTimestamp ?? DateTime.Now);
-                cmd.Parameters.AddWithValue("@Longimestamp", flugData.Longimestamp ?? DateTime.Now);
+                cmd.Parameters.AddWithValue("@Longimestamp", flugData.LongTimestamp ?? DateTime.Now);
 
                 cmd.Parameters.AddWithValue("@IsPredicted", flugData.IsPredicted);
 

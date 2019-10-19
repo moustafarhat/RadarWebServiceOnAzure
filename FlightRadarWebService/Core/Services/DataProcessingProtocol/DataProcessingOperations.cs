@@ -55,21 +55,22 @@ namespace FlightRadarWebService.Core.Services.DataProcessingProtocol
                 Longimestamp = model.LatTimestamp,
                 Prefix = model.Prefix,
                 UTC = model.UTC,
+                UTC_Predicted=model.UTC,
                 KalmanRunner = new KalmanRunner()
             };
             return dataProcessingModel;
         }
 
 
-        public DataProcessingModel DataTransmissionModelToDataProcessingModel(KalmanRunner runner, DataTransmissionModel model)
+        public DataProcessingModel DataTransmissionModelToDataProcessingModel(DataProcessingModel oldModel, DataTransmissionModel model)
         {
             var dataProcessingModel = new DataProcessingModel()
             {
-                Altitude = model.Altitude,
+                Altitude = model.Altitude==0? oldModel.Altitude:model.Altitude,
                 SenderId = model.SenderId,
                 Flight = model.Flight,
-                Latitude = model.Latitude,
-                Longitude = model.Longitude,
+                Latitude = model.Latitude==0? oldModel.Latitude:model.Latitude,
+                Longitude = model.Longitude==0? oldModel.Longitude:model.Longitude,
                 IsPredicted = model.IsPredicted,
                 Groundspeed = model.Groundspeed,
                 Timestamp = model.Timestamp,
@@ -85,8 +86,10 @@ namespace FlightRadarWebService.Core.Services.DataProcessingProtocol
                 Longimestamp = model.LatTimestamp,
                 Prefix = model.Prefix,
                 UTC = model.UTC,
-                KalmanRunner =runner
+                UTC_Predicted=model.UTC,
+                KalmanRunner =oldModel.KalmanRunner
             };
+            
             return dataProcessingModel;
         }
         /// <summary>
@@ -119,8 +122,10 @@ namespace FlightRadarWebService.Core.Services.DataProcessingProtocol
                 Longimestamp = model.LatTimestamp,
                 Prefix = model.Prefix,
                 UTC = model.UTC,
+                UTC_Predicted=model.UTC,
                 KalmanRunner = new KalmanRunner()
             }).ToList();
+            
         }
     }
 }

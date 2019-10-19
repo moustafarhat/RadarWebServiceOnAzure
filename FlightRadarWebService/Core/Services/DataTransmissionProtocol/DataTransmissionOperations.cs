@@ -59,13 +59,14 @@ namespace FlightRadarWebService.Core.Services.DataTransmissionProtocol
         {
 
             DataProcessingModel dataProcessingModel = null;
+            int update_Times = 1;
 
             if (DataContainers.GetInstance().DATA_PROCESSING_CONTAINER.ContainsKey(receivedData.Flight))
             {
                 dataProcessingModel = DataContainers.GetInstance().DATA_PROCESSING_CONTAINER[receivedData.Flight];
-
-                DataContainers.GetInstance().DATA_PROCESSING_CONTAINER[receivedData.Flight] = DataProcessingOperations
-                    .GetInstance().DataTransmissionModelToDataProcessingModel(dataProcessingModel.KalmanRunner,receivedData);
+              
+                dataProcessingModel = DataProcessingOperations
+                    .GetInstance().DataTransmissionModelToDataProcessingModel(dataProcessingModel,receivedData);
                 
 
                 DataContainers.GetInstance().DATA_RECEIVED_CONTAINER.Clear();
@@ -77,7 +78,7 @@ namespace FlightRadarWebService.Core.Services.DataTransmissionProtocol
 
                 DataContainers.GetInstance().DATA_PROCESSING_CONTAINER.Add(receivedData.Flight, DataProcessingOperations.GetInstance().DataTransmissionModelToDataProcessingModelKalman(receivedData));
                 dataProcessingModel = DataContainers.GetInstance().DATA_PROCESSING_CONTAINER[receivedData.Flight];
-
+                update_Times = 10;
             }
 
             CartesianCoordinates3D cartesianCoordinates;
@@ -90,8 +91,11 @@ namespace FlightRadarWebService.Core.Services.DataTransmissionProtocol
                     receivedData.Latitude.Value
                 );
 
-                cartesianCoordinates = dataProcessingModel.KalmanRunner.Update(cartesianCoordinates);
-
+                for (int i = 0; i < update_Times; i++)
+                {
+                    cartesianCoordinates = dataProcessingModel.KalmanRunner.Update(cartesianCoordinates);
+                }
+                
                 dataProcessingModel.Altitude = cartesianCoordinates.Altitude;
                 dataProcessingModel.Longitude = cartesianCoordinates.Longitude;
                 dataProcessingModel.Latitude = cartesianCoordinates.Latitude;

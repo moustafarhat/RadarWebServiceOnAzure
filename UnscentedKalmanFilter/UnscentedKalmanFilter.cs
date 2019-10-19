@@ -239,6 +239,7 @@ namespace UnscentedKalmanFilter
 
         public double[] GetState()
         {
+            if (x == null) return null;
             return x.ToColumnArrays()[0];
         }
 

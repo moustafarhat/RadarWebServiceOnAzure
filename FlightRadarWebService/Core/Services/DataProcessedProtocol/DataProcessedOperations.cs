@@ -1,17 +1,26 @@
-﻿using FlightRadarWebService.Models.ProcessedModels;
-using FlightRadarWebService.Models.TransmissionModels;
+﻿namespace FlightRadarWebService.Core.Services.DataProcessedProtocol
+{
+
+using Models.ProcessedModels;
+using Models.TransmissionModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using CSVWriter;
-using FlightRadarWebService.CoordinateSystemConverter3D;
-using FlightRadarWebService.Models.ProcessingModels;
+using CoordinateSystemConverter3D;
+using Models.ProcessingModels;
 
-namespace FlightRadarWebService.Core.Services.DataProcessedProtocol
-{
+
     public class DataProcessedOperations
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private static DataProcessedOperations _dataProcessedOperations;
+        /// <summary>
+        /// 
+        /// 
+        /// </summary>
 
         private DataProcessedOperations()
         { }
@@ -50,6 +59,7 @@ namespace FlightRadarWebService.Core.Services.DataProcessedProtocol
             {
                 
                 var cw = new CsvWriter<DataProcessedModel>();
+
                 //Write Model into Csv File
                 cw.WriteModelToCsvFile(DataProcessingModelToDataProcessedModel(model.Value), Constants.DATA_PROCESSED_FILE_PATH);
 
@@ -88,7 +98,7 @@ namespace FlightRadarWebService.Core.Services.DataProcessedProtocol
                 LatTimestamp = model.LatTimestamp,
                 Longimestamp = model.LatTimestamp,
                 Prefix = model.Prefix,
-                UTC = model.UTC,
+                UTC = model.UTC_Predicted,
             };
             return dataProcessingModel;
         }
@@ -131,25 +141,39 @@ namespace FlightRadarWebService.Core.Services.DataProcessedProtocol
         /// </summary>
         private void UpdateAndDeleteOldPositions()
         {
+           List<string> lstFlight = new List<string>();
+
             foreach (var data in DataContainers.GetInstance().DATA_PROCESSING_CONTAINER.Values)
             {
                 var currentTime = DateTime.UtcNow;
 
                 double diff = currentTime.Subtract(data.UTC.Value).Seconds;
 
-                if (diff > 200)
+                if (diff > 80)
                 {
-                    DataContainers.GetInstance().DATA_PROCESSING_CONTAINER.Remove(data.Flight);
+                    //DataContainers.GetInstance().DATA_PROCESSING_CONTAINER.Remove(data.Flight);
+                    lstFlight.Add(data.Flight);
                 }
                 else
                 {
-                    CartesianCoordinates3D cartesianCoordinates = data.KalmanRunner.Predict(diff);
-                      
-                    data.Altitude = cartesianCoordinates.Altitude;
-                    data.Longitude = cartesianCoordinates.Longitude;
-                    data.Latitude = cartesianCoordinates.Latitude;
-                    data.UTC = DateTime.UtcNow;
+                        double diff2 = currentTime.Subtract(data.UTC_Predicted.Value).Seconds;
+
+                        CartesianCoordinates3D cartesianCoordinates = data.KalmanRunner.Predict(diff2);
+
+                         if (cartesianCoordinates == null) return;
+
+                        data.Altitude = cartesianCoordinates.Altitude;
+                        data.Longitude = cartesianCoordinates.Longitude;
+                        data.Latitude = cartesianCoordinates.Latitude;
+                        data.UTC_Predicted = DateTime.UtcNow;
+
+                       
                 }
+            }
+
+            foreach(string str in lstFlight)
+            {
+                DataContainers.GetInstance().DATA_PROCESSING_CONTAINER.Remove(str);
             }
         }
     }

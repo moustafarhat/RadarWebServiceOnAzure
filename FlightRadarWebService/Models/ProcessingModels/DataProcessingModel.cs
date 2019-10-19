@@ -102,6 +102,12 @@ namespace FlightRadarWebService.Models.ProcessingModels
         /// </summary>
         public GroundSpeedUnits GroundSpeedUnit { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime? UTC_Predicted { get; set; }
+
+
         //Flarm Signal
         public int Flarm { get; set; } = 0;
 

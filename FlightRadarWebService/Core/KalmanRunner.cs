@@ -10,7 +10,6 @@
 ////////////////////////////////////////////////////////////////////
 
 using System;
-using System.Collections.Generic;
 using FlightRadarWebService.CoordinateSystemConverter3D;
 using UnscentedKalmanFilter;
 
@@ -55,6 +54,7 @@ namespace FlightRadarWebService.Core
             }
 
             var result = Ukf.GetState();
+            if (result == null) return null;
 
             var sph = new SphericalCoordinater3D(result);
 
@@ -77,8 +77,6 @@ namespace FlightRadarWebService.Core
                 sph = SystemConverter3D.ConvertToSphericalCoord(c);
 
                 var mesaurement = sph.ToArray();
-
-
                    
                     Ukf.Update(mesaurement);
 
