@@ -9,11 +9,11 @@
         /// </summary>
         /// <param name="cartesianCoordinates"></param>
         /// <returns></returns>
-        public static SphericalCoordinater3D ConvertToSphericalCoordinator(CartesianCoordinates3D cartesianCoordinates)
+        public static SphericalCoordinates3D ConvertToSphericalCoordinator(CartesianCoordinates3D cartesianCoordinates)
         {
             try
             {
-                var sph = new SphericalCoordinater3D();
+                var sph = new SphericalCoordinates3D();
 
                 var alt2 = cartesianCoordinates.Altitude * cartesianCoordinates.Altitude;
                 var lng2 = cartesianCoordinates.Longitude * cartesianCoordinates.Longitude;
@@ -48,7 +48,7 @@
         /// </summary>
         /// <param name="sphericalCoordinator"></param>
         /// <returns></returns>
-        public static CartesianCoordinates3D ConvertToCartesianCoordinator(SphericalCoordinater3D sphericalCoordinator)
+        public static CartesianCoordinates3D ConvertToCartesianCoordinator(SphericalCoordinates3D sphericalCoordinator)
         {
             if (sphericalCoordinator == null) return null;
 

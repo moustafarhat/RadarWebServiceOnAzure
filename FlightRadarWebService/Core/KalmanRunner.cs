@@ -56,9 +56,9 @@ namespace FlightRadarWebService.Core
             var result = Ukf.GetState();
             if (result == null) return null;
 
-            var sph = new SphericalCoordinater3D(result);
+            var sphericalCoordinator = new SphericalCoordinates3D(result);
 
-            return SystemConverter3D.ConvertToCartesianCoordinator(sph);
+            return SystemConverter3D.ConvertToCartesianCoordinator(sphericalCoordinator);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace FlightRadarWebService.Core
         {
             try
             {
-                var sphericalCoordinater3D = new SphericalCoordinater3D();
+                var sphericalCoordinater3D = new SphericalCoordinates3D();
 
                 sphericalCoordinater3D = SystemConverter3D.ConvertToSphericalCoordinator(c);
 
@@ -79,7 +79,10 @@ namespace FlightRadarWebService.Core
                 Ukf.Update(measurement);
 
                 var result = Ukf.GetState();
-                sphericalCoordinater3D = new SphericalCoordinater3D(result);
+
+                sphericalCoordinater3D = new SphericalCoordinates3D(result);
+
+                var sphericalCoordinate = new SphericalCoordinates3D();
 
                 return SystemConverter3D.ConvertToCartesianCoordinator(sphericalCoordinater3D);
             }

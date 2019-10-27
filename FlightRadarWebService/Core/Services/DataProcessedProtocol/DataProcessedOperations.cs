@@ -53,12 +53,19 @@
 
             foreach (var model in DataContainers.GetInstance().DATA_PROCESSING_CONTAINER)
             {
+                if (model.Value.Altitude < 0 || model.Value.Longitude < 0 || model.Value.Latitude < 0)
+                {
+                    continue;
+
+                }
+
                 var cw = new CsvWriter<DataProcessedModel>();
 
                 //Write Model into Csv File
                 cw.WriteModelToCsvFile(DataProcessingModelToDataProcessedModel(model.Value), Constants.DATA_PROCESSED_FILE_PATH);
 
                 //Add value to Dictionary
+
                 DataContainers.GetInstance().DATA_PROCESSED_CONTAINER.Add(model.Value.Flight, DataProcessingModelToDataProcessedModel(model.Value));
             }
 
@@ -143,7 +150,7 @@
 
                 double diff = currentTime.Subtract(data.UTC.Value).Seconds;
 
-                if (diff > 80)
+                if (diff > 60)
                 {
                     //DataContainers.GetInstance().DATA_PROCESSING_CONTAINER.Remove(data.Flight);
                     oldFlightsList.Add(data.Flight);
@@ -160,6 +167,8 @@
                     data.Longitude = cartesianCoordinates.Longitude;
                     data.Latitude = cartesianCoordinates.Latitude;
                     data.UTC_Predicted = DateTime.UtcNow;
+
+                    
                 }
             }
 

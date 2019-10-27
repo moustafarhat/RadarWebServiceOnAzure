@@ -1,6 +1,6 @@
 ﻿namespace FlightRadarWebService.CoordinateSystemConverter3D
 {
-    public class SphericalCoordinater3D
+    public class SphericalCoordinates3D
     {
         //R is a radius, which is the distance between center and the point
         //public double R2 { get; set; }
@@ -16,12 +16,12 @@
         //the longitude-axis and latitude-axis of the plane
         public double A { get; set; }
 
-        public SphericalCoordinater3D()
+        public SphericalCoordinates3D()
         {
             A = D = R = 0;
         }
 
-        public SphericalCoordinater3D(double[] values)
+        public SphericalCoordinates3D(double[] values)
         {
             A = values[0];
             D = values[1];
