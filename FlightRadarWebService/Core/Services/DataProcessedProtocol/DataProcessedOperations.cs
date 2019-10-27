@@ -56,7 +56,6 @@
                 if (model.Value.Altitude < 0 || model.Value.Longitude < 0 || model.Value.Latitude < 0)
                 {
                     continue;
-
                 }
 
                 var cw = new CsvWriter<DataProcessedModel>();
@@ -167,8 +166,6 @@
                     data.Longitude = cartesianCoordinates.Longitude;
                     data.Latitude = cartesianCoordinates.Latitude;
                     data.UTC_Predicted = DateTime.UtcNow;
-
-                    
                 }
             }
 
