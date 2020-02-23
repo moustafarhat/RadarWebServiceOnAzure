@@ -1,15 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////
-//FileName: IDataBaseOperations.cs
-//FileType: Visual C# Source file
-//Size : 0
-//Author : Moustafa Farhat
-//Created On : 0
-//Last Modified On : 0
-//Copy Rights : Flight Radar API
-//Description : Interface contains all Data Transmission operations
-////////////////////////////////////////////////////////////////////
-
-using System;
+﻿using System;
 using System.IO;
 
 namespace FlightRadarWebService.Core
@@ -19,7 +8,6 @@ namespace FlightRadarWebService.Core
     /// </summary>
     public static class Constants
     {
-
         /// <summary>
         /// /NLog recommends using a static variable for the logger object
         /// </summary>
@@ -36,7 +24,7 @@ namespace FlightRadarWebService.Core
         public static string DATA_PROCESSED_FILE_PATH = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\DataFiles\\", "ProcessedData.csv");
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static string DATA_BASE_CONNECTION_STRING = "Data Source=" + AppDomain.CurrentDomain.BaseDirectory + "\\db\\Flight.db;Version=3;";
 
@@ -45,7 +33,5 @@ namespace FlightRadarWebService.Core
         /// </summary>
         public static string HEADER = "Code" + "," + "Description" + "," + "NDC" + "," + "Supplier Code"
         + "," + "Supplier Description" + "," + "Pack Size" + "," + "UOM";
-
-
     }
 }

@@ -1,25 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FlightRadarWebService.CoordinateSystemConverter3D
+﻿namespace FlightRadarWebService.CoordinateSystemConverter3D
 {
     public class CartesianCoordinates3D
     {
+        /// <summary>
+        /// Values initialization  
+        /// </summary>
         public CartesianCoordinates3D()
         {
-            this.Altitude = this.Latitude = this.Longitude = 0;
+            Altitude = Latitude = Longitude = 0;
         }
+
+        /// <summary>
+        /// Longitude, Latitude, Altitude initialization
+        /// </summary>
+        /// <param name="alt"></param>
+        /// <param name="lng"></param>
+        /// <param name="lat"></param>
         public CartesianCoordinates3D(double alt, double lng, double lat)
         {
-            this.Altitude = alt;
-            this.Latitude = lat;
-            this.Longitude = lng;
+            Altitude = alt;
+            Latitude = lat;
+            Longitude = lng;
 
         }
+
+        /// <summary>
+        /// Longitude value
+        /// </summary>
         public double Longitude { get; set; }
+
+        /// <summary>
+        /// Latitude value
+        /// </summary>
         public double Latitude { get; set; }
+
+        /// <summary>
+        /// Altitude value
+        /// </summary>
         public double Altitude { get; set; }
 
 

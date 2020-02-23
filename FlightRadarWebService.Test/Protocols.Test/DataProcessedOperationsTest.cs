@@ -2,12 +2,11 @@
 
 namespace FlightRadarWebService.Test.Protocols.Test
 {
-    class DataProcessedOperationsTest
+    internal class DataProcessedOperationsTest
     {
         [Test]
         public void Test()
         {
-
         }
     }
 }

@@ -1,18 +1,7 @@
-﻿////////////////////////////////////////////////////////////////////
-//FileName: IDataBaseOperations.cs
-//FileType: Visual C# Source file
-//Size : 0
-//Author : Moustafa Farhat
-//Created On : 0
-//Last Modified On : 0
-//Copy Rights : Flight Radar API
-//Description : Interface contains all Data Transmission operations
-////////////////////////////////////////////////////////////////////
-
-using System;
-using System.Collections.Generic;
-using FlightRadarWebService.CoordinateSystemConverter3D;
+﻿using System;
 using UnscentedKalmanFilter;
+using FlightRadarWebService.CoordinateSystemConverter3D;
+
 
 namespace FlightRadarWebService.Core
 {
@@ -21,17 +10,27 @@ namespace FlightRadarWebService.Core
     /// </summary>
     public class KalmanRunner
     {
-        public Ukf Ukf;
-        private static KalmanRunner _kalmanRunnerInstance;
         /// <summary>
-        /// 
+        /// Kalman Instance
+        /// </summary>
+        private readonly Ukf Ukf;
+
+        /// <summary>
+        /// Static Instance
+        /// </summary>
+        private static KalmanRunner _kalmanRunnerInstance;
+
+        /// <summary>
+        /// Initialization
         /// </summary>
         public KalmanRunner()
         {
             Ukf = new Ukf();
         }
 
+
         /// <summary>
+        /// Static Instance
         /// </summary>
         /// <returns></returns>
         public static KalmanRunner GetKalmanRunner()
@@ -44,26 +43,26 @@ namespace FlightRadarWebService.Core
         }
 
         /// <summary>
-        /// 
+        /// Predict Values
         /// </summary>
         /// <returns></returns>
-        public CartesianCoordinates3D Predict(double times=1)
+        public CartesianCoordinates3D Predict(double times = 1)
         {
-            for (int i = 0; i < times; i++)
+            for (var i = 0; i < times; i++)
             {
                 Ukf.Predict();
             }
 
             var result = Ukf.GetState();
+            if (result == null) return null;
 
-            var sph = new SphericalCoordinater3D(result);
+            var sphericalCoordinator = new SphericalCoordinates3D(result);
 
-            return SystemConverter3D.ConvertToCartesianCoord(sph);
+            return SystemConverter3D.ConvertToCartesianCoordinator(sphericalCoordinator);
         }
 
-
         /// <summary>
-        /// 
+        /// Update System State
         /// </summary>
         /// <param name="c"></param>
         /// <returns></returns>
@@ -71,29 +70,26 @@ namespace FlightRadarWebService.Core
         {
             try
             {
+                var sphericalCoordinater3D = new SphericalCoordinates3D();
 
-                SphericalCoordinater3D sph = new SphericalCoordinater3D();
+                sphericalCoordinater3D = SystemConverter3D.ConvertToSphericalCoordinator(c);
 
-                sph = SystemConverter3D.ConvertToSphericalCoord(c);
+                var measurement = sphericalCoordinater3D.ToArray();
 
-                var mesaurement = sph.ToArray();
+                Ukf.Update(measurement);
 
+                var result = Ukf.GetState();
 
-                   
-                    Ukf.Update(mesaurement);
+                sphericalCoordinater3D = new SphericalCoordinates3D(result);
 
-                    var result = Ukf.GetState();
-                    sph = new SphericalCoordinater3D(result);
+                var sphericalCoordinate = new SphericalCoordinates3D();
 
-                    return SystemConverter3D.ConvertToCartesianCoord(sph);
-                
+                return SystemConverter3D.ConvertToCartesianCoordinator(sphericalCoordinater3D);
             }
             catch (Exception)
             {
                 return null;
-
             }
-
         }
     }
 }

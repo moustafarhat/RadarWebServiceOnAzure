@@ -4,6 +4,9 @@ using System;
 
 namespace UnscentedKalmanFilter
 {
+    /// <summary>
+    /// Kalman Algorithm Implementation
+    /// </summary>
     public class Ukf
     {
         /// <summary>
@@ -81,8 +84,12 @@ namespace UnscentedKalmanFilter
 		/// </summary>
         private Matrix<double> R;
 
-        public double[] MeasurementsAlt;
-        public Matrix<double> StateFactor;
+        /// <summary>
+        /// Alt Measurement Values
+        /// </summary>
+        private double[] MeasurementsAlt;
+
+        private Matrix<double> StateFactor;
 
         /// <summary>
         /// Constructor of Unscented Kalman Filter
@@ -94,6 +101,9 @@ namespace UnscentedKalmanFilter
             this.L = L;
         }
 
+        /// <summary>
+        /// Initial Kalman Values
+        /// </summary>
         private void Init()
         {
             q = 20;
@@ -123,6 +133,10 @@ namespace UnscentedKalmanFilter
             c = Math.Sqrt(c);
         }
 
+        /// <summary>
+        /// Kalman Update Method
+        /// </summary>
+        /// <param name="measurements"></param>
         public void Update(double[] measurements)
         {
             MeasurementsAlt = measurements;
@@ -173,14 +187,16 @@ namespace UnscentedKalmanFilter
             P = P1.Subtract(K.Multiply(P12.Transpose()));
         }
 
-
-
+        /// <summary>
+        /// Kalman Predict Method
+        /// </summary>
         public void Predict()
         {
             if (MeasurementsAlt == null) return;
 
             x = x.Add(StateFactor);
         }
+
 
         public double[] CorrectOldData(double[] measurements, int times, double[] oldPredictedState, double[,] oldCovariance)
         {
@@ -239,6 +255,7 @@ namespace UnscentedKalmanFilter
 
         public double[] GetState()
         {
+            if (x == null) return null;
             return x.ToColumnArrays()[0];
         }
 

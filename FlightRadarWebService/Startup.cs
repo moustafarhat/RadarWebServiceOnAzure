@@ -1,12 +1,12 @@
 ////////////////////////////////////////////////////////////////////
-//FileName: IDataBaseOperations.cs
+//FileName: Startup.cs
 //FileType: Visual C# Source file
 //Size : 0
 //Author : Moustafa Farhat
 //Created On : 0
 //Last Modified On : 0
 //Copy Rights : Flight Radar API
-//Description : Interface contains all Data Transmission operations
+//Description : Web Service Initialization
 ////////////////////////////////////////////////////////////////////
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -19,12 +19,12 @@ using Swashbuckle.AspNetCore.Swagger;
 namespace FlightRadarWebService
 {
     /// <summary>
-    /// 
+    /// Web Service Initialization
     /// </summary>
     public class Startup
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
@@ -33,13 +33,13 @@ namespace FlightRadarWebService
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
         /// <summary>
-        /// 
+        ///This method gets called by the runtime. Use this method to add services to the container.
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
@@ -80,7 +80,7 @@ namespace FlightRadarWebService
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         /// <summary>
-        /// 
+        /// Main Configurations
         /// </summary>
         /// <param name="app"></param>
         /// <param name="env"></param>
@@ -93,7 +93,6 @@ namespace FlightRadarWebService
             else
             {
                 app.UseExceptionHandler("/Error");
-
             }
 
             app.UseHttpsRedirection();

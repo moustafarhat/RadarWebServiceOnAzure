@@ -1,30 +1,20 @@
-﻿////////////////////////////////////////////////////////////////////
-//FileName: IDataBaseOperations.cs
-//FileType: Visual C# Source file
-//Size : 0
-//Author : Moustafa Farhat
-//Created On : 0
-//Last Modified On : 0
-//Copy Rights : Flight Radar API
-//Description : Interface contains all Data Transmission operations
-////////////////////////////////////////////////////////////////////
-using FlightRadarWebService.Core.Services.DataBaseOperations;
+﻿using FlightRadarWebService.Core.Services.DataBaseOperations;
 using FlightRadarWebService.Models.TransmissionModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
-// For more information on enabling Web API for empty projects, visit 
+// For more information on enabling Web API for empty projects, visit
 
 namespace FlightRadarWebService.Controllers
 {
     /// <summary>
-    /// 
+    /// Get Flight Data from Database 
     /// </summary>
     [Route("api/[controller]")]
     public class SelectFlightController : Controller
     {
         /// <summary>
-        /// 
+        /// TODO:Get Flight Data from Database
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -34,7 +24,7 @@ namespace FlightRadarWebService.Controllers
         }
 
         /// <summary>
-        /// 
+        ///TODO: Get Flight Data from Database
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetFlightData")]
